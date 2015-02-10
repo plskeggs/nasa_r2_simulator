@@ -19,24 +19,20 @@
   <group if="$(arg gravity)">
     <param name="/gravity/x" value="0"/>
     <param name="/gravity/y" value="0"/>
-    <param name="/gravity/z" value="-9.8"/>
+    <param name="/gravity/z" value="0"/>
   </group>
 
   <!-- load robot -->
   <group if="$(arg robot)">
-    <param name="robot_description" command="$(find xacro)/xacro.py '$(find r2_gazebo)/robots/r2.sim.urdf.xacro'" />
-    <node name="spawn_r2" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model r2 -paused=true -y 2" respawn="false" output="screen" />
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find r2_gazebo)/robots/r2_fullbody.sim.urdf.xacro'" />
+    <node name="spawn_r2" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model r2 -paused=true" respawn="false" output="screen" />
   </group>
 
   <!-- Load joint controller configurations from YAML file to parameter server -->
-  <rosparam file="$(find r2_gazebo)/config/controllers/r2_generic_traj_control.yaml" command="load"/>
-
-  <!-- load the controllers -->
-  <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" ns="r2" args="r_arm_controller l_arm_controller neck_controller waist_controller joint_state_controller"/> -->
+  <rosparam file="$(find r2_gazebo)/config/controllers/r2_fullbody_generic_traj_control.yaml" command="load"/>
 
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" ns="r2" args="r_arm_controller l_arm_controller r_hand_controller l_hand_controller neck_controller waist_controller joint_state_controller"/>
+    output="screen" ns="/r2" args="r_arm_controller l_arm_controller r_hand_controller l_hand_controller l_leg_controller r_leg_controller l_foot_controller r_foot_controller neck_controller waist_controller joint_state_controller"/>
 
   <!-- convert joint states to TF transforms for rviz, etc -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
@@ -48,19 +44,21 @@
   <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen" if="$(arg gui)"/>
 
   <!-- move robot to ready pose -->
-  <node name="r2_ready_pose" pkg="r2_control" type="r2_ready_pose.py" respawn="false" output="screen"/>
-
+  <node name="r2_ready_pose" pkg="r2_control" type="r2_fullbody_ready_pose.py" respawn="false" output="screen"/>
+  
   <!-- octomap server -->
   <node pkg="tf" type="static_transform_publisher" name="octomap_odom_broadcaster" args="0 0 0 0 0 0 /world /map 100" if="$(arg octomap)"/>
   <node pkg="octomap_server" type="octomap_server_node" name="octomap_server" args="cloud_in:=/r2/asus/depth/points _resolution:=0.02" if="$(arg octomap)"/>
-
+  
   <!-- moveit server -->
   <node pkg="tf" type="static_transform_publisher" name="moveit_odom_broadcaster" args="0 0 0 0 0 0 reference_frame world 100" />
-  <include file="$(find r2_moveit_config)/launch/start_moveit_server.launch" if="$(arg moveit)"/>
+  <include file="$(find r2_fullbody_moveit_config)/launch/start_moveit_server.launch" if="$(arg moveit)"/>
 
   <!-- affordance template server -->
   <node name="server" pkg="affordance_template_server" type="server.py" respawn="false" output="screen"/>
 
 </launch>
+
+
 
 
