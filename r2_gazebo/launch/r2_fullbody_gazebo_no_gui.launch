@@ -7,7 +7,7 @@
   <arg name="debug"     default="false" />
   <arg name="i_control" default="false" />
   <arg name="octomap"   default="false" />
-  <arg name="moveit"    default="false" />
+  <arg name="moveit"    default="true" />
   <arg name="at_server" default="false" />
 
   <param name="/use_sim_time" value="true"/>
@@ -55,8 +55,8 @@
   <include file="$(find r2_fullbody_moveit_config)/launch/start_moveit_server.launch" if="$(arg moveit)"/>
 
   <!-- affordance template server -->
-  <node name="server" pkg="affordance_template_server" type="server.py" respawn="false" output="screen"/>
-
+<!--   <node name="server" pkg="affordance_template_server" type="server.py" respawn="false" output="screen" args="r2_full.yaml" if="$(arg at_server)"/>
+ -->
 </launch>
 
 
