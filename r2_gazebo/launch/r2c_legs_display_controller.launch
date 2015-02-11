@@ -2,7 +2,7 @@
 <launch>
 	<arg name="model" />
 	<!-- load world -->
-	<node name="gazebo" pkg="gazebo" type="gazebo" args="$(find r2_gazebo)/gazebo/r2_empty_no_gravity.world" output="screen" respawn="false"/>
+	<node name="gazebo" pkg="gazebo" type="gazebo" args="$(find r2_gazebo)/worlds/r2_empty_no_gravity.world" output="screen" respawn="false"/>
     <!-- load legs -->
     <param name="robot_description" command="$(find xacro)/xacro.py '$(find r2_description)/robots/r2c_legs.sim.urdf.xacro'" /> 
   	<param name="robot_urdf" value="$(find r2_description)/robots/r2c_legs.sim.urdf.xml" />

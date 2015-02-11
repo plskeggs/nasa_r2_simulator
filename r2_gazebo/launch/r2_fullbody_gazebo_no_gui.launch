@@ -13,8 +13,8 @@
   <param name="/use_sim_time" value="true"/>
 
   <!-- load world -->
-  <node name="gazebo" pkg="gazebo_ros" type="debug" args="$(find r2_gazebo)/gazebo/$(arg world).world" output="screen" respawn="false" if="$(arg debug)"/>
-  <node name="gazebo" pkg="gazebo_ros" type="gzserver" args="$(find r2_gazebo)/gazebo/$(arg world).world" output="screen" respawn="false" unless="$(arg debug)"/>
+  <node name="gazebo" pkg="gazebo_ros" type="debug" args="$(find r2_gazebo)/worlds/$(arg world).world" output="screen" respawn="false" if="$(arg debug)"/>
+  <node name="gazebo" pkg="gazebo_ros" type="gzserver" args="$(find r2_gazebo)/worlds/$(arg world).world" output="screen" respawn="false" unless="$(arg debug)"/>
 
   <group if="$(arg gravity)">
     <param name="/gravity/x" value="0"/>
