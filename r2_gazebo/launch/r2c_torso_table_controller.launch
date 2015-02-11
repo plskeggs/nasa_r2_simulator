@@ -2,7 +2,7 @@
 <launch>
 
   <!-- load world -->
-  <node name="gazebo" pkg="gazebo" type="gazebo" args="$(find r2_gazebo)/gazebo/r2_empty.world" output="screen" respawn="false" />
+  <node name="gazebo" pkg="gazebo" type="gazebo" args="$(find r2_gazebo)/worlds/r2_empty.world" output="screen" respawn="false" />
 
   <!-- load controller parameters-->
   <rosparam file="$(find r2_gazebo)/config/controllers/r2sim_torso_params.yaml" command="load" />
