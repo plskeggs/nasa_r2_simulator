@@ -2,15 +2,16 @@
 #define GAZEBOINTERFACE_H
 
 #include <gazebo_interface/RobotController.h>
+#include "nasa_r2_common_msgs/JointControl.h"
+#include "nasa_r2_common_msgs/JointStatus.h"
+#include "nasa_r2_common_msgs/JointCapability.h"
 
-#include <common/Plugin.hh>
-#include <common/Events.hh>
-
-#include <r2_msgs/JointControl.h>
-#include <r2_msgs/JointStatus.h>
+#include "common/Plugin.hh"
+#include "common/Events.hh"
 
 #include <ros/ros.h>
 #include <sensor_msgs/JointState.h>
+#include <nasa_r2_common_msgs/JointCommand.h>
 
 namespace gazebo
 {
@@ -31,7 +32,7 @@ namespace gazebo
         void commandJoints(const sensor_msgs::JointState::ConstPtr& msg);
 
         // handle joint control messages
-        void controlJoints(const r2_msgs::JointControl::ConstPtr& msg);
+        void controlJoints(const nasa_r2_common_msgs::JointControl::ConstPtr& msg);
 
         // traverse through yaml structure looking for the mapped values
         // param: structure to traverseB
@@ -62,10 +63,21 @@ namespace gazebo
         std::string jointCommandsTopic;
         ros::Subscriber jointCommandsSub;
 
+        // joint capabilities
+        std::string jointCapabilitiesTopic;
+        ros::Publisher jointCapabilitiesPub;
+        std::map<std::string, std::pair<double, double> > jointLimits;
+
         // joint states
         std::string jointStatesTopic;
         ros::Publisher jointStatePub;
         double jointStatesStepTime;
+        std::map<std::string, RobotController::JointState> jointStates;
+
+        // joint commandRefs
+        std::string jointCommandRefsTopic;
+        ros::Publisher jointCommandRefsPub;
+        std::map<std::string, RobotController::JointState> jointCommandRefs;
 
         // joint status
         bool advancedMode;

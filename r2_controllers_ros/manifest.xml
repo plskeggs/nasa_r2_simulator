@@ -1,0 +1,20 @@
+<package>
+  <description brief="r2_controllers_ros">
+
+     r2_controllers_ros
+
+  </description>
+  <author>Allison Thackston</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/r2_gazebo_controllers</url>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+  
+  <depend package="nasa_cmake"/>
+  <depend package="r2_description"/>
+  <depend package="nasa_robodyn_controllers_core"/>  
+
+</package>
+
+

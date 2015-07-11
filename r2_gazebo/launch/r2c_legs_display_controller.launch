@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+	<arg name="model" />
+	<!-- load world -->
+	<node name="gazebo" pkg="gazebo" type="gazebo" args="$(find r2_gazebo)/gazebo/r2_empty_no_gravity.world" output="screen" respawn="false"/>
+    <!-- load legs -->
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find r2_description)/robots/r2c_legs.sim.urdf.xacro'" /> 
+  	<param name="robot_urdf" value="$(find r2_description)/robots/r2c_legs.sim.urdf.xml" />
+
+    <!-- start gui -->
+    <param name="use_gui" value="True"/>  
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+	<node name="rviz" pkg="rviz" type="rviz"/>
+
+	<!-- Start Controller -->
+  	<node name="r2_controller" pkg="r2_controllers_ros" type="r2_controllers_ros" respawn="false" output="screen" />
+
+</launch>
+
+

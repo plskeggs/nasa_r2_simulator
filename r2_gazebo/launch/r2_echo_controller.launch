@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+	<arg name="model" />
+	<arg name="gui" default="False" />
+	<param name="use_gui" value="$(arg gui)"/>
+	<param name="robot_description" command="$(find xacro)/xacro.py '$(find r2_description)/robots/r2.sim.urdf.xacro'" />
+  	<param name="robot_urdf" value="$(find r2_description)/robots/r2.sim.urdf.xml" />
+
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+	<node name="rviz" pkg="rviz" type="rviz"/>
+
+	<!-- Start Controller -->
+  	<node name="r2_controller" pkg="r2_controllers_ros" type="r2_controllers_ros" respawn="false" output="screen" />
+</launch>
+
+

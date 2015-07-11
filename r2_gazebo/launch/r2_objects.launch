@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+
+ <param name="handrail_description" command="$(find xacro)/xacro.py $(find r2_gazebo)/objects/handrail.urdf.xacro" />
+ <node name="spawn_handrail" pkg="gazebo" type="spawn_model" args="-urdf -param handrail_description -Z 0.5 -z 1.05 -Y 1.2 -y 0.55 -x -0.25  -model handrail_model" respawn="false" output="screen" />
+
+ <param name="handle_description" command="$(find xacro)/xacro.py $(find r2_gazebo)/objects/handle.urdf.xacro" />
+ <node name="spawn_handle" pkg="gazebo" type="spawn_model" args="-urdf -param handle_description -Z 0.5 -z 1.05 -Y 1.8 -y 0.55 -x 0.25  -model handle_model" respawn="false" output="screen" />
+
+ <param name="weight20_description" command="$(find xacro)/xacro.py $(find r2_gazebo)/objects/weight20.urdf.xacro" />
+ <node name="spawn_weight20" pkg="gazebo" type="spawn_model" args="-urdf -param weight20_description -Z 0.5 -z 1.15 -Y 1.7 -y 0.8 -x -0.025 -model weight20_model" respawn="false" output="screen" />
+
+</launch>
+

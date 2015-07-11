@@ -1,0 +1,60 @@
+newmtl US_Lab_FwdEnd.C_0
+Ka 0.100000 0.100000 0.100000
+Kd 0.800000 0.800000 0.800000
+Ks 0.200000 0.200000 0.200000
+illum 2
+Ns 100
+map_Ka USLab_ForeEnd.jpg
+map_Kd USLab_ForeEnd.jpg
+map_Ks USLab_ForeEnd.jpg
+newmtl US_Lab_FwdEnd.C_1
+Ka 0.098039 0.098039 0.098039
+Kd 0.800000 0.800000 0.800000
+Ks 0.098039 0.098039 0.098039
+illum 2
+Ns 7
+map_Ka cf190-024_Simp_Col.jpg
+map_Kd cf190-024_Simp_Col.jpg
+map_Ks cf190-024_Simp_Col.jpg
+newmtl US_Lab_FwdEnd.C_2
+Ka 0.098039 0.098039 0.098039
+Kd 0.270588 0.223529 0.164706
+Ks 1.000000 1.000000 0.654902
+illum 2
+Ns 100
+newmtl US_Lab_FwdEnd.C_3
+Ka 0.000000 0.000000 0.000000
+Kd 0.567843 0.567843 0.354510
+Ks 0.500000 0.500000 0.327451
+illum 2
+Ns 98
+newmtl US_Lab_FwdEnd.C_4
+Ka 0.000000 0.000000 0.000000
+Kd 0.470588 0.470588 0.470588
+Ks 0.049020 0.049020 0.049020
+illum 2
+Ns 119
+newmtl US_Lab_FwdEnd.C_5
+Ka 0.000000 0.000000 0.000000
+Kd 0.784314 0.784314 0.784314
+Ks 0.294118 0.294118 0.294118
+illum 2
+Ns 3
+map_Ka hatch_installation_Col_1.jpg
+map_Kd hatch_installation_Col_1.jpg
+map_Ks hatch_installation_Col_1.jpg
+newmtl US_Lab_FwdEnd.C_6
+Ka 0.000000 0.000000 0.000000
+Kd 0.784314 0.784314 0.784314
+Ks 0.294118 0.294118 0.294118
+illum 2
+Ns 3
+map_Ka hatch_installation_Col_1.jpg
+map_Kd hatch_installation_Col_1.jpg
+map_Ks hatch_installation_Col_1.jpg
+newmtl US_Lab_FwdEnd.C_7
+Ka 0.000000 0.000000 0.000000
+Kd 0.294118 0.294118 0.294118
+Ks 0.098039 0.098039 0.098039
+illum 2
+Ns 3

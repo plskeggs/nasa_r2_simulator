@@ -1,0 +1,151 @@
+<?xml version="1.0"?> 
+
+<gazebo version="1.0">
+  <world name="default">
+    <scene>
+      <ambient rgba="0 0 0 1"/>
+      <shadows enabled="false"/>
+      <grid enabled="false"/>
+    </scene>
+
+    <!-- cfm is 1e-5 for single precision -->
+    <!-- erp is typically .1-.8 -->
+    <!-- here's the global contact cfm/erp -->
+    <physics type="ode" update_rate="1000">
+      <gravity xyz="0 0 0"/>
+      <ode>
+        <solver type="quick" dt="0.001" iters="20" sor="1.3"/>
+        <constraints cfm="0.0000000001" erp="0.1" contact_max_correcting_vel="1.0" contact_surface_layer="0.01"/>
+      </ode>
+    </physics>
+
+    <model name="ISS_Lap_Deck" static="True">
+      <origin pose="-7.98 .51 4.4 3.14159 0 3.14159"/>
+      <link name="lab_deck">
+        <inertial mass="0.1">
+          <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+        </inertial>
+        <collision name="deck_col">
+          <geometry>
+            <mesh filename="ISS_Segmented/US_Lab_DeckReduction.dae"/>
+          </geometry>
+        </collision>
+        <visual name="deck_vis">
+          <geometry>
+            <mesh filename="ISS_Segmented/US_Lab_DeckReduction.dae"/>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="ISS_Lap_Port" static="True">
+      <origin pose="-7.98 .51 4.4 3.14159 0 3.14159"/>
+      <link name="lab_deck">
+        <inertial mass="0.1">
+          <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+        </inertial>
+        <collision name="port_col">
+          <geometry>
+            <mesh filename="ISS_Segmented/US_Lab_PortReduction.dae"/>
+          </geometry>
+        </collision>
+        <visual name="port_vis">
+          <geometry>
+            <mesh filename="ISS_Segmented/US_Lab_PortReduction.dae"/>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="ISS_Lap_Starboard" static="True">
+      <origin pose="-7.98 .51 4.4 3.14159 0 3.14159"/>
+      <link name="lab_deck">
+        <inertial mass="0.1">
+          <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+        </inertial>
+        <collision name="stbd_col">
+          <geometry>
+            <mesh filename="ISS_Segmented/US_Lab_starboardReduction.dae"/>
+          </geometry>
+        </collision>
+        <visual name="stbd_vis">
+          <geometry>
+            <mesh filename="ISS_Segmented/US_Lab_starboardReduction.dae"/>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="ISS_Lap_Overhead" static="True">
+      <origin pose="-7.98 .51 4.4 3.14159 0 3.14159"/>
+      <link name="lab_deck">
+        <inertial mass="0.1">
+          <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+        </inertial>
+        <collision name="over_col">
+          <geometry>
+            <mesh filename="ISS_Segmented/US_Lab_OverheadReduction.dae"/>
+          </geometry>
+        </collision>
+        <visual name="over_vis">
+          <geometry>
+            <mesh filename="ISS_Segmented/US_Lab_OverheadReduction.dae"/>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="ISS_Lap_Aft" static="True">
+      <origin pose="-7.98 .51 4.4 3.14159 0 3.14159"/>
+      <link name="lab_deck">
+        <inertial mass="0.1">
+          <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+        </inertial>
+        <collision name="aft_col">
+          <geometry>
+            <mesh filename="ISS_Segmented/US_Lab_AftEnd.dae"/>
+          </geometry>
+        </collision>
+        <visual name="aft_vis">
+          <geometry>
+            <mesh filename="ISS_Segmented/US_Lab_AftEnd.dae"/>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="ISS_Lap_Forward" static="True">
+      <origin pose="-7.98 .51 4.4 3.14159 0 3.14159"/>
+      <link name="lab_deck">
+        <inertial mass="0.1">
+          <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+        </inertial>
+        <collision name="fwd_col">
+          <geometry>
+            <mesh filename="ISS_Segmented/US_Lab_FwdEnd.dae"/>
+          </geometry>
+        </collision>
+        <visual name="fwd_vis">
+          <geometry>
+            <mesh filename="ISS_Segmented/US_Lab_FwdEnd.dae"/>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <light type="point" name="point_white1" cast_shadows="false">
+      <origin pose="2.6 .3 3 0 0 0"/>
+      <diffuse rgba="0.8 0.8 0.8 1"/>
+      <specular rgba=".1 .1 .1 1"/>
+      <attenuation range="20" constant="0.2" linear="0.1" quadratic="0.0"/>
+    </light>
+
+    <light type="point" name="point_white2" cast_shadows="false">
+      <origin pose="-2.6 .3 3 0 0 0"/>
+      <diffuse rgba="0.3 0.3 0.3 1"/>
+      <specular rgba=".1 .1 .1 1"/>
+      <attenuation range="20" constant="0.2" linear="0.1" quadratic="0.0"/>
+    </light>
+
+  </world>
+</gazebo>

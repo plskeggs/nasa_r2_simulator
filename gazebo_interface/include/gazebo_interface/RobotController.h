@@ -20,6 +20,13 @@ namespace gazebo
     class RobotController
     {
     public:
+        struct JointState
+        {
+            double position;
+            double velocity;
+            double effort;
+        };
+
         RobotController(physics::ModelPtr _modelPtr);
         ~RobotController();
 
@@ -37,6 +44,16 @@ namespace gazebo
 
         // move the robot to the specified positions while taking dependencies into account
         void setJointPositions(std::map<std::string, double> posMap);
+        // get states
+        // if map is empty, get all, ignoring dependent joints
+        void getJointStates(std::map<std::string, JointState>& posMap);
+        // get joint targets
+        // if map is empty, get all, ignoring dependent joints
+        void getJointTargets(std::map<std::string, JointState>& posMap);
+
+        // get joint limits
+        // if map is empty, get all, ignoring dependent joints
+        void getJointLimits(std::map<std::string, std::pair<double, double> >& limitsMap);
 
         // set targets
         void setJointPosTarget(const std::string& name, double target);
@@ -44,8 +61,8 @@ namespace gazebo
         void setJointEffortTarget(const std::string& name, double target);
 
         // joint state management
-        void setJointControl(const r2_msgs::JointControl::ConstPtr& msg);
-        const r2_msgs::JointStatus& getJointStatus(const std::string& name) const;
+        void setJointControl(const nasa_r2_common_msgs::JointControl::ConstPtr& msg);
+        const nasa_r2_common_msgs::JointStatus& getJointStatus(const std::string& name) const;
         void publishJointStatuses(ros::Publisher& rosPub) const;
 
         // update PIDs and send forces to joints

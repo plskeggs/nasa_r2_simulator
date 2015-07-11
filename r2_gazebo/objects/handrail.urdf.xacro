@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot name="handrail_model"
+       xmlns:xi="http://www.w3.org/2001/XInclude"
+       xmlns:gazebo="http://playerstage.sourceforge.net/gazebo/xmlschema/#gz"
+       xmlns:model="http://playerstage.sourceforge.net/gazebo/xmlschema/#model"
+       xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:body="http://playerstage.sourceforge.net/gazebo/xmlschema/#body"
+       xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom"
+       xmlns:joint="http://playerstage.sourceforge.net/gazebo/xmlschema/#joint"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+       xmlns:rendering="http://playerstage.sourceforge.net/gazebo/xmlschema/#rendering"
+       xmlns:renderable="http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:physics="http://playerstage.sourceforge.net/gazebo/xmlschema/#physics">
+
+  <link name="handrail">
+    <inertial>
+      <mass value="0.36" />
+      <origin xyz="0 0.015 0" /> 
+      <inertia  ixx="1" ixy="0.0"  ixz="0.0"  iyy="1"  iyz="0.0"  izz="1" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.57 0 1.57" />
+      <geometry>
+        <mesh filename="package://r2_gazebo/Media/models/objects/handrail.dae" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.57 0 1.57" />
+      <geometry>
+        <mesh filename="package://r2_gazebo/Media/models/objects/handrail.dae" />
+      </geometry>
+    </collision>
+  </link>
+
+  <gazebo reference="handrail">
+    <material>Gazebo/Yellow</material>
+    <turnGravityOff>false</turnGravityOff>
+<!--
+    <kp>100000000.0</kp>
+    <kd>1000000.0</kd>
+    <controller:gazebo_ros_grasp_hack name="handrail_grasp_hack_controller" plugin="libgazebo_ros_grasp_hack.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>1000</updateRate>
+      <graspCheckRate>10</graspCheckRate>
+      <topicName>handrail_grasp_hack</topicName>
+    <controller:gazebo_ros_grasp_hack/>
+-->
+ </gazebo>
+</robot>
+

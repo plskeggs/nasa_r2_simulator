@@ -1,0 +1,177 @@
+newmtl US_Lab_DeckReduction.C_0
+Ka 0.100000 0.100000 0.100000
+Kd 0.590000 0.590000 0.590000
+Ks 0.290000 0.290000 0.290000
+illum 2
+Ns 16
+newmtl US_Lab_DeckReduction.C_1
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 3
+map_Ka avionics_backingPlate.jpg
+map_Kd avionics_backingPlate.jpg
+map_Ks avionics_backingPlate.jpg
+newmtl US_Lab_DeckReduction.C_2
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 3
+map_Ka avionics_bottomPanel.jpg
+map_Kd avionics_bottomPanel.jpg
+map_Ks avionics_bottomPanel.jpg
+newmtl US_Lab_DeckReduction.C_3
+Ka 0.000000 0.000000 0.000000
+Kd 0.290000 0.290000 0.290000
+Ks 0.290000 0.290000 0.290000
+illum 2
+Ns 3
+newmtl US_Lab_DeckReduction.C_4
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 3
+map_Ka avionics_topPanel.jpg
+map_Kd avionics_topPanel.jpg
+map_Ks avionics_topPanel.jpg
+newmtl US_Lab_DeckReduction.C_5
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 3
+map_Ka avionics_powerSwitch.jpg
+map_Kd avionics_powerSwitch.jpg
+map_Ks avionics_powerSwitch.jpg
+newmtl US_Lab_DeckReduction.C_6
+Ka 0.100000 0.100000 0.100000
+Kd 0.800000 0.800000 0.800000
+Ks 0.120000 0.120000 0.120000
+illum 2
+Ns 9
+newmtl US_Lab_DeckReduction.C_7
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 123
+map_Ka rail_connections.jpg
+map_Kd rail_connections.jpg
+map_Ks rail_connections.jpg
+newmtl US_Lab_DeckReduction.C_8
+Ka 0.000000 0.000000 0.000000
+Kd 0.590000 0.590000 0.590000
+Ks 0.100000 0.100000 0.100000
+illum 2
+Ns 123
+newmtl US_Lab_DeckReduction.C_9
+Ka 0.000000 0.000000 0.000000
+Kd 0.500000 0.500000 0.500000
+Ks 1.000000 1.000000 1.000000
+illum 2
+Ns 100
+newmtl US_Lab_DeckReduction.C_10
+Ka 0.100000 0.100000 0.100000
+Kd 0.090196 0.388235 0.576471
+Ks 0.450000 0.630000 0.900000
+illum 2
+Ns 4
+newmtl US_Lab_DeckReduction.C_11
+Ka 0.000000 0.000000 0.000000
+Kd 0.733333 0.733333 0.733333
+Ks 0.588235 0.588235 0.588235
+illum 2
+Ns 4
+newmtl US_Lab_DeckReduction.C_12
+Ka 0.100000 0.100000 0.100000
+Kd 0.050000 0.200000 0.300000
+Ks 0.450000 0.630000 0.900000
+illum 2
+Ns 100
+newmtl US_Lab_DeckReduction.C_13
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 51
+map_Ka avionics_hinge.jpg
+map_Kd avionics_hinge.jpg
+map_Ks avionics_hinge.jpg
+newmtl US_Lab_DeckReduction.C_14
+Ka 0.000000 0.000000 0.000000
+Kd 0.901961 0.901961 0.901961
+Ks 1.000000 1.000000 1.000000
+illum 2
+Ns 15
+map_Ka rail_connections.jpg
+map_Kd rail_connections.jpg
+map_Ks rail_connections.jpg
+newmtl US_Lab_DeckReduction.C_15
+Ka 0.100000 0.100000 0.100000
+Kd 0.210000 0.190000 0.150000
+Ks 0.120000 0.120000 0.120000
+illum 2
+Ns 9
+newmtl US_Lab_DeckReduction.C_16
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 3
+map_Ka Rack_RSR.jpg
+map_Kd Rack_RSR.jpg
+map_Ks Rack_RSR.jpg
+newmtl US_Lab_DeckReduction.C_17
+Ka 0.000000 0.000000 0.000000
+Kd 0.780000 0.780000 0.780000
+Ks 0.290000 0.290000 0.290000
+illum 2
+Ns 3
+newmtl US_Lab_DeckReduction.C_18
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 3
+map_Ka avionics_skirt.jpg
+map_Kd avionics_skirt.jpg
+map_Ks avionics_skirt.jpg
+newmtl US_Lab_DeckReduction.C_19
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 100
+map_Ka ARS_Face.jpg
+map_Kd ARS_Face.jpg
+map_Ks ARS_Face.jpg
+newmtl US_Lab_DeckReduction.C_20
+Ka 0.000000 0.000000 0.000000
+Kd 0.900000 0.900000 0.900000
+Ks 0.390000 0.390000 0.390000
+illum 2
+Ns 123
+newmtl US_Lab_DeckReduction.C_21
+Ka 0.000000 0.000000 0.000000
+Kd 0.507540 0.507540 0.507540
+Ks 0.508273 0.508273 0.508273
+illum 2
+Ns 51
+map_Ka UV_Map_Texture_1k.jpg
+map_Kd UV_Map_Texture_1k.jpg
+map_Ks UV_Map_Texture_1k.jpg
+newmtl US_Lab_DeckReduction.C_22
+Ka 0.000000 0.000000 0.000000
+Kd 0.401569 0.401569 0.401569
+Ks 0.000000 0.000000 0.000000
+illum 2
+Ns 0
+newmtl US_Lab_DeckReduction.C_23
+Ka 0.100000 0.100000 0.100000
+Kd 0.120000 0.120000 0.120000
+Ks 1.000000 1.000000 1.000000
+illum 2
+Ns 100

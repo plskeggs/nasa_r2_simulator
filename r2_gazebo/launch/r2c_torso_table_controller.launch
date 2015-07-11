@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- load world -->
+  <node name="gazebo" pkg="gazebo" type="gazebo" args="$(find r2_gazebo)/gazebo/r2_empty.world" output="screen" respawn="false" />
+
+  <!-- load controller parameters-->
+  <rosparam file="$(find r2_gazebo)/config/controllers/r2sim_torso_params.yaml" command="load" />
+
+  <!-- load robot -->
+  <param name="/use_sim_time" value="true"/>
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find r2_description)/robots/r2c_torso.sim.urdf.xacro'" />
+  <param name="robot_urdf" value="$(find r2_description)/robots/r2c_torso.sim.urdf.xml" />
+  
+  <node name="spawn_r2_orocos" pkg="gazebo" type="spawn_model" args="-urdf -param robot_description -model r2_orocos -paused=true" respawn="false" output="screen" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+
+  <!-- start gui -->
+  <node name="gazebo_gui" pkg="gazebo" type="gui" respawn="false" output="screen" />
+
+  <!-- load objects -->
+  <param name="table_description" command="$(find xacro)/xacro.py $(find r2_gazebo)/objects/nasa_table.urdf.xacro" />
+  <node name="spawn_table" pkg="gazebo" type="spawn_model" args="-urdf -param table_description -z 0.01 -Y 1.57 -y -0.1 -model table_model" respawn="false" output="screen" />
+
+  <param name="handrail_description" command="$(find xacro)/xacro.py $(find r2_gazebo)/objects/handrail.urdf.xacro" />
+  <node name="spawn_handrail" pkg="gazebo" type="spawn_model" args="-urdf -param handrail_description -Z 0.5 -z 1.05 -Y 1.57 -y 0.55 -x -0.25  -model handrail_model" respawn="false" output="screen" />
+
+  <param name="handle_description" command="$(find xacro)/xacro.py $(find r2_gazebo)/objects/handle.urdf.xacro" />
+  <node name="spawn_handle" pkg="gazebo" type="spawn_model" args="-urdf -param handle_description -Z 0.5 -z 1.05 -Y 1.57 -y 0.55 -x 0.25  -model handle_model" respawn="false" output="screen" />
+
+  <param name="weight20_description" command="$(find xacro)/xacro.py $(find r2_gazebo)/objects/weight20.urdf.xacro" />
+  <node name="spawn_weight20" pkg="gazebo" type="spawn_model" args="-urdf -param weight20_description -Z 0.5 -z 1.15 -Y 1.57 -y 0.8 -x -0.025  -model weight20_model" respawn="false" output="screen" />
+
+  <!-- Start Controller -->
+  <node name="r2_controller" pkg="r2_controllers_ros" type="r2_controllers_ros" respawn="false" output="screen" />
+
+</launch>
+

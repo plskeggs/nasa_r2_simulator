@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- set use_sim_time flag -->
+  <param name="/use_sim_time" value="true" />
+
+  <node name="gazebo" pkg="gazebo" type="gazebo" args="$(find r2_gazebo)/gazebo/r2_ISS.world" respawn="false" output="screen"/>
+
+  <!-- start gui -->
+  <node name="gazebo_gui" pkg="gazebo" type="gui" respawn="false" output="screen"/>
+</launch>

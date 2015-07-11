@@ -3,7 +3,7 @@
 #include <physics/Model.hh>
 #include <physics/Joint.hh>
 #include <physics/World.hh>
-#include <r2_msgs/JointStatusArray.h>
+#include "nasa_r2_common_msgs/JointStatusArray.h"
 
 #include <ros/console.h>
 
@@ -61,12 +61,28 @@ void GazeboInterface::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     else
         jointStatesTopic = _sdf->GetElement("jointStatesTopic")->Get<std::string>();
 
+    if (!_sdf->HasElement("jointCapabilitiesTopic"))
+    {
+        ROS_FATAL("GazeboInterface plugin missing <jointCapabilitiesTopic>, cannot proceed");
+        return;
+    }
+    else
+        jointCapabilitiesTopic = _sdf->GetElement("jointCapabilitiesTopic")->Get<std::string>();
+
     if (!_sdf->HasElement("jointStatesRate"))
     {
         jointStatesStepTime = 0.;
     }
     else
         jointStatesStepTime = 1./_sdf->GetElement("jointStatesRate")->Get<double>();
+
+    if (!_sdf->HasElement("jointCommandRefsTopic"))
+    {
+        ROS_FATAL("GazeboInterface plugin missing <jointCommandRefsTopic>, cannot proceed");
+        return;
+    }
+    else
+        jointCommandRefsTopic = _sdf->GetElement("jointCommandRefsTopic")->Get<std::string>();
 
     if (!_sdf->HasElement("advancedMode"))
     {
@@ -404,13 +420,19 @@ void GazeboInterface::Init()
     // advertise joint state publishing
     jointStatePub = rosNodePtr->advertise<sensor_msgs::JointState>(jointStatesTopic, true);
 
+    // advertise joint capabilities publishing
+    jointCapabilitiesPub = rosNodePtr->advertise<nasa_r2_common_msgs::JointCapability>(jointCapabilitiesTopic, true);
+
+    // advertise joint command ref publishing
+    jointCommandRefsPub = rosNodePtr->advertise<nasa_r2_common_msgs::JointCommand>(jointCommandRefsTopic, true);
+
     if (advancedMode)
     {
         // subscribe to ROS joint control messages
         jointControlSub  = rosNodePtr->subscribe(jointControlTopic,  5, &GazeboInterface::controlJoints,  this);
 
         // advertise joint status publishing
-        jointStatusPub = rosNodePtr->advertise<r2_msgs::JointStatusArray>(jointStatusTopic, true);
+        jointStatusPub = rosNodePtr->advertise<nasa_r2_common_msgs::JointStatusArray>(jointStatusTopic, true);
     }
 
     ROS_INFO("Gazebo Interface plugin initialized");
@@ -428,37 +450,82 @@ void GazeboInterface::update()
     {
         prevStatesUpdateTime = currTime;
         sensor_msgs::JointStatePtr msgPtr(new sensor_msgs::JointState);
+        nasa_r2_common_msgs::JointCommandPtr refPtr(new nasa_r2_common_msgs::JointCommand);
+        nasa_r2_common_msgs::JointCapabilityPtr capPtr(new nasa_r2_common_msgs::JointCapability);
         msgPtr->header.stamp = ros::Time::now();
-        // add all joints to jointState message
-        physics::Joint_V _joints = modelPtr->GetJoints();
-        for (unsigned int i = 0; i < modelPtr->GetJointCount(); ++i)
+        refPtr->header.stamp = ros::Time::now();
+
+        // get positions
+        robotControllerPtr->getJointStates(jointStates);
+
+        // build position message
+        for (std::map<std::string, RobotController::JointState>::const_iterator stateIt = jointStates.begin(); stateIt != jointStates.end(); ++stateIt)
         {
-            physics::JointPtr jPtr = _joints[i];
-
-            // joint
-            std::string name = jPtr->GetName();
-            msgPtr->name.push_back(name);
-            msgPtr->position.push_back(jPtr->GetAngle(0).Radian());
-            msgPtr->velocity.push_back(jPtr->GetVelocity(0));
-            msgPtr->effort.push_back(jPtr->GetForce((unsigned int)0));
-
-            // motor
-            std::string::size_type index = name.find("/joint");
+            std::string::size_type index = stateIt->first.find("fixed");
             if (index != std::string::npos)
             {
-                msgPtr->name.push_back(name.replace(index, 6, "/motor"));
-                msgPtr->position.push_back(jPtr->GetAngle(0).Radian());
-                msgPtr->velocity.push_back(jPtr->GetVelocity(0));
-                msgPtr->effort.push_back(jPtr->GetForce((unsigned int)0));
-
-                // encoder
-                msgPtr->name.push_back(name.replace(index, 6, "/encoder"));
-                msgPtr->position.push_back(jPtr->GetAngle(0).Radian());
-                msgPtr->velocity.push_back(jPtr->GetVelocity(0));
-                msgPtr->effort.push_back(jPtr->GetForce((unsigned int)0));
+                continue;
+            }
+            index = stateIt->first.find("/joint");
+            if (index != std::string::npos)
+            {
+                std::string name = stateIt->first;
+                msgPtr->name.push_back(name);
+                msgPtr->position.push_back(stateIt->second.position);
+                msgPtr->velocity.push_back(stateIt->second.velocity);
+                msgPtr->effort.push_back(stateIt->second.effort);
+            }
+            else
+            {
+                msgPtr->name.push_back(stateIt->first);
+                msgPtr->position.push_back(stateIt->second.position);
+                msgPtr->velocity.push_back(stateIt->second.velocity);
+                msgPtr->effort.push_back(stateIt->second.effort);
             }
         }
+
+        // get targets
+        robotControllerPtr->getJointTargets(jointCommandRefs);
+
+        // build targets message
+        for (std::map<std::string, RobotController::JointState>::const_iterator refsIt = jointCommandRefs.begin(); refsIt != jointCommandRefs.end(); ++refsIt)
+        {
+            std::string::size_type index = refsIt->first.find("fixed");
+            if (index == std::string::npos)
+            {
+                refPtr->name.push_back(refsIt->first);
+                refPtr->desiredPosition.push_back(refsIt->second.position);
+                refPtr->desiredPositionVelocityLimit.push_back(refsIt->second.velocity);
+                refPtr->feedForwardTorque.push_back(refsIt->second.effort);
+                refPtr->proportionalGain.push_back(0);
+                refPtr->derivativeGain.push_back(0);
+                refPtr->integralGain.push_back(0);
+                refPtr->positionLoopTorqueLimit.push_back(0);
+                refPtr->positionLoopWindupLimit.push_back(0);
+                refPtr->torqueLoopVelocityLimit.push_back(0);
+            }
+        }
+
+        // get capabilities
+        robotControllerPtr->getJointLimits(jointLimits);
+
+        // build capability message
+        for (std::map<std::string, std::pair<double, double> >::const_iterator limsIt = jointLimits.begin(); limsIt != jointLimits.end(); ++limsIt)
+        {
+            std::string::size_type index = limsIt->first.find("fixed");
+            if (index == std::string::npos)
+            {
+                capPtr->name.push_back(limsIt->first);
+                capPtr->positionLimitMax.push_back(limsIt->second.second);
+                capPtr->positionLimitMin.push_back(limsIt->second.first);
+                capPtr->torqueLimit.push_back(1000.);
+            }
+        }
+
+	jointCommandRefsPub.publish(refPtr);
         jointStatePub.publish(msgPtr);
+        //jointCommandRefsPub.publish(refPtr);
+        jointCapabilitiesPub.publish(capPtr);
     }
 
     //publish joint status
@@ -482,19 +549,19 @@ void GazeboInterface::commandJoints(const sensor_msgs::JointState::ConstPtr& msg
         {
             robotControllerPtr->setJointPosTarget(msg->name[i], msg->position[i]);
         }
-        if (setVel)
-        {
-            robotControllerPtr->setJointVelTarget(msg->name[i], msg->velocity[i]);
-        }
-        if (setEffort)
+        else if (setEffort)
         {
             robotControllerPtr->setJointEffortTarget(msg->name[i], msg->effort[i]);
+        }
+        else if (setVel)
+        {
+            robotControllerPtr->setJointVelTarget(msg->name[i], msg->velocity[i]);
         }
     }
 }
 
 // handle control message
-void GazeboInterface::controlJoints(const r2_msgs::JointControl::ConstPtr& msg)
+void GazeboInterface::controlJoints(const nasa_r2_common_msgs::JointControl::ConstPtr& msg)
 {
     ROS_DEBUG("GazeboInterface received joint control");
     robotControllerPtr->setJointControl(msg);

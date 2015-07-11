@@ -18,7 +18,7 @@ JointController::JointController(physics::JointPtr _jointPtr, bool _advancedMode
 , controlMode(POS_COM)
 , fault(OK)
 {
-    currStatusPtr.reset(new r2_msgs::JointStatus);
+    currStatusPtr.reset(new nasa_r2_common_msgs::JointStatus);
     currStatusPtr->publisher = "GazeboSim";
     currStatusPtr->joint = _jointPtr->GetName();
 
@@ -136,7 +136,7 @@ void JointController::update(common::Time& stepTime)
     jointPtr->SetForce(0, cmd);
 }
 
-void JointController::setJointControl(const r2_msgs::JointControl::ConstPtr& msg)
+void JointController::setJointControl(const nasa_r2_common_msgs::JointControl::ConstPtr& msg)
 {
     if (msg->joint != currStatusPtr->joint)
     {
@@ -162,7 +162,7 @@ void JointController::setJointControl(const r2_msgs::JointControl::ConstPtr& msg
     }
 }
 
-const r2_msgs::JointStatus& JointController::getJointStatus() const
+const nasa_r2_common_msgs::JointStatus& JointController::getJointStatus() const
 {
     return *currStatusPtr;
 }

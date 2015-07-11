@@ -8,7 +8,7 @@
       <grid enabled="true"/>
     </scene>
 
-    <physics type="ode" update_rate="1000">
+    <physics type="ode" update_rate="10000">
       <gravity xyz="0 0 -9.8"/>
       <ode>
 <!--        <solver type="quick" dt="0.001" iters="20" sor="1.3"/>-->
@@ -50,7 +50,7 @@
     </light>
 
     <light type="point" name="point_white2" cast_shadows="false">
-      <origin pose="-6.2 .3 2.0 0 0 0"/>
+      <origin pose="-2.6 .3 3 0 0 0"/>
       <diffuse rgba="0.3 0.3 0.3 1"/>
       <specular rgba=".1 .1 .1 1"/>
       <attenuation range="20" constant="0.2" linear="0.1" quadratic="0.0"/>

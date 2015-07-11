@@ -1,0 +1,312 @@
+newmtl US_Lab_starboardReduction.C_0
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 123
+map_Ka rail_connections.jpg
+map_Kd rail_connections.jpg
+map_Ks rail_connections.jpg
+newmtl US_Lab_starboardReduction.C_1
+Ka 0.000000 0.000000 0.000000
+Kd 0.900000 0.900000 0.900000
+Ks 0.390000 0.390000 0.390000
+illum 2
+Ns 123
+newmtl US_Lab_starboardReduction.C_2
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 3
+map_Ka MELFI_topMLI.jpg
+map_Kd MELFI_topMLI.jpg
+map_Ks MELFI_topMLI.jpg
+newmtl US_Lab_starboardReduction.C_3
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 3
+map_Ka MELFI.jpg
+map_Kd MELFI.jpg
+map_Ks MELFI.jpg
+newmtl US_Lab_starboardReduction.C_4
+Ka 0.000000 0.000000 0.000000
+Kd 0.780000 0.780000 0.780000
+Ks 0.290000 0.290000 0.290000
+illum 2
+Ns 3
+newmtl US_Lab_starboardReduction.C_5
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 3
+map_Ka avionics_skirt.jpg
+map_Kd avionics_skirt.jpg
+map_Ks avionics_skirt.jpg
+newmtl US_Lab_starboardReduction.C_6
+Ka 0.000000 0.000000 0.000000
+Kd 0.390000 0.390000 0.390000
+Ks 0.290000 0.290000 0.290000
+illum 2
+Ns 3
+newmtl US_Lab_starboardReduction.C_7
+Ka 0.000000 0.000000 0.000000
+Kd 0.290000 0.290000 0.290000
+Ks 0.290000 0.290000 0.290000
+illum 2
+Ns 3
+newmtl US_Lab_starboardReduction.C_8
+Ka 0.100000 0.100000 0.100000
+Kd 0.590000 0.590000 0.590000
+Ks 0.290000 0.290000 0.290000
+illum 2
+Ns 16
+newmtl US_Lab_starboardReduction.C_9
+Ka 0.000000 0.000000 0.000000
+Kd 0.500000 0.500000 0.500000
+Ks 1.000000 1.000000 1.000000
+illum 2
+Ns 100
+newmtl US_Lab_starboardReduction.C_10
+Ka 0.100000 0.100000 0.100000
+Kd 0.210000 0.190000 0.150000
+Ks 0.120000 0.120000 0.120000
+illum 2
+Ns 9
+newmtl US_Lab_starboardReduction.C_11
+Ka 0.100000 0.100000 0.100000
+Kd 0.800000 0.800000 0.800000
+Ks 0.120000 0.120000 0.120000
+illum 2
+Ns 9
+newmtl US_Lab_starboardReduction.C_12
+Ka 0.100000 0.100000 0.100000
+Kd 0.800000 0.800000 0.800000
+Ks 1.000000 1.000000 1.000000
+illum 2
+Ns 100
+newmtl US_Lab_starboardReduction.C_13
+Ka 0.000000 0.000000 0.000000
+Kd 0.590000 0.590000 0.590000
+Ks 0.100000 0.100000 0.100000
+illum 2
+Ns 123
+newmtl US_Lab_starboardReduction.C_14
+Ka 0.100000 0.100000 0.100000
+Kd 0.090196 0.388235 0.576471
+Ks 0.450000 0.630000 0.900000
+illum 2
+Ns 4
+newmtl US_Lab_starboardReduction.C_15
+Ka 0.000000 0.000000 0.000000
+Kd 0.901961 0.901961 0.901961
+Ks 1.000000 1.000000 1.000000
+illum 2
+Ns 15
+map_Ka rail_connections.jpg
+map_Kd rail_connections.jpg
+map_Ks rail_connections.jpg
+newmtl US_Lab_starboardReduction.C_16
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 3
+map_Ka avionics_powerSwitch.jpg
+map_Kd avionics_powerSwitch.jpg
+map_Ks avionics_powerSwitch.jpg
+newmtl US_Lab_starboardReduction.C_17
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 100
+map_Ka CIR_Rack.jpg
+map_Kd CIR_Rack.jpg
+map_Ks CIR_Rack.jpg
+newmtl US_Lab_starboardReduction.C_18
+Ka 0.000000 0.000000 0.000000
+Kd 0.901961 0.901961 0.901961
+Ks 0.508273 0.508273 0.508273
+illum 2
+Ns 51
+map_Ka avionics_hinge.jpg
+map_Kd avionics_hinge.jpg
+map_Ks avionics_hinge.jpg
+newmtl US_Lab_starboardReduction.C_19
+Ka 0.000000 0.000000 0.000000
+Kd 0.733333 0.733333 0.733333
+Ks 0.588235 0.588235 0.588235
+illum 2
+Ns 4
+newmtl US_Lab_starboardReduction.C_20
+Ka 0.100000 0.100000 0.100000
+Kd 0.090196 0.388235 0.576471
+Ks 0.729412 0.835294 1.000000
+illum 2
+Ns 15
+newmtl US_Lab_starboardReduction.C_21
+Ka 0.000000 0.000000 0.000000
+Kd 0.733333 0.733333 0.733333
+Ks 1.000000 1.000000 1.000000
+illum 2
+Ns 8
+newmtl US_Lab_starboardReduction.C_22
+Ka 0.000000 0.000000 0.000000
+Kd 0.901961 0.901961 0.901961
+Ks 0.196078 0.196078 0.196078
+illum 2
+Ns 3
+map_Ka MSS_AV_face.jpg
+map_Kd MSS_AV_face.jpg
+map_Ks MSS_AV_face.jpg
+newmtl US_Lab_starboardReduction.C_23
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 51
+map_Ka avionics_hinge.jpg
+map_Kd avionics_hinge.jpg
+map_Ks avionics_hinge.jpg
+newmtl US_Lab_starboardReduction.C_24
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 51
+map_Ka hrf1_LHandleLever.jpg
+map_Kd hrf1_LHandleLever.jpg
+map_Ks hrf1_LHandleLever.jpg
+newmtl US_Lab_starboardReduction.C_25
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 3
+map_Ka avionics_skirt3.jpg
+map_Kd avionics_skirt3.jpg
+map_Ks avionics_skirt3.jpg
+newmtl US_Lab_starboardReduction.C_26
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+illum 2
+Ns 3
+map_Ka avionics_skirt2.jpg
+map_Kd avionics_skirt2.jpg
+map_Ks avionics_skirt2.jpg
+newmtl US_Lab_starboardReduction.C_27
+Ka 0.098039 0.098039 0.098039
+Kd 0.800000 0.800000 0.800000
+Ks 0.882353 0.882353 0.882353
+illum 2
+Ns 127
+map_Ka hrf1_HandleStationary.jpg
+map_Kd hrf1_HandleStationary.jpg
+map_Ks hrf1_HandleStationary.jpg
+newmtl US_Lab_starboardReduction.C_28
+Ka 0.000000 0.000000 0.000000
+Kd 0.686275 0.686275 0.686275
+Ks 0.882353 0.882353 0.882353
+illum 2
+Ns 51
+map_Ka hrf1_LHandleLever.jpg
+map_Kd hrf1_LHandleLever.jpg
+map_Ks hrf1_LHandleLever.jpg
+newmtl US_Lab_starboardReduction.C_29
+Ka 0.098039 0.098039 0.098039
+Kd 0.686275 0.686275 0.686275
+Ks 0.882353 0.882353 0.882353
+illum 2
+Ns 127
+map_Ka hrf1_HandleStationary.jpg
+map_Kd hrf1_HandleStationary.jpg
+map_Ks hrf1_HandleStationary.jpg
+newmtl US_Lab_starboardReduction.C_30
+Ka 0.098039 0.098039 0.098039
+Kd 0.686275 0.686275 0.686275
+Ks 0.882353 0.882353 0.882353
+illum 2
+Ns 127
+map_Ka hrf1_RHandleLever.jpg
+map_Kd hrf1_RHandleLever.jpg
+map_Ks hrf1_RHandleLever.jpg
+newmtl US_Lab_starboardReduction.C_31
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.294118 0.294118 0.294118
+illum 2
+Ns 100
+map_Ka TCS_Plate.jpg
+map_Kd TCS_Plate.jpg
+map_Ks TCS_Plate.jpg
+newmtl US_Lab_starboardReduction.C_32
+Ka 0.098039 0.098039 0.098039
+Kd 0.800000 0.800000 0.800000
+Ks 1.000000 1.000000 1.000000
+illum 2
+Ns 100
+map_Ka MSG.jpg
+map_Kd MSG.jpg
+map_Ks MSG.jpg
+newmtl US_Lab_starboardReduction.C_33
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.392157 0.392157 0.392157
+illum 2
+Ns 17
+map_Ka uslab_vents.jpg
+map_Kd uslab_vents.jpg
+map_Ks uslab_vents.jpg
+newmtl US_Lab_starboardReduction.C_34
+Ka 0.000000 0.000000 0.000000
+Kd 0.160000 0.160000 0.160000
+Ks 0.500000 0.500000 0.500000
+illum 2
+Ns 96
+newmtl US_Lab_starboardReduction.C_35
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+illum 2
+Ns 96
+map_Ka standoff_light_02.jpg
+map_Kd standoff_light_02.jpg
+map_Ks standoff_light_02.jpg
+newmtl US_Lab_starboardReduction.C_36
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+illum 2
+Ns 96
+map_Ka standoff_light_01.jpg
+map_Kd standoff_light_01.jpg
+map_Ks standoff_light_01.jpg
+newmtl US_Lab_starboardReduction.C_37
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+illum 2
+Ns 96
+map_Ka standoff_light_03.jpg
+map_Kd standoff_light_03.jpg
+map_Ks standoff_light_03.jpg
+newmtl US_Lab_starboardReduction.C_38
+Ka 0.100000 0.100000 0.100000
+Kd 0.120000 0.120000 0.120000
+Ks 1.000000 1.000000 1.000000
+illum 2
+Ns 100
+newmtl US_Lab_starboardReduction.C_39
+Ka 0.000000 0.000000 0.000000
+Kd 0.196078 0.196078 0.196078
+Ks 0.196078 0.196078 0.196078
+illum 2
+Ns 96
+map_Ka standoff_light_01.jpg
+map_Kd standoff_light_01.jpg
+map_Ks standoff_light_01.jpg

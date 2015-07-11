@@ -7,7 +7,7 @@
 
 #include <ros/ros.h>
 
-#include <r2_msgs/JointStatusArray.h>
+#include "nasa_r2_common_msgs/JointStatusArray.h"
 
 using namespace gazebo;
 
@@ -49,7 +49,7 @@ void RobotController::setPosPid(const std::string& name, double _p, double _i, d
 {
     if (joints.find(name) == joints.end())
     {
-        ROS_WARN("GazeboInterface PosPID not set because joint (%s) not found", name.c_str());
+        ROS_DEBUG("GazeboInterface PosPID not set because joint (%s) not found", name.c_str());
         return;
     }
     boost::mutex::scoped_lock(pidMutex);
@@ -106,11 +106,145 @@ void RobotController::setJointPositions(std::map<std::string, double> posMap)
     modelPtr->GetWorld()->SetPaused(is_paused);
 }
 
+void RobotController::getJointStates(std::map<std::string, JointState>& posMap)
+{
+    if (posMap.empty())
+    {
+        JointState zero;
+        zero.position = 0.;
+        zero.velocity = 0.;
+        zero.effort = 0.;
+
+        // add all joints
+        for (std::map<std::string, JointControllerPtr>::const_iterator it = joints.begin(); it != joints.end(); ++it)
+        {
+            posMap[it->first] = zero;
+        }
+
+        // remove dependencies
+//        for (dependenciesType::const_iterator depIt = dependencies.begin(); depIt != dependencies.end(); ++depIt)
+//        {
+//            if (depIt->first != depIt->second.first)
+//            {
+//                posMap.erase(depIt->second.first);
+//            }
+//        }
+
+        if (!posMap.empty())
+        {
+            getJointStates(posMap);
+        }
+    }
+
+    for (unsigned int i = 0; i < modelPtr->GetJointCount(); ++i)
+    {
+        physics::JointPtr jPtr = modelPtr->GetJoint(i);
+
+        // joint
+        std::string name = jPtr->GetName();
+        std::map<std::string, JointState>::iterator it = posMap.find(name);
+        if (it != posMap.end())
+        {
+            it->second.position = jPtr->GetAngle(0).GetAsRadian();
+            it->second.velocity = jPtr->GetVelocity(0);
+            it->second.effort = jPtr->GetForce(0);
+        }
+    }
+}
+
+void RobotController::getJointTargets(std::map<std::string, JointState>& posMap)
+{
+    if (posMap.empty())
+    {
+        JointState zero;
+        zero.position = 0.;
+        zero.velocity = 0.;
+        zero.effort = 0.;
+
+        // add all joints
+        for (std::map<std::string, JointControllerPtr>::const_iterator it = joints.begin(); it != joints.end(); ++it)
+        {
+            posMap[it->first] = zero;
+        }
+
+        // remove dependencies
+//        for (dependenciesType::const_iterator depIt = dependencies.begin(); depIt != dependencies.end(); ++depIt)
+//        {
+//            if (depIt->first != depIt->second.first)
+//            {
+//                posMap.erase(depIt->second.first);
+//            }
+//        }
+
+        if (!posMap.empty())
+        {
+            getJointTargets(posMap);
+        }
+    }
+
+    for (std::map<std::string, JointControllerPtr>::const_iterator jIt = joints.begin(); jIt != joints.end(); ++jIt)
+    {
+        std::map<std::string, JointState>::iterator it = posMap.find(jIt->first);
+        if (it != posMap.end())
+        {
+            it->second.position = jIt->second->getPosTarget();
+            it->second.velocity = jIt->second->getVelTarget();
+            it->second.effort = jIt->second->getEffortTarget();
+
+            // check for dependencies
+            std::pair<dependenciesType::iterator, dependenciesType::iterator> deps = dependencies.equal_range(jIt->first);
+            for (dependenciesType::iterator depIt = deps.first; depIt != deps.second; ++depIt)
+            {
+                if(depIt->second.second!=0)
+                {
+                    it->second.position=it->second.position/depIt->second.second;
+
+                }
+            }
+        }
+    }
+}
+
+void RobotController::getJointLimits(std::map<std::string, std::pair<double, double> >& limitsMap)
+{
+    if (limitsMap.empty())
+    {
+        // add all joints
+        for (std::map<std::string, JointControllerPtr>::const_iterator it = joints.begin(); it != joints.end(); ++it)
+        {
+            limitsMap[it->first] = std::pair<double, double>(-3.14159, 3.14159);
+        }
+
+        // remove dependencies
+//        for (dependenciesType::const_iterator depIt = dependencies.begin(); depIt != dependencies.end(); ++depIt)
+//        {
+//            if (depIt->first != depIt->second.first)
+//            {
+//                limitsMap.erase(depIt->second.first);
+//            }
+//        }
+
+        if (!limitsMap.empty())
+        {
+            getJointLimits(limitsMap);
+        }
+    }
+
+    for (std::map<std::string, JointControllerPtr>::const_iterator jIt = joints.begin(); jIt != joints.end(); ++jIt)
+    {
+        std::map<std::string, std::pair<double, double> >::iterator it = limitsMap.find(jIt->first);
+        if (it != limitsMap.end())
+        {
+            jIt->second->getJointLimits(it->second.first, it->second.second);
+        }
+    }
+}
+
 void RobotController::setJointPosTarget(const std::string& name, double target)
 {
     if (joints.find(name) == joints.end())
     {
-        ROS_WARN("GazeboInterface setJointPosTarget not set because joint (%s) not found", name.c_str());
+        //ROS_WARN("GazeboInterface setJointPosTarget not set because joint (%s) not found", name.c_str());
         return;
     }
     boost::mutex::scoped_lock(pidMutex);
@@ -161,7 +295,7 @@ void RobotController::setJointEffortTarget(const std::string& name, double targe
 }
 
 // joint state management
-void RobotController::setJointControl(const r2_msgs::JointControl::ConstPtr& msg)
+void RobotController::setJointControl(const nasa_r2_common_msgs::JointControl::ConstPtr& msg)
 {
     if (joints.find(msg->joint) == joints.end())
     {
@@ -175,14 +309,14 @@ void RobotController::setJointControl(const r2_msgs::JointControl::ConstPtr& msg
     std::pair<dependenciesType::iterator, dependenciesType::iterator> deps = dependencies.equal_range(msg->joint);
     for (dependenciesType::iterator depIt = deps.first; depIt != deps.second; ++depIt)
     {
-        r2_msgs::JointControl* jcPtr = new r2_msgs::JointControl(*msg);
+        nasa_r2_common_msgs::JointControl* jcPtr = new nasa_r2_common_msgs::JointControl(*msg);
         jcPtr->joint = depIt->second.first;
-        r2_msgs::JointControl::ConstPtr depJointControlPtr(jcPtr);
+        nasa_r2_common_msgs::JointControl::ConstPtr depJointControlPtr(jcPtr);
         joints[depIt->second.first]->setJointControl(depJointControlPtr);
     }
 }
 
-const r2_msgs::JointStatus& RobotController::getJointStatus(const std::string& name) const
+const nasa_r2_common_msgs::JointStatus& RobotController::getJointStatus(const std::string& name) const
 {
     std::map<std::string, JointControllerPtr>::const_iterator cit = joints.find(name);
     if (cit == joints.end())
@@ -206,7 +340,7 @@ void RobotController::update()
 
 void RobotController::publishJointStatuses(ros::Publisher& rosPub) const
 {
-    r2_msgs::JointStatusArray statusArray;
+    nasa_r2_common_msgs::JointStatusArray statusArray;
     statusArray.header.stamp = ros::Time::now();
     for (std::map<std::string, JointControllerPtr>::const_iterator it = joints.begin(); it != joints.end(); ++it)
     {

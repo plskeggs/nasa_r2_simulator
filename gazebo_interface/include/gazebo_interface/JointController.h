@@ -11,8 +11,8 @@
 
 #include <boost/thread.hpp>
 
-#include <r2_msgs/JointStatus.h>
-#include <r2_msgs/JointControl.h>
+#include "nasa_r2_common_msgs/JointStatus.h"
+#include "nasa_r2_common_msgs/JointControl.h"
 
 namespace gazebo
 {
@@ -34,13 +34,19 @@ namespace gazebo
         void setVelTarget(double target);
         void setEffortTarget(double target);
 
+        inline double getPosTarget() {return position;}
+        inline double getVelTarget() {return velocity;}
+        inline double getEffortTarget() {return effort;}
+
+        inline void getJointLimits(double& lowLimit, double& highLimit) {lowLimit = jointLowLimit; highLimit = jointHighLimit;}
+
         // update PIDs and send forces to joints
         // stepTime is elapsed time since last update
         void update(common::Time& stepTime);
 
         // joint state management
-        void setJointControl(const r2_msgs::JointControl::ConstPtr& msg);
-        const r2_msgs::JointStatus& getJointStatus() const;
+        void setJointControl(const nasa_r2_common_msgs::JointControl::ConstPtr& msg);
+        const nasa_r2_common_msgs::JointStatus& getJointStatus() const;
 
         void releaseBrake(bool release = true);
         void clearFaults();
@@ -63,7 +69,7 @@ namespace gazebo
         enum JointControlMode {POS_COM = 0, TORQ_COM = 1, IMP_COM = 2, VEL_COM = 3};
         enum JointFault {OK = 0};
 
-        r2_msgs::JointStatusPtr currStatusPtr;
+        nasa_r2_common_msgs::JointStatusPtr currStatusPtr;
         JointControlMode controlMode;
         JointFault fault;
 
