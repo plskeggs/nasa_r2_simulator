@@ -1,0 +1,105 @@
+r2:
+  r_leg_controller:
+    joints:
+      - r2/right_leg/joint0
+      - r2/right_leg/joint1
+      - r2/right_leg/joint2
+      - r2/right_leg/joint3
+      - r2/right_leg/joint4
+      - r2/right_leg/joint5
+      - r2/right_leg/joint6
+  r_foot_controller:
+    joints:
+      - r2/right_leg/gripper/joint0
+  l_leg_controller:
+    joints:
+      - r2/left_leg/joint0
+      - r2/left_leg/joint1
+      - r2/left_leg/joint2
+      - r2/left_leg/joint3
+      - r2/left_leg/joint4
+      - r2/left_leg/joint5
+      - r2/left_leg/joint6
+  l_foot_controller:
+    joints:
+      - r2/left_leg/gripper/joint0
+  legs_controller:
+    joints:
+      - r2/left_leg/joint0
+      - r2/left_leg/joint1
+      - r2/left_leg/joint2
+      - r2/left_leg/joint3
+      - r2/left_leg/joint4
+      - r2/left_leg/joint5
+      - r2/left_leg/joint6
+      - r2/right_leg/joint0
+      - r2/right_leg/joint1
+      - r2/right_leg/joint2
+      - r2/right_leg/joint3
+      - r2/right_leg/joint4
+      - r2/right_leg/joint5
+      - r2/right_leg/joint6
+  r_arm_controller:
+    joints:
+      - r2/right_arm/joint0
+      - r2/right_arm/joint1
+      - r2/right_arm/joint2
+      - r2/right_arm/joint3
+      - r2/right_arm/joint4
+      - r2/right_arm/wrist/pitch
+      - r2/right_arm/wrist/yaw
+  r_hand_controller:
+    joints:
+      - r2/right_arm/hand/thumb/roll
+      - r2/right_arm/hand/thumb/medial
+      - r2/right_arm/hand/thumb/proximal
+      - r2/right_arm/hand/thumb/distal
+      - r2/right_arm/hand/index/medial
+      - r2/right_arm/hand/index/proximal
+      - r2/right_arm/hand/index/yaw
+      - r2/right_arm/hand/middle/medial
+      - r2/right_arm/hand/middle/proximal
+      - r2/right_arm/hand/middle/yaw
+      - r2/right_arm/hand/ringlittle/little
+      - r2/right_arm/hand/ringlittle/ring
+    dependency:
+      r2/right_arm/hand/ringlittle/little:
+        factor: 2.0
+      r2/right_arm/hand/ringlittle/ring:
+        factor: 2.0
+  l_arm_controller:
+    joints:
+      - r2/left_arm/joint0
+      - r2/left_arm/joint1
+      - r2/left_arm/joint2
+      - r2/left_arm/joint3
+      - r2/left_arm/joint4
+      - r2/left_arm/wrist/pitch
+      - r2/left_arm/wrist/yaw
+  l_hand_controller:
+    joints:
+      - r2/left_arm/hand/thumb/roll
+      - r2/left_arm/hand/thumb/proximal
+      - r2/left_arm/hand/thumb/medial
+      - r2/left_arm/hand/thumb/distal
+      - r2/left_arm/hand/index/medial
+      - r2/left_arm/hand/index/proximal
+      - r2/left_arm/hand/index/yaw
+      - r2/left_arm/hand/middle/medial
+      - r2/left_arm/hand/middle/proximal
+      - r2/left_arm/hand/middle/yaw
+      - r2/left_arm/hand/ringlittle/little
+      - r2/left_arm/hand/ringlittle/ring
+    dependency:
+      r2/left_arm/hand/ringlittle/little:
+        factor: 2.0
+      r2/left_arm/hand/ringlittle/ring:
+        factor: 2.0
+  neck_controller:
+    joints:
+      - r2/neck/joint0
+      - r2/neck/joint1
+      - r2/neck/joint2
+  waist_controller:
+    joints:
+      - r2/waist/joint0

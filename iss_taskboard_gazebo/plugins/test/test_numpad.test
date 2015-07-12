@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+ - Copyright (C) 2013 TopCoder Inc., All Rights Reserved.
+ -
+ - @author KennyAlive
+ - @version 1.0
+-->
+
+<launch>
+
+  <!-- start gui -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+
+  <!-- load taskboard -->
+  <param name="taskboard_description" command="$(find xacro)/xacro.py '$(find taskboard_gazebo)/xacro/taskboard.urdf.xacro'" />  
+  <node name="spawn_taskboard" pkg="gazebo_ros" type="spawn_model" args="-urdf -param taskboard_description -model taskboard -R 0.2 -P 0.01 -Y 2.2 -x -5.13 -y -0.75 -z -0.27" respawn="false" output="screen" /> 
+
+   <!-- start test -->
+  <test test-name="test_numpad" pkg="taskboard_gazebo" type="test_numpad.py" time-limit="300.0"/>
+
+</launch>

@@ -1,0 +1,262 @@
+r2_controller:
+  type: "r2_controllers_gazebo/R2ImpedanceController"
+  Waist_Joint_Stiffness_High:
+    - 75.0
+  Waist_Joint_Stiffness_Low:
+    - 100.0
+  Waist_Joint_Damping_High: 
+    - 100.0  
+  Waist_Joint_Damping_Low: 
+    - 100.0
+  Neck_Joint_Stiffness:
+     - 10.0
+     - 10.0
+     - 10.0
+  Neck_Joint_Damping:
+     - 1.0
+     - 1.0
+     - 1.0
+  LeftArm_Joint_Stiffness_High:
+     - 50.0
+     - 50.0
+     - 50.0
+     - 40.0
+     - 40.0
+     - 15.0
+     - 15.0
+  LeftArm_Joint_Stiffness_Low:
+     - 10.0
+     - 10.0
+     - 10.0
+     - 8.0
+     - 8.0
+     - 5.0
+     - 5.0
+  LeftArm_Joint_Damping_High:
+     - 10.0
+     - 10.0
+     - 10.0
+     - 8.0
+     - 6.0
+     - 6.0
+     - 6.0
+  LeftArm_Joint_Damping_Low:
+     - 5.0
+     - 5.0
+     - 5.0
+     - 4.0
+     - 3.0
+     - 3.0
+     - 3.0
+  RightArm_Joint_Stiffness_High:
+     - 50.0
+     - 50.0
+     - 50.0
+     - 40.0
+     - 40.0
+     - 10.0
+     - 10.0
+  RightArm_Joint_Stiffness_Low:
+     - 10.0
+     - 10.0
+     - 10.0
+     - 8.0
+     - 8.0
+     - 5.0
+     - 5.0
+  RightArm_Joint_Damping_High:
+     - 10.0
+     - 10.0
+     - 10.0
+     - 8.0
+     - 6.0
+     - 6.0
+     - 6.0
+  RightArm_Joint_Damping_Low:
+     - 5.0
+     - 5.0
+     - 5.0
+     - 4.0
+     - 3.0
+     - 3.0
+     - 3.0
+  LeftHand_Joint_Stiffness_High:
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+  LeftHand_Joint_Stiffness_Low:
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+  LeftHand_Joint_Damping_High:
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+  LeftHand_Joint_Damping_Low:
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+  RightHand_Joint_Stiffness_High:
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+  RightHand_Joint_Stiffness_Low:
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+     - 1.0
+  RightHand_Joint_Damping_High:
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+     - .10
+  RightHand_Joint_Damping_Low:
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+     - 0.050
+  Left_Cart_Stiffness:
+     - 30.0
+     - 30.0
+     - 30.0
+     - 4.0
+     - 4.0
+     - 4.0
+  Left_Cart_Damping:
+     - 15.0
+     - 15.0
+     - 15.0
+     - 2.0
+     - 2.0
+     - 2.0
+  Right_Cart_Stiffness:
+     - 30.0
+     - 30.0
+     - 30.0
+     - 4.0
+     - 4.0
+     - 4.0
+  Right_Cart_Damping:
+     - 10.0
+     - 10.0
+     - 10.0
+     - 1.0
+     - 1.0
+     - 1.0

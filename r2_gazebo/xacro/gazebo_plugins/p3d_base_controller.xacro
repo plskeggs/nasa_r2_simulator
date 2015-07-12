@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot name="r2_c_full_body" xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+			xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+			xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+			xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+
+  <gazebo>
+      <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+        <alwaysOn>true</alwaysOn>
+        <gaussianNoise>0.0</gaussianNoise>
+        <frameName>world</frameName>
+        <bodyName>r2/world_ref</bodyName>
+        <topicName>r2/world_ref/pose_state</topicName>
+        <updateRate>30.0</updateRate>
+        <xyzOffsets>0 0 0</xyzOffsets>
+        <rpyOffsets>0 0 0</rpyOffsets>
+      </plugin>
+  </gazebo>
+
+</robot>

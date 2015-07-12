@@ -12,16 +12,16 @@ r2:
       - r2/right_arm/joint2
       - r2/right_arm/joint3
       - r2/right_arm/joint4
-      - r2/right_arm/joint5
-      - r2/right_arm/joint6
+      - r2/right_arm/wrist/pitch
+      - r2/right_arm/wrist/yaw
     gains:
       r2/right_arm/joint0: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
       r2/right_arm/joint1: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
       r2/right_arm/joint2: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
       r2/right_arm/joint3: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
       r2/right_arm/joint4: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
-      r2/right_arm/joint5: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
-      r2/right_arm/joint6: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
+      r2/right_arm/wrist/pitch: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
+      r2/right_arm/wrist/yaw: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
     follow_joint_trajectory:
       joints:
         - r2/right_arm/joint0
@@ -29,8 +29,8 @@ r2:
         - r2/right_arm/joint2
         - r2/right_arm/joint3
         - r2/right_arm/joint4
-        - r2/right_arm/joint5
-        - r2/right_arm/joint6
+        - r2/right_arm/wrist/pitch
+        - r2/right_arm/wrist/yaw
       constraints:
         goal_time: 10.0
         r2/right_arm/joint0:
@@ -43,9 +43,9 @@ r2:
           goal: 0.2
         r2/right_arm/joint4:
           goal: 0.2
-        r2/right_arm/joint5:
+        r2/right_arm/wrist/pitch:
           goal: 0.2
-        r2/right_arm/joint6:
+        r2/right_arm/wrist/yaw:
           goal: 0.2
       state_publish_rate:  25            # Override default
       action_monitor_rate: 30            # Override default
@@ -60,16 +60,16 @@ r2:
       - r2/left_arm/joint2
       - r2/left_arm/joint3
       - r2/left_arm/joint4
-      - r2/left_arm/joint5
-      - r2/left_arm/joint6
+      - r2/left_arm/wrist/pitch
+      - r2/left_arm/wrist/yaw
     gains:
       r2/left_arm/joint0: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
       r2/left_arm/joint1: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
       r2/left_arm/joint2: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
       r2/left_arm/joint3: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
       r2/left_arm/joint4: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
-      r2/left_arm/joint5: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
-      r2/left_arm/joint6: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
+      r2/left_arm/wrist/pitch: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
+      r2/left_arm/wrist/yaw: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
     follow_joint_trajectory:
       joints:
         - r2/left_arm/joint0
@@ -77,8 +77,8 @@ r2:
         - r2/left_arm/joint2
         - r2/left_arm/joint3
         - r2/left_arm/joint4
-        - r2/left_arm/joint5
-        - r2/left_arm/joint6
+        - r2/left_arm/wrist/pitch
+        - r2/left_arm/wrist/yaw
       constraints:
         goal_time: 10.0
         r2/left_arm/joint0:
@@ -91,9 +91,9 @@ r2:
           goal: 0.2
         r2/left_arm/joint4:
           goal: 0.2
-        r2/left_arm/joint5:
+        r2/left_arm/wrist/pitch:
           goal: 0.2
-        r2/left_arm/joint6:
+        r2/left_arm/wrist/yaw:
           goal: 0.2
       state_publish_rate:  25            # Override default
       action_monitor_rate: 30            # Override default
@@ -123,9 +123,9 @@ r2:
       - r2/neck/joint1
       - r2/neck/joint2
     gains:
-      r2/neck/joint0: {p: 50.0, d: 15, i: 2, i_clamp: 4.0}
-      r2/neck/joint1: {p: 20.0, d:  4, i: 2, i_clamp: 4.0}
-      r2/neck/joint2: {p: 20.0, d:  4, i: 2, i_clamp: 4.0}
+      r2/neck/joint0: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/neck/joint1: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/neck/joint2: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
     follow_joint_trajectory_node:
       joints:
         - r2/neck/joint0
@@ -147,100 +147,80 @@ r2:
   l_hand_controller:
     type: "effort_controllers/JointTrajectoryController"
     joints:
-      - r2/left_arm/hand/index/joint0
-      - r2/left_arm/hand/index/joint1
-      - r2/left_arm/hand/index/joint2
-      - r2/left_arm/hand/index/joint3
-      - r2/left_arm/hand/little/joint0
-      - r2/left_arm/hand/little/joint1
-      - r2/left_arm/hand/little/joint2
-      - r2/left_arm/hand/middle/joint0
-      - r2/left_arm/hand/middle/joint1
-      - r2/left_arm/hand/middle/joint2
-      - r2/left_arm/hand/middle/joint3
-      - r2/left_arm/hand/ring/joint0
-      - r2/left_arm/hand/ring/joint1
-      - r2/left_arm/hand/ring/joint2
-      - r2/left_arm/hand/thumb/joint0
-      - r2/left_arm/hand/thumb/joint1
-      - r2/left_arm/hand/thumb/joint2
-      - r2/left_arm/hand/thumb/joint3
+      - r2/left_arm/hand/index/yaw
+      - r2/left_arm/hand/index/proximal
+      - r2/left_arm/hand/index/medial
+      - r2/left_arm/hand/ringlittle/little
+      - r2/left_arm/hand/ringlittle/littleMedial
+      - r2/left_arm/hand/middle/yaw
+      - r2/left_arm/hand/middle/proximal
+      - r2/left_arm/hand/middle/medial
+      - r2/left_arm/hand/ringlittle/ring
+      - r2/left_arm/hand/ringlittle/ringMedial
+      - r2/left_arm/hand/thumb/roll
+      - r2/left_arm/hand/thumb/proximal
+      - r2/left_arm/hand/thumb/medial
+      - r2/left_arm/hand/thumb/distal
     gains:
-      r2/left_arm/hand/index/joint0: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/index/joint1: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/index/joint2: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/index/joint3: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/little/joint0: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/little/joint1: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/little/joint2: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/middle/joint0: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/middle/joint1: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/middle/joint2: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/middle/joint3: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/ring/joint0: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/ring/joint1: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/ring/joint2: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/thumb/joint0: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/thumb/joint1: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/thumb/joint2: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/left_arm/hand/thumb/joint3: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/left_arm/hand/index/yaw: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/left_arm/hand/index/proximal: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/left_arm/hand/index/medial: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/left_arm/hand/ringlittle/little: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/left_arm/hand/ringlittle/littleMedial: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/left_arm/hand/middle/yaw: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/left_arm/hand/middle/proximal: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/left_arm/hand/middle/medial: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/left_arm/hand/ringlittle/ring: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/left_arm/hand/ringlittle/ringMedial: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/left_arm/hand/thumb/roll: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/left_arm/hand/thumb/proximal: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/left_arm/hand/thumb/medial: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/left_arm/hand/thumb/distal: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
     follow_joint_trajectory_node:
       joints:
-        - r2/left_arm/hand/index/joint0
-        - r2/left_arm/hand/index/joint1
-        - r2/left_arm/hand/index/joint2
-        - r2/left_arm/hand/index/joint3
-        - r2/left_arm/hand/little/joint0
-        - r2/left_arm/hand/little/joint1
-        - r2/left_arm/hand/little/joint2
-        - r2/left_arm/hand/middle/joint0
-        - r2/left_arm/hand/middle/joint1
-        - r2/left_arm/hand/middle/joint2
-        - r2/left_arm/hand/middle/joint3
-        - r2/left_arm/hand/ring/joint0
-        - r2/left_arm/hand/ring/joint1
-        - r2/left_arm/hand/ring/joint2
-        - r2/left_arm/hand/thumb/joint0
-        - r2/left_arm/hand/thumb/joint1
-        - r2/left_arm/hand/thumb/joint2
-        - r2/left_arm/hand/thumb/joint3
+        - r2/left_arm/hand/index/yaw
+        - r2/left_arm/hand/index/proximal
+        - r2/left_arm/hand/index/medial
+        - r2/left_arm/hand/ringlittle/little
+        - r2/left_arm/hand/ringlittle/littleMedial
+        - r2/left_arm/hand/middle/yaw
+        - r2/left_arm/hand/middle/proximal
+        - r2/left_arm/hand/middle/medial
+        - r2/left_arm/hand/ringlittle/ring
+        - r2/left_arm/hand/ringlittle/ringMedial
+        - r2/left_arm/hand/thumb/roll
+        - r2/left_arm/hand/thumb/proximal
+        - r2/left_arm/hand/thumb/medial
+        - r2/left_arm/hand/thumb/distal
       constraints:
         goal_time: 2.0
-        r2/left_arm/hand/index/joint0:
+        r2/left_arm/hand/index/yaw:
           goal: 0.2
-        r2/left_arm/hand/index/joint1:
+        r2/left_arm/hand/index/proximal:
           goal: 0.2
-        r2/left_arm/hand/index/joint2:
+        r2/left_arm/hand/index/medial:
           goal: 0.2
-        r2/left_arm/hand/index/joint3:
+        r2/left_arm/hand/ringlittle/little:
           goal: 0.2
-        r2/left_arm/hand/little/joint0:
+        r2/left_arm/hand/ringlittle/littleMedial:
           goal: 0.2
-        r2/left_arm/hand/little/joint1:
+        r2/left_arm/hand/middle/yaw:
           goal: 0.2
-        r2/left_arm/hand/little/joint2:
+        r2/left_arm/hand/middle/proximal:
           goal: 0.2
-        r2/left_arm/hand/middle/joint0:
+        r2/left_arm/hand/middle/medial:
           goal: 0.2
-        r2/left_arm/hand/middle/joint1:
+        r2/left_arm/hand/ringlittle/ring:
           goal: 0.2
-        r2/left_arm/hand/middle/joint2:
+        r2/left_arm/hand/ringlittle/ringMedial:
           goal: 0.2
-        r2/left_arm/hand/middle/joint3:
+        r2/left_arm/hand/thumb/roll:
           goal: 0.2
-        r2/left_arm/hand/ring/joint0:
+        r2/left_arm/hand/thumb/proximal:
           goal: 0.2
-        r2/left_arm/hand/ring/joint1:
+        r2/left_arm/hand/thumb/medial:
           goal: 0.2
-        r2/left_arm/hand/ring/joint2:
-          goal: 0.2
-        r2/left_arm/hand/thumb/joint0:
-          goal: 0.2
-        r2/left_arm/hand/thumb/joint1:
-          goal: 0.2
-        r2/left_arm/hand/thumb/joint2:
-          goal: 0.2
-        r2/left_arm/hand/thumb/joint3:
+        r2/left_arm/hand/thumb/distal:
           goal: 0.2
       state_publish_rate:  25            # Override default
       action_monitor_rate: 30            # Override default
@@ -250,100 +230,80 @@ r2:
   r_hand_controller:
     type: "effort_controllers/JointTrajectoryController"
     joints:
-      - r2/right_arm/hand/index/joint0
-      - r2/right_arm/hand/index/joint1
-      - r2/right_arm/hand/index/joint2
-      - r2/right_arm/hand/index/joint3
-      - r2/right_arm/hand/little/joint0
-      - r2/right_arm/hand/little/joint1
-      - r2/right_arm/hand/little/joint2
-      - r2/right_arm/hand/middle/joint0
-      - r2/right_arm/hand/middle/joint1
-      - r2/right_arm/hand/middle/joint2
-      - r2/right_arm/hand/middle/joint3
-      - r2/right_arm/hand/ring/joint0
-      - r2/right_arm/hand/ring/joint1
-      - r2/right_arm/hand/ring/joint2
-      - r2/right_arm/hand/thumb/joint0
-      - r2/right_arm/hand/thumb/joint1
-      - r2/right_arm/hand/thumb/joint2
-      - r2/right_arm/hand/thumb/joint3
+      - r2/right_arm/hand/index/yaw
+      - r2/right_arm/hand/index/proximal
+      - r2/right_arm/hand/index/medial
+      - r2/right_arm/hand/ringlittle/little
+      - r2/right_arm/hand/ringlittle/littleMedial
+      - r2/right_arm/hand/middle/yaw
+      - r2/right_arm/hand/middle/proximal
+      - r2/right_arm/hand/middle/medial
+      - r2/right_arm/hand/ringlittle/ring
+      - r2/right_arm/hand/ringlittle/ringMedial
+      - r2/right_arm/hand/thumb/roll
+      - r2/right_arm/hand/thumb/proximal
+      - r2/right_arm/hand/thumb/medial
+      - r2/right_arm/hand/thumb/distal
     gains:
-      r2/right_arm/hand/index/joint0: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/index/joint1: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/index/joint2: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/index/joint3: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/little/joint0: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/little/joint1: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/little/joint2: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/middle/joint0: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/middle/joint1: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/middle/joint2: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/middle/joint3: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/ring/joint0: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/ring/joint1: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/ring/joint2: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/thumb/joint0: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/thumb/joint1: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/thumb/joint2: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
-      r2/right_arm/hand/thumb/joint3: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/right_arm/hand/index/yaw: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/right_arm/hand/index/proximal: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/right_arm/hand/index/medial: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/right_arm/hand/ringlittle/little: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/right_arm/hand/ringlittle/littleMedial: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/right_arm/hand/middle/yaw: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/right_arm/hand/middle/proximal: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/right_arm/hand/middle/medial: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/right_arm/hand/ringlittle/ring: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/right_arm/hand/ringlittle/ringMedial: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/right_arm/hand/thumb/roll: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/right_arm/hand/thumb/proximal: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/right_arm/hand/thumb/medial: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
+      r2/right_arm/hand/thumb/distal: {p: 1.0, d: 0, i: 0, i_clamp: 4.0}
     follow_joint_trajectory_node:
       joints:
-        - r2/right_arm/hand/index/joint0
-        - r2/right_arm/hand/index/joint1
-        - r2/right_arm/hand/index/joint2
-        - r2/right_arm/hand/index/joint3
-        - r2/right_arm/hand/little/joint0
-        - r2/right_arm/hand/little/joint1
-        - r2/right_arm/hand/little/joint2
-        - r2/right_arm/hand/middle/joint0
-        - r2/right_arm/hand/middle/joint1
-        - r2/right_arm/hand/middle/joint2
-        - r2/right_arm/hand/middle/joint3
-        - r2/right_arm/hand/ring/joint0
-        - r2/right_arm/hand/ring/joint1
-        - r2/right_arm/hand/ring/joint2
-        - r2/right_arm/hand/thumb/joint0
-        - r2/right_arm/hand/thumb/joint1
-        - r2/right_arm/hand/thumb/joint2
-        - r2/right_arm/hand/thumb/joint3
+        - r2/right_arm/hand/index/yaw
+        - r2/right_arm/hand/index/proximal
+        - r2/right_arm/hand/index/medial
+        - r2/right_arm/hand/ringlittle/little
+        - r2/right_arm/hand/ringlittle/littleMedial
+        - r2/right_arm/hand/middle/yaw
+        - r2/right_arm/hand/middle/proximal
+        - r2/right_arm/hand/middle/medial
+        - r2/right_arm/hand/ringlittle/ring
+        - r2/right_arm/hand/ringlittle/ringMedial
+        - r2/right_arm/hand/thumb/roll
+        - r2/right_arm/hand/thumb/proximal
+        - r2/right_arm/hand/thumb/medial
+        - r2/right_arm/hand/thumb/distal
       constraints:
         goal_time: 2.0
-        r2/right_arm/hand/index/joint0:
+        r2/right_arm/hand/index/yaw:
           goal: 0.2
-        r2/right_arm/hand/index/joint1:
+        r2/right_arm/hand/index/proximal:
           goal: 0.2
-        r2/right_arm/hand/index/joint2:
+        r2/right_arm/hand/index/medial:
           goal: 0.2
-        r2/right_arm/hand/index/joint3:
+        r2/right_arm/hand/ringlittle/little:
           goal: 0.2
-        r2/right_arm/hand/little/joint0:
+        r2/right_arm/hand/ringlittle/littleMedial:
           goal: 0.2
-        r2/right_arm/hand/little/joint1:
+        r2/right_arm/hand/middle/yaw:
           goal: 0.2
-        r2/right_arm/hand/little/joint2:
+        r2/right_arm/hand/middle/proximal:
           goal: 0.2
-        r2/right_arm/hand/middle/joint0:
+        r2/right_arm/hand/middle/medial:
           goal: 0.2
-        r2/right_arm/hand/middle/joint1:
+        r2/right_arm/hand/ringlittle/ring:
           goal: 0.2
-        r2/right_arm/hand/middle/joint2:
+        r2/right_arm/hand/ringlittle/ringMedial:
           goal: 0.2
-        r2/right_arm/hand/middle/joint3:
+        r2/right_arm/hand/thumb/roll:
           goal: 0.2
-        r2/right_arm/hand/ring/joint0:
+        r2/right_arm/hand/thumb/proximal:
           goal: 0.2
-        r2/right_arm/hand/ring/joint1:
+        r2/right_arm/hand/thumb/medial:
           goal: 0.2
-        r2/right_arm/hand/ring/joint2:
-          goal: 0.2
-        r2/right_arm/hand/thumb/joint0:
-          goal: 0.2
-        r2/right_arm/hand/thumb/joint1:
-          goal: 0.2
-        r2/right_arm/hand/thumb/joint2:
-          goal: 0.2
-        r2/right_arm/hand/thumb/joint3:
+        r2/right_arm/hand/thumb/distal:
           goal: 0.2
 
       state_publish_rate:  25            # Override default

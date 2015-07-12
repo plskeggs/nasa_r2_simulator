@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<robot name="r2" xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" 
+			xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" 
+			xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor" 
+			xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+
+  <xacro:include filename="sensors/grasshopper2.gazebo.xacro" />
+  <xacro:include filename="sensors/asus.gazebo.xacro" />
+  <!-- Left Camera -->
+  <joint name="${robot_name}fixed/left_camera_frame/left_camera_optical_frame" type="fixed">
+    <parent link="${robot_name}left_camera_frame"/>
+    <child link="${robot_name}left_camera_optical_frame"/>
+    <dynamics damping="1.0" />
+    <origin rpy="0.0 0.0 3.14" xyz="0 0 0"/>
+  </joint>
+  <non_visual_link name="${robot_name}left_camera_optical_frame" />
+  <joint name="${robot_name}fixed/left_camera_frame/left_camera_simulated_frame" type="fixed">
+    <parent link="${robot_name}left_camera_frame"/>
+    <child link="${robot_name}left_camera_simulated_frame"/>
+    <dynamics damping="1.0" />
+    <origin rpy="-1.5708 -1.5708 0" xyz="0 0 0"/>
+  </joint>
+  <non_visual_link name="${robot_name}left_camera_simulated_frame" />
+  <xacro:grasshopper2_camera ns="${robot_name}" camera_name="head/left_camera" simulated_frame="left_camera_simulated_frame" camera_frame="left_camera_optical_frame" /> 
+
+  <!-- Right Camera -->
+  <joint name="${robot_name}fixed/right_camera_frame/right_camera_optical_frame" type="fixed">
+    <parent link="${robot_name}right_camera_frame"/>
+    <child link="${robot_name}right_camera_optical_frame"/>
+    <dynamics damping="1.0" />
+    <origin rpy="0.0 0.0 3.14" xyz="0 0 0"/>
+  </joint>
+  <non_visual_link name="${robot_name}right_camera_optical_frame" />
+  <joint name="${robot_name}fixed/right_camera_frame/right_camera_simulated_frame" type="fixed">
+    <parent link="${robot_name}right_camera_frame"/>
+    <child link="${robot_name}right_camera_simulated_frame"/>
+    <dynamics damping="1.0" />
+    <origin rpy="-1.5708 -1.5708 0" xyz="0 0 0"/>
+  </joint>
+  <non_visual_link name="${robot_name}right_camera_simulated_frame" />
+  <xacro:grasshopper2_camera ns="${robot_name}" camera_name="head/right_camera" simulated_frame="right_camera_simulated_frame" camera_frame="right_camera_optical_frame" />
+
+  <!-- Asus -->
+  <joint name="${robot_name}fixed/vision_base/simulated_asus_frame" type="fixed">
+    <parent link="${robot_name}vision_base"/>
+    <child link="${robot_name}simulated_asus_frame"/>
+    <dynamics damping="1.0" />
+    <origin rpy="0 0 0" xyz="0.12 -0.015 -0.14 "/> 
+  </joint>
+  <non_visual_link name="${robot_name}simulated_asus_frame"/>
+  <joint name="${robot_name}fixed/vision_base/asus_depth_frame" type="fixed">
+    <parent link="${robot_name}vision_base"/>
+    <child link="${robot_name}asus_depth_frame"/>
+    <dynamics damping="1.0" />
+    <origin rpy="-1.57 0 -1.57" xyz="0.12 -0.015 -0.14" />
+  </joint>
+  <non_visual_link name="${robot_name}asus_depth_frame"/>
+  <xacro:asus_sensor ns="${robot_name}" sensor_name="head/asus" simulated_frame="simulated_asus_frame" sensor_frame="asus_depth_frame"/>
+
+</robot>

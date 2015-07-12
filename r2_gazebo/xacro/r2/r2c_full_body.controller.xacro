@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<robot name="r2_c_full_body" xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" 
+			xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" 
+			xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor" 
+			xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+
+  <gazebo>
+    <controller:gazebo_ros_p3d name="p3d_base_controller" plugin="libgazebo_ros_p3d.so">
+<!--      <robotNamespace>r2sim</robotNamespace>-->
+      <bodyName>r2/robot_base</bodyName>
+      <topicName>r2/robot_base/pose_state</topicName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <frameName>world</frameName>
+      <xyzOffsets>0 0 0</xyzOffsets>
+      <rpyOffsets>0 0 0</rpyOffsets>
+      <interface:position name="p3d_base_position"/>
+    </controller:gazebo_ros_p3d>
+    <canonicalBody>r2/robot_world</canonicalBody>
+  </gazebo>
+
+  <gazebo>
+    <controller:gazebo_interface name="gazebo_interface" plugin="libr2_gazebo_interface.so">
+<!--      <robotNamespace>r2sim</robotNamespace>-->
+      <paramsNamespace>r2_sim_params</paramsNamespace>
+      <jointCommandsTopic>joint_commands</jointCommandsTopic>
+      <jointStatesTopic>joint_states</jointStatesTopic>
+    </controller:gazebo_interface>
+  </gazebo>
+
+  <gazebo>
+    <controller:gazebo_gripper name="left_gazebo_gripper" plugin="libr2_gazebo_gripper.so">
+      <updateRate>10.0</updateRate> <!--Hz-->
+      <gripperAttachLink>r2/left_ankle_roll</gripperAttachLink>
+<!--      <gripperAttachLink>r2/waist_center</gripperAttachLink>-->
+      <gripperLink>r2/left_leg_jaw0</gripperLink>
+      <gripperLink>r2/left_leg_jaw1</gripperLink>
+      <maxRelativeMotionRate>0.0001</maxRelativeMotionRate> <!--units/second-->
+      <attachWait>2.0</attachWait> <!--seconds-->
+      <detachWait>0.0</detachWait> <!--seconds-->
+    </controller:gazebo_gripper>
+  </gazebo>
+
+  <gazebo>
+    <controller:gazebo_gripper name="right_gazebo_gripper" plugin="libr2_gazebo_gripper.so">
+      <updateRate>10.0</updateRate> <!--Hz-->
+      <gripperAttachLink>r2/right_ankle_roll</gripperAttachLink>
+      <gripperLink>r2/right_leg_jaw0</gripperLink>
+      <gripperLink>r2/right_leg_jaw1</gripperLink>
+      <maxRelativeMotionRate>0.0001</maxRelativeMotionRate> <!--units/second-->
+      <attachWait>2.0</attachWait> <!--seconds-->
+      <detachWait>0.0</detachWait> <!--seconds-->
+    </controller:gazebo_gripper>
+  </gazebo>
+
+</robot>

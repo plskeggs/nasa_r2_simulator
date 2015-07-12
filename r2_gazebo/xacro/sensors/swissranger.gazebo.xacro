@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="r2">
+
+  <xacro:macro name="swissranger_ir_gazebo_v0" params="camera_name parent_camera_link parent_depth_link ns">
+      <gazebo reference="${ns}${parent_camera_link}">
+        <sensor type="depth" name="${camera_name}">
+            <always_on>0</always_on>
+            <visualize>true</visualize>
+            <camera name="${camera_name}">
+                <horizontal_fov>1.047</horizontal_fov>
+                <image>
+                    <width>176</width>
+                    <height>144</height>
+                    <format>L8</format>
+                </image>
+                <depth_camera> </depth_camera>
+                <clip>
+                    <near>0.1</near>
+                    <far>50</far>
+                </clip>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_depth_camera.so">
+                <robotNamespace>${ns}</robotNamespace>
+                <alwaysOn>true</alwaysOn>
+                <updateRate>10.0</updateRate>
+                <cameraName>${camera_name}</cameraName>
+                <imageTopicName>amplitude/image_raw</imageTopicName>
+                <cameraInfoTopicName>depth/camera_info</cameraInfoTopicName>
+                <pointCloudTopicName>points_unrectified</pointCloudTopicName>
+                <depthImageTopicName>depth/image_raw</depthImageTopicName>
+                <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+                <frameName>${parent_depth_link}</frameName>
+                <pointCloudCutoff>0.5</pointCloudCutoff>
+                <distortionK1>0.00000001</distortionK1>
+                <distortionK2>0.00000001</distortionK2>
+                <distortionK3>0.00000001</distortionK3>
+                <distortionT1>0.00000001</distortionT1>
+                <distortionT2>0.00000001</distortionT2>
+            </plugin>
+        </sensor>
+    </gazebo>
+  </xacro:macro>
+</robot>

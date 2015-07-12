@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<robot name="r2" xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" 
+			xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" 
+			xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor" 
+			xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+
+  <xacro:include filename="sensors/pgr_flea.gazebo.xacro" />
+  <xacro:include filename="sensors/nano.gazebo.xacro" />
+
+  <!-- Left Leg Nano -->
+  <joint name="${robot_name}fixed/left_leg_nano_physical/left_leg_nano_optical" type="fixed">
+    <parent link="${robot_name}left_leg/nano_physical"/>
+    <child link="${robot_name}left_leg/nano_optical_frame"/>
+    <origin rpy="0.0 0.0 3.14159" xyz="0.02 0.0 0.03"/>
+  </joint>
+  <non_visual_link name="${robot_name}left_leg/nano_optical_frame"/>
+  <joint name="${robot_name}fixed/left_leg_nano_physical/left_leg_nano_simulated" type="fixed">
+    <parent link="${robot_name}left_leg/nano_physical"/>
+    <child link="${robot_name}left_leg/nano_simulated_frame"/>
+    <origin rpy="0.0 -1.57 -1.57" xyz="0.02 0.0 0.03"/>
+  </joint>
+  <non_visual_link name="${robot_name}left_leg/nano_simulated_frame"/>
+  <xacro:pmd_nano_sensor camera_name="left_leg/nano" simulated_frame="left_leg/nano_simulated_frame" camera_frame="left_leg/nano_optical_frame" ns="${robot_name}" />
+
+  <!-- Left Leg Flea -->
+  <joint name="${robot_name}fixed/left_leg_flea_physical/left_leg_flea_optical" type="fixed">
+    <parent link="${robot_name}left_leg/flea_physical"/>
+    <child link="${robot_name}left_leg/flea_optical_frame"/>
+    <origin rpy="0.0 0.0 3.14159" xyz="0 0 0.03"/>
+  </joint>
+  <non_visual_link name="${robot_name}left_leg/flea_optical_frame"/>
+  <joint name="${robot_name}fixed/left_leg_flea_physical/left_leg_flea_simulated" type="fixed">
+    <parent link="${robot_name}left_leg/flea_physical"/>
+    <child link="${robot_name}left_leg/flea_simulated_frame"/>
+    <origin rpy="0.0 -1.57 -1.57" xyz="0 0 0.03"/>
+  </joint>
+  <non_visual_link name="${robot_name}left_leg/flea_simulated_frame"/>
+  <xacro:pgr_flea_camera camera_name="left_leg/flea" simulated_frame="left_leg/flea_simulated_frame" camera_frame="left_leg/flea_optical_frame" ns="${robot_name}" /> 
+
+  <!-- Right Leg Nano -->
+  <joint name="${robot_name}fixed/right_leg_nano_physical/right_leg_nano_optical" type="fixed">
+    <parent link="${robot_name}right_leg/nano_physical"/>
+    <child link="${robot_name}right_leg/nano_optical_frame"/>
+    <origin rpy="0.0 0.0 3.14159" xyz="0.02 0.0 0.03"/>
+  </joint>
+  <non_visual_link name="${robot_name}right_leg/nano_optical_frame"/>
+  <joint name="${robot_name}fixed/right_leg_nano_physical/right_leg_nano_simulated" type="fixed">
+    <parent link="${robot_name}right_leg/nano_physical"/>
+    <child link="${robot_name}right_leg/nano_simulated_frame"/>
+    <origin rpy="0.0 -1.57 -1.57" xyz="0.02 0.0 0.03"/>
+  </joint>
+  <non_visual_link name="${robot_name}right_leg/nano_simulated_frame"/>
+  <xacro:pmd_nano_sensor camera_name="right_leg/nano" simulated_frame="right_leg/nano_simulated_frame" camera_frame="right_leg/nano_optical_frame" ns="${robot_name}" />
+
+  <!-- Right Leg Flea -->
+  <joint name="${robot_name}fixed/right_leg_flea_physical/right_leg_flea_optical" type="fixed">
+    <parent link="${robot_name}right_leg/flea_physical"/>
+    <child link="${robot_name}right_leg/flea_optical_frame"/>
+    <origin rpy="0.0 0.0 3.14159" xyz="0 0 0.03"/>
+  </joint>
+  <non_visual_link name="${robot_name}right_leg/flea_optical_frame"/>
+  <joint name="${robot_name}fixed/right_leg_flea_physical/right_leg_flea_simulated" type="fixed">
+    <parent link="${robot_name}right_leg/flea_physical"/>
+    <child link="${robot_name}right_leg/flea_simulated_frame"/>
+    <origin rpy="0.0 -1.57 -1.57" xyz="0 0 0.03"/>
+  </joint>
+  <non_visual_link name="${robot_name}right_leg/flea_simulated_frame"/>
+  <xacro:pgr_flea_camera camera_name="right_leg/flea" simulated_frame="right_leg/flea_simulated_frame" camera_frame="right_leg/flea_optical_frame" ns="${robot_name}" /> 
+
+</robot>

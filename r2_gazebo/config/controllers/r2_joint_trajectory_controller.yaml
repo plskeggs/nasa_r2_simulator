@@ -1,0 +1,88 @@
+r_arm_controller:
+  type: "r2_controllers_gazebo/R2JointTrajectoryActionController"
+  joints:
+    - right/j0
+    - right/j1
+    - right/j2
+    - right/j3
+    - right/j4
+    - right/j5
+    - right/j6
+  gains:
+    right/j0: {p: 200.0, d: 0, i: 0, i_clamp: 4.0}
+    right/j1: {p: 200.0, d: 0, i: 0, i_clamp: 4.0}
+    right/j2: {p: 200.0, d: 0, i: 0, i_clamp: 4.0}
+    right/j3: {p: 200.0, d: 0, i: 0, i_clamp: 4.0}
+    right/j4: {p: 200.0, d: 0, i: 0, i_clamp: 2.0}
+    right/j5: {p: 200.0, d: 0, i: 0, i_clamp: 2.0}
+    right/j6: {p: 200.0, d: 0, i: 0, i_clamp: 2.0}
+  joint_trajectory_action_node:
+    joints:
+      - right/j0
+      - right/j1
+      - right/j2
+      - right/j3
+      - right/j4
+      - right/j5
+      - right/j6
+    constraints:
+      goal_time: 1.0
+      right/j0:
+        goal: 0.2
+      right/j1:
+        goal: 0.2
+      right/j2:
+        goal: 0.2
+      right/j3:
+        goal: 0.2
+      right/j4:
+        goal: 0.2
+      right/j5:
+        goal: 0.2
+      right/j6:
+        goal: 0.2
+
+l_arm_controller:
+  type: "r2_controllers_gazebo/R2JointTrajectoryActionController"
+  joints:
+    - left/j0
+    - left/j1
+    - left/j2
+    - left/j3
+    - left/j4
+    - left/j5
+    - left/j6
+  gains:
+    left/j0: {p: 200.0, d: 0, i: 0.0, i_clamp: 4.0}
+    left/j1: {p: 200.0, d: 0, i: 0.0, i_clamp: 4.0}
+    left/j2: {p: 200.0, d: 0, i: 0.0, i_clamp: 4.0}
+    left/j3: {p: 200.0, d: 0, i: 0, i_clamp: 4.0}
+    left/j4: {p: 200.0, d: 0, i: 0, i_clamp: 2.0}
+    left/j5: {p: 200.0, d: 0, i: 0, i_clamp: 2.0}
+    left/j6: {p: 200.0, d: 0, i: 0, i_clamp: 2.0}
+  joint_trajectory_action_node:
+    joints:
+      - left/j0
+      - left/j1
+      - left/j2
+      - left/j3
+      - left/j4
+      - left/j5
+      - left/j6
+    constraints:
+      goal_time: 1.0
+      left/j0:
+        goal: 0.2
+      left/j1:
+        goal: 0.2
+      left/j2:
+        goal: 0.2
+      left/j3:
+        goal: 0.2
+      left/j4:
+        goal: 0.2
+      left/j5:
+        goal: 0.2
+      left/j6:
+        goal: 0.2
+  

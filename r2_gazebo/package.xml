@@ -1,40 +1,24 @@
 <?xml version="1.0"?>
 <package>
   <name>r2_gazebo</name>
-  <version>0.5.4</version>
+  <version>0.6.0</version>
   <description>The r2_gazebo package</description>
 
-  <author>Stephen Hart</author>
-  <maintainer email="davidvlu@gmail.com">David Lu!!</maintainer>
-  <maintainer email="stephen.hart@nasa.gov">Stephen Hart</maintainer>
+  <maintainer email="allison.thackston@nasa.gov">Allison Thackston</maintainer>
 
-
-  <!-- One license tag required, multiple allowed, one license per tag -->
-  <!-- Commonly used license strings: -->
-  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
-  <license>TODO</license>
-
-  <url type="website">http://wiki.ros.org/r2_gazebo</url>
+  <license>NASA-1.3</license>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>roscpp</build_depend>
-  <build_depend>rospy</build_depend>
-  <build_depend>sensor_msgs</build_depend>
-  <build_depend>gazebo_msgs</build_depend>
-  <build_depend>std_msgs</build_depend>
-  <run_depend>roscpp</run_depend>
-  <run_depend>rospy</run_depend>
-  <run_depend>sensor_msgs</run_depend>
-  <run_depend>std_msgs</run_depend>
-  <run_depend>gazebo</run_depend>
-  <run_depend>sensor_msgs</run_depend>
-  <run_depend>std_msgs</run_depend>
-  <run_depend>r2_msgs</run_depend>
-  <run_depend>r2_control</run_depend>
+  <run_depend>gazebo_ros</run_depend>
+  <run_depend>xacro</run_depend>
+  <run_depend>rviz</run_depend>
+  <run_depend>image_transport</run_depend>
+  <run_depend>r2_gazebo_interface</run_depend>
+  <run_depend>r2_gazebo_gripper</run_depend>
+  <run_depend>nasa_robodyn_ros</run_depend>
   <run_depend>r2_description</run_depend>
-  <run_depend>joint_trajectory_controller</run_depend>
 
   <export>
-    <gazebo gazebo_media_path="${prefix}"/>
-  </export>
+    <gazebo_ros gazebo_media_path="${prefix}" />
+  </export> 
 </package>

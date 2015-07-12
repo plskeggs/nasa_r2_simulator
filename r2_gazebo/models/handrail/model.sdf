@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<sdf version='1.5'>
+  <model name='handrail_model'>
+    <link name='handrail'>
+      <pose>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0.015 0 0 -0 0</pose>
+        <mass>0.36</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='handrail_collision'>
+        <pose>0 0 0 1.57 -5.55112e-17 1.57</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handrail//meshes//handrail.dae</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='handrail_visual'>
+        <pose>0 0 0 1.57 -5.55112e-17 1.57</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handrail//meshes//handrail.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Yellow</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
+

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<robot name="r2" xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" 
+			xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" 
+			xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor" 
+			xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+
+  <xacro:include filename="sensors/prosilica.gazebo.xacro" />
+  <xacro:include filename="sensors/swissranger.gazebo.xacro" />
+ 
+  <!-- Left Prosilica -->
+  <joint name="${robot_name}fixed/left_prosilica_camera/left_prosilica_optical" type="fixed">
+    <parent link="${robot_name}head/prosilica/left_camera_frame"/>
+    <child link="${robot_name}head/prosilica/left_optical_frame"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.05"/>
+  </joint>
+  <non_visual_link name="${robot_name}head/prosilica/left_optical_frame"/>
+  <joint name="${robot_name}fixed/left_prosilica_camera/left_prosilica_simulated" type="fixed">
+    <parent link="${robot_name}head/prosilica/left_camera_frame"/>
+    <child link="${robot_name}head/prosilica/left_simulated_frame"/>
+    <origin rpy="0.0 -1.57 1.57" xyz="0.0 0.0 0.05"/>
+  </joint>
+  <non_visual_link name="${robot_name}head/prosilica/left_simulated_frame"/>
+  <xacro:prosilica_cam_gazebo_v0 camera_name="head/prosilica/left" simulated_frame="head/prosilica/left_simulated_frame" camera_frame="head/prosilica/left_optical_frame" ns="${robot_name}"/>
+
+  <!-- Right Prosilica -->
+  <joint name="${robot_name}fixed/right_prosilica_camera/right_prosilica_optical" type="fixed">
+    <parent link="${robot_name}head/prosilica/right_camera_frame"/>
+    <child link="${robot_name}head/prosilica/right_optical_frame"/>
+    <origin rpy="0.0 0.0 0" xyz="0.0 0.0 0.05"/>
+  </joint>
+  <non_visual_link name="${robot_name}head/prosilica/right_optical_frame"/>
+  <joint name="${robot_name}fixed/right_prosilica_camera/right_prosilica_simulated" type="fixed">
+    <parent link="${robot_name}head/prosilica/right_camera_frame"/>
+    <child link="${robot_name}head/prosilica/right_simulated_frame"/>
+    <origin rpy="0.0 -1.57 1.57" xyz="0.0 0.0 0.05"/>
+  </joint>
+  <non_visual_link name="${robot_name}head/prosilica/right_simulated_frame"/>
+  <xacro:prosilica_cam_gazebo_v0 camera_name="head/prosilica/right" simulated_frame="head/prosilica/right_simulated_frame" camera_frame="head/prosilica/right_optical_frame" ns="${robot_name}"/>
+
+  <!-- Swissranger -->
+  <joint name="${robot_name}fixed/swissranger/swissranger_depth" type="fixed">
+    <parent link="${robot_name}head/swissranger_frame"/>
+    <child link="${robot_name}head/swissranger_depth_frame"/>
+    <origin rpy="0.0 0.0 -1.57" xyz="0.0 0.0 0.0"/>
+  </joint>
+  <non_visual_link name="${robot_name}head/swissranger_depth_frame"/>
+  <joint name="${robot_name}fixed/swissranger/simulated_swissranger" type="fixed">
+    <parent link="${robot_name}head/swissranger_frame"/>
+    <child link="${robot_name}head/simulated_swissranger_frame"/>
+    <origin rpy="0.0 -1.57 0.0" xyz="0.0 0.0 0.0"/>
+  </joint>
+  <non_visual_link name="${robot_name}head/simulated_swissranger_frame"/>
+  <xacro:swissranger_ir_gazebo_v0 camera_name="head/swissranger" parent_camera_link="head/simulated_swissranger_frame" parent_depth_link="head/swissranger_depth_frame" ns="${robot_name}"/>
+
+
+</robot>

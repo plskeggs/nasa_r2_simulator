@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="taskboard">
+
+  <xacro:property name="taskboard_package" value="iss_taskboard_gazebo/models/iss_taskboard" />
+  <link name="world"/>
+
+  <joint name="world/dummy" type="fixed">
+    <parent link="world"/>
+    <child link="dummy"/>
+    <origin rpy="0.0 0 3.14" xyz="0.0 0.0 0.0"/>
+  </joint>
+
+  <link name="dummy">
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="1" ixy="0.0" ixz="0.0" iyy="1" iyz="0.0" izz="1"/>
+    </inertial>
+  </link>
+
+  <xacro:include filename="taskboard/taskboard.lower.xacro" />
+  <xacro:include filename="taskboard/taskboard.B01.xacro" />
+  <xacro:include filename="taskboard/taskboard.plugin.xacro"/>
+  <!--<xacro:include filename="taskboard/taskboard.B05.xacro" /> -->
+
+</robot>

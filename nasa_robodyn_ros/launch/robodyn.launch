@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="robot" default="r2c1"/>
+
+  <!-- Start Controller -->
+  <node name="robodyn" pkg="nasa_robodyn_ros" type="robodyn" respawn="false" output="screen">
+    <param name="control_urdf" value="$(find r2_description)/urdf/$(arg robot)_control.urdf" />
+    <param name="dynamic_urdf" value="$(find r2_description)/urdf/$(arg robot)_dynamics.urdf"/>
+  </node>
+  
+</launch>

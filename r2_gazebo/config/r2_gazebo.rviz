@@ -1,0 +1,854 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 78
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /Status1
+        - /TF1
+      Splitter Ratio: 0.5
+    Tree Height: 565
+  - Class: rviz/Selection
+    Name: Selection
+  - Class: rviz/Tool Properties
+    Expanded:
+      - /2D Pose Estimate1
+      - /2D Nav Goal1
+      - /Publish Point1
+    Name: Tool Properties
+    Splitter Ratio: 0.588679
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: ""
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.03
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 1
+      Class: rviz/RobotModel
+      Collision Enabled: false
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        r2/backpack:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/baseplate:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/body_cover:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/chest_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/chest_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/head:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/head/prosilica/left_camera_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/head/prosilica/left_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/head/prosilica/right_camera_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/head/prosilica/right_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/head/swissranger_depth_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/head/swissranger_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/head/vision_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/head/vision_center_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/left_elbow:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_index_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/left_index_distal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_index_medial:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_index_proximal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_index_tip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/left_index_yaw:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/left_little_distal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_little_medial:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_little_proximal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_little_tip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/left_lower_arm:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_middle_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/left_middle_distal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_middle_medial:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_middle_proximal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_middle_tip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/left_middle_yaw:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/left_palm:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_ring_distal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_ring_medial:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_ring_proximal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_ring_tip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/left_shoulder_pitch:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_shoulder_roll:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_thumb_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/left_thumb_distal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_thumb_medial:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_thumb_medial_prime:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_thumb_proximal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_thumb_tip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/left_upper_arm:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/left_wrist_pitch:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/left_wrist_yaw:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/neck_lower:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/neck_upper:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_elbow:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_index_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/right_index_distal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_index_medial:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_index_proximal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_index_tip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/right_index_yaw:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/right_little_distal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_little_medial:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_little_proximal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_little_tip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/right_lower_arm:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_middle_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/right_middle_distal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_middle_medial:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_middle_proximal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_middle_tip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/right_middle_yaw:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/right_palm:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_ring_distal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_ring_medial:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_ring_proximal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_ring_tip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/right_shoulder_pitch:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_shoulder_roll:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_thumb_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/right_thumb_distal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_thumb_medial:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_thumb_medial_prime:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_thumb_proximal:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_thumb_tip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/right_upper_arm:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/right_wrist_pitch:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/right_wrist_yaw:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/robot_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/robot_reference:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/robot_world:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/stanchion:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/vision_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r2/waist_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r2/world_ref:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        world:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+      Name: RobotModel
+      Robot Description: robot_description
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+        r2/backpack:
+          Value: true
+        r2/baseplate:
+          Value: true
+        r2/body_cover:
+          Value: true
+        r2/chest_base:
+          Value: true
+        r2/chest_center:
+          Value: true
+        r2/head:
+          Value: true
+        r2/head/prosilica/left_camera_frame:
+          Value: true
+        r2/head/prosilica/left_optical_frame:
+          Value: true
+        r2/head/prosilica/right_camera_frame:
+          Value: true
+        r2/head/prosilica/right_optical_frame:
+          Value: true
+        r2/head/swissranger_depth_frame:
+          Value: true
+        r2/head/swissranger_frame:
+          Value: true
+        r2/head/vision_base:
+          Value: true
+        r2/head/vision_center_frame:
+          Value: true
+        r2/left_elbow:
+          Value: true
+        r2/left_index_base:
+          Value: true
+        r2/left_index_distal:
+          Value: true
+        r2/left_index_medial:
+          Value: true
+        r2/left_index_proximal:
+          Value: true
+        r2/left_index_tip:
+          Value: true
+        r2/left_index_yaw:
+          Value: true
+        r2/left_little_distal:
+          Value: true
+        r2/left_little_medial:
+          Value: true
+        r2/left_little_proximal:
+          Value: true
+        r2/left_little_tip:
+          Value: true
+        r2/left_lower_arm:
+          Value: true
+        r2/left_middle_base:
+          Value: true
+        r2/left_middle_distal:
+          Value: true
+        r2/left_middle_medial:
+          Value: true
+        r2/left_middle_proximal:
+          Value: true
+        r2/left_middle_tip:
+          Value: true
+        r2/left_middle_yaw:
+          Value: true
+        r2/left_palm:
+          Value: true
+        r2/left_ring_distal:
+          Value: true
+        r2/left_ring_medial:
+          Value: true
+        r2/left_ring_proximal:
+          Value: true
+        r2/left_ring_tip:
+          Value: true
+        r2/left_shoulder_pitch:
+          Value: true
+        r2/left_shoulder_roll:
+          Value: true
+        r2/left_thumb_base:
+          Value: true
+        r2/left_thumb_distal:
+          Value: true
+        r2/left_thumb_medial:
+          Value: true
+        r2/left_thumb_medial_prime:
+          Value: true
+        r2/left_thumb_proximal:
+          Value: true
+        r2/left_thumb_tip:
+          Value: true
+        r2/left_upper_arm:
+          Value: true
+        r2/left_wrist_pitch:
+          Value: true
+        r2/left_wrist_yaw:
+          Value: true
+        r2/neck_lower:
+          Value: true
+        r2/neck_upper:
+          Value: true
+        r2/right_elbow:
+          Value: true
+        r2/right_index_base:
+          Value: true
+        r2/right_index_distal:
+          Value: true
+        r2/right_index_medial:
+          Value: true
+        r2/right_index_proximal:
+          Value: true
+        r2/right_index_tip:
+          Value: true
+        r2/right_index_yaw:
+          Value: true
+        r2/right_little_distal:
+          Value: true
+        r2/right_little_medial:
+          Value: true
+        r2/right_little_proximal:
+          Value: true
+        r2/right_little_tip:
+          Value: true
+        r2/right_lower_arm:
+          Value: true
+        r2/right_middle_base:
+          Value: true
+        r2/right_middle_distal:
+          Value: true
+        r2/right_middle_medial:
+          Value: true
+        r2/right_middle_proximal:
+          Value: true
+        r2/right_middle_tip:
+          Value: true
+        r2/right_middle_yaw:
+          Value: true
+        r2/right_palm:
+          Value: true
+        r2/right_ring_distal:
+          Value: true
+        r2/right_ring_medial:
+          Value: true
+        r2/right_ring_proximal:
+          Value: true
+        r2/right_ring_tip:
+          Value: true
+        r2/right_shoulder_pitch:
+          Value: true
+        r2/right_shoulder_roll:
+          Value: true
+        r2/right_thumb_base:
+          Value: true
+        r2/right_thumb_distal:
+          Value: true
+        r2/right_thumb_medial:
+          Value: true
+        r2/right_thumb_medial_prime:
+          Value: true
+        r2/right_thumb_proximal:
+          Value: true
+        r2/right_thumb_tip:
+          Value: true
+        r2/right_upper_arm:
+          Value: true
+        r2/right_wrist_pitch:
+          Value: true
+        r2/right_wrist_yaw:
+          Value: true
+        r2/robot_base:
+          Value: true
+        r2/robot_reference:
+          Value: true
+        r2/robot_world:
+          Value: true
+        r2/stanchion:
+          Value: true
+        r2/vision_base:
+          Value: true
+        r2/waist_center:
+          Value: true
+        r2/world_ref:
+          Value: true
+        world:
+          Value: true
+      Marker Scale: 0.15
+      Name: TF
+      Show Arrows: false
+      Show Axes: true
+      Show Names: false
+      Tree:
+        world:
+          r2/world_ref:
+            r2/robot_world:
+              r2/baseplate:
+                r2/stanchion:
+                  r2/robot_base:
+                    r2/waist_center:
+                      r2/backpack:
+                        {}
+                      r2/body_cover:
+                        {}
+                      r2/chest_center:
+                        r2/chest_base:
+                          r2/left_shoulder_roll:
+                            r2/left_shoulder_pitch:
+                              r2/left_upper_arm:
+                                r2/left_elbow:
+                                  r2/left_lower_arm:
+                                    r2/left_wrist_pitch:
+                                      r2/left_wrist_yaw:
+                                        r2/left_index_base:
+                                          r2/left_index_yaw:
+                                            r2/left_index_proximal:
+                                              r2/left_index_medial:
+                                                r2/left_index_distal:
+                                                  r2/left_index_tip:
+                                                    {}
+                                        r2/left_little_proximal:
+                                          r2/left_little_medial:
+                                            r2/left_little_distal:
+                                              r2/left_little_tip:
+                                                {}
+                                        r2/left_middle_base:
+                                          r2/left_middle_yaw:
+                                            r2/left_middle_proximal:
+                                              r2/left_middle_medial:
+                                                r2/left_middle_distal:
+                                                  r2/left_middle_tip:
+                                                    {}
+                                        r2/left_palm:
+                                          {}
+                                        r2/left_ring_proximal:
+                                          r2/left_ring_medial:
+                                            r2/left_ring_distal:
+                                              r2/left_ring_tip:
+                                                {}
+                                        r2/left_thumb_base:
+                                          r2/left_thumb_proximal:
+                                            r2/left_thumb_medial_prime:
+                                              r2/left_thumb_medial:
+                                                r2/left_thumb_distal:
+                                                  r2/left_thumb_tip:
+                                                    {}
+                          r2/right_shoulder_roll:
+                            r2/right_shoulder_pitch:
+                              r2/right_upper_arm:
+                                r2/right_elbow:
+                                  r2/right_lower_arm:
+                                    r2/right_wrist_pitch:
+                                      r2/right_wrist_yaw:
+                                        r2/right_index_base:
+                                          r2/right_index_yaw:
+                                            r2/right_index_proximal:
+                                              r2/right_index_medial:
+                                                r2/right_index_distal:
+                                                  r2/right_index_tip:
+                                                    {}
+                                        r2/right_little_proximal:
+                                          r2/right_little_medial:
+                                            r2/right_little_distal:
+                                              r2/right_little_tip:
+                                                {}
+                                        r2/right_middle_base:
+                                          r2/right_middle_yaw:
+                                            r2/right_middle_proximal:
+                                              r2/right_middle_medial:
+                                                r2/right_middle_distal:
+                                                  r2/right_middle_tip:
+                                                    {}
+                                        r2/right_palm:
+                                          {}
+                                        r2/right_ring_proximal:
+                                          r2/right_ring_medial:
+                                            r2/right_ring_distal:
+                                              r2/right_ring_tip:
+                                                {}
+                                        r2/right_thumb_base:
+                                          r2/right_thumb_proximal:
+                                            r2/right_thumb_medial_prime:
+                                              r2/right_thumb_medial:
+                                                r2/right_thumb_distal:
+                                                  r2/right_thumb_tip:
+                                                    {}
+                      r2/neck_lower:
+                        r2/neck_upper:
+                          r2/head:
+                            r2/head/vision_base:
+                              r2/head/swissranger_frame:
+                                r2/head/swissranger_depth_frame:
+                                  {}
+                              r2/head/vision_center_frame:
+                                r2/head/prosilica/left_camera_frame:
+                                  r2/head/prosilica/left_optical_frame:
+                                    {}
+                                r2/head/prosilica/right_camera_frame:
+                                  r2/head/prosilica/right_optical_frame:
+                                    {}
+                            r2/vision_base:
+                              {}
+                      r2/robot_reference:
+                        {}
+      Update Interval: 0
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: r2/robot_world
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+    - Class: rviz/SetInitialPose
+      Topic: /initialpose
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Single click: true
+      Topic: /clicked_point
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 5.33994
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.06
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: -0.310622
+        Y: -0.0475758
+        Z: 0.801015
+      Name: Current View
+      Near Clip Distance: 0.01
+      Pitch: -0.0146022
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+      Yaw: 0.0253972
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 846
+  Hide Left Dock: false
+  Hide Right Dock: false
+  QMainWindow State: 000000ff00000000fd00000004000000000000013c000002c4fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006400fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c0061007900730100000028000002c4000000dd00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000010f000002c4fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a005600690065007700730100000028000002c4000000b000fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004b00000003efc0100000002fb0000000800540069006d00650100000000000004b0000002f600fffffffb0000000800540069006d0065010000000000000450000000000000000000000259000002c400000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Selection:
+    collapsed: false
+  Time:
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: false
+  Width: 1200
+  X: 507
+  Y: 79

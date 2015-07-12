@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="world"        default="$(find r2_gazebo)/worlds/empty.world" />
+  <arg name="use_sim_time" default="true" />
+  <arg name="gui"          default="true" />
+  <arg name="headless"     default="false"/>
+  <arg name="debug"        default="false" />
+  <arg name="paused"       default="false" />
+  <arg name="octomap"      default="false" />
+  <arg name="robodyn"      default="false" />
+  <arg name="ros_control"  default="false" />
+
+  <!-- robodyn -->
+  <node if="$(arg robodyn)" name="robodyn" pkg="nasa_robodyn_ros" type="robodyn" respawn="false" output="screen">
+    <param name="control_urdf" value="$(find r2_description)/urdf/r2b_sim_upperbody_control.urdf" />
+    <param name="dynamic_urdf" value="$(find r2_description)/urdf/r2b_sim_upperbody_dynamics.urdf"/>
+  </node>
+
+  <!-- ros-control interface -->
+  <include if="$(arg ros_control)" file="$(find nasa_robodyn_ros)/launch/r2_upperbody_control.launch"/>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+
+  <!-- reference frame broadcaster for moveit -->
+  <node pkg="tf" type="static_transform_publisher" name="moveit_odom_broadcaster" args="0 0 0 0 0 0 reference_frame world 100" />
+
+  <node pkg="tf" type="static_transform_publisher" name="octomap_odom_broadcaster" args="0 0 0 0 0 0 /world /map 100" if="$(arg octomap)"/>
+  <node pkg="octomap_server" type="octomap_server_node" name="octomap_server" args="cloud_in:=/r2/asus/depth/points _resolution:=0.02" if="$(arg octomap)"/>
+
+  <!-- load robot-->
+  <rosparam file="$(find r2_gazebo)/config/controllers/r2sim_torso_params.yaml" command="load" />
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find r2_gazebo)/xacro/r2b_upperbody.urdf.xacro'" />
+  <node name="spawn_r2" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model r2 -paused=true" respawn="false" output="screen" />
+
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world)"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+</launch>
+

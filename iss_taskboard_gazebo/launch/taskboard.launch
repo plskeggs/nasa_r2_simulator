@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="use_sim_time" default="true" />
+  <arg name="gui"          default="true" />
+  <arg name="headless"     default="false"/>
+  <arg name="debug"        default="false" />
+  <arg name="paused"       default="false" />
+
+  <!-- load taskboard -->
+  <param name="taskboard_description" command="$(find xacro)/xacro.py '$(find iss_taskboard_gazebo)/xacro/taskboard.urdf.xacro'" />  
+  <node name="spawn_taskboard" pkg="gazebo_ros" type="spawn_model" args="-urdf -param taskboard_description -model taskboard -paused=true" respawn="false" output="screen" />
+  
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="taskboard_state_publisher" >
+    <remap from="robot_description" to="taskboard_description" />
+  </node>
+
+  <!-- load gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+</launch>
+

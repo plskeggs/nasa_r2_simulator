@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<sdf version="1.4">
+  <world name="r2b_upperbody_empty">
+    <scene>
+      <ambient>0 0 0 1</ambient>
+      <shadows>0</shadows>
+      <grid>1</grid>
+    </scene>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <pose>0.8 0.0 -0.15 0 0 1.57</pose>
+    </include>
+    <include>
+      <uri>model://handrail</uri>
+      <pose>0.55 -0.25 .9 0 0 0.5</pose>
+    </include>
+    <include>
+      <uri>model://handle</uri>
+      <pose>0.55 0.25 .9 0 0 0.5</pose>
+    </include>
+    <include>
+      <uri>model://weight20</uri>
+      <pose>0.8 0.025 .9 0 0 0.0</pose>
+    </include>
+
+    <!-- A global light source -->
+    <light type="point" name="point_white1">
+      <cast_shadows>0</cast_shadows>
+      <pose>2.6 .3 3 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>.1 .1 .1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.2</constant>
+        <linear>0.1</linear>
+        <quadratic>0.0</quadratic>
+      </attenuation>
+    </light>
+    <light type="point" name="point_white2">
+      <cast_shadows>0</cast_shadows>
+      <pose>-2.6 .3 3 0 0 0</pose>
+      <diffuse>0.3 0.3 0.3 1</diffuse>
+      <specular>.1 .1 .1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.2</constant>
+        <linear>0.1</linear>
+        <quadratic>0.0</quadratic>
+      </attenuation>
+    </light>
+
+  </world>
+</sdf>
+

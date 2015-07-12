@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="taskboard">
+
+  <xacro:property name="taskboard_package" value="iss_taskboard_gazebo/models/iss_taskboard" />
+  <xacro:include filename="taskboard/taskboard.B05.xacro" />
+
+
+</robot>

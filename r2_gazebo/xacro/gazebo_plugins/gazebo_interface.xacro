@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="r2">
+
+  <gazebo>
+    <plugin name="gazebo_r2_interface" filename="libr2_gazebo_interface.so">
+      <paramsNamespace>r2_sim_params</paramsNamespace>
+      <jointCommandsTopic>joint_desired</jointCommandsTopic>
+      <jointStatesTopic>joint_states</jointStatesTopic>
+      <jointCapabilitiesTopic>joint_capabilities</jointCapabilitiesTopic>
+      <jointCommandRefsTopic>joint_command_refs</jointCommandRefsTopic>
+      <jointStatesRate>30.0</jointStatesRate> <!--Hz, omit for fastest possible-->
+      <advancedMode>0</advancedMode>
+      <!-- if advancedMode=false, joint brakes, etc are not simulated and the following parameters are ignored -->
+      <jointControlTopic>joint_control</jointControlTopic>
+      <jointStatusTopic>joint_status</jointStatusTopic>
+      <jointStatusRate>5.0</jointStatusRate> <!--Hz, omit for fastest possible-->
+    </plugin>
+  </gazebo>
+
+</robot>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot>
+
+  <!-- transmission xacro -->
+  <macro name="r2_trans" params="part reduction tc">
+     <transmission name="${part}_trans">
+       <type>transmission_interface/SimpleTransmission</type>
+       <joint name="${part}"/>
+       <actuator name="${part}_motor">
+         <hardwareInterface>EffortJointInterface</hardwareInterface>
+         <mechanicalReduction>${reduction}</mechanicalReduction>
+       </actuator>
+       <motorTorqueConstant>${tc}</motorTorqueConstant>
+     </transmission>
+  </macro>
+
+
+  <!-- r2_arm_transmission xacro -->
+  <macro name="r2_leg_trans" params="side">
+
+     <r2_trans part="${side}/joint0" reduction="100" tc="0.01"/>
+     <r2_trans part="${side}/joint1" reduction="100" tc="0.01"/>
+     <r2_trans part="${side}/joint2" reduction="100" tc="0.01"/>
+     <r2_trans part="${side}/joint3" reduction="100" tc="0.01"/>
+     <r2_trans part="${side}/joint4" reduction="100" tc="0.01"/>
+     <r2_trans part="${side}/joint5" reduction="100" tc="0.01"/>
+     <r2_trans part="${side}/joint6" reduction="100" tc="0.01"/>
+
+     <r2_trans part="${side}/gripper/joint0"   reduction="100" tc="0.01"/>
+     <r2_trans part="${side}/gripper/jawLeft"  reduction="100" tc="0.01"/>
+     <r2_trans part="${side}/gripper/jawRight" reduction="100" tc="0.01"/>
+
+  </macro>
+
+  <r2_leg_trans side="${robot_name}left_leg"/>
+  <r2_leg_trans side="${robot_name}right_leg"/>
+
+
+</robot>

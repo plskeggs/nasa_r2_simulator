@@ -1,0 +1,117 @@
+<?xml version="1.0"?> 
+<sdf version="1.4">
+  <world name="iss">
+    <scene>
+      <ambient>0 0 0 1</ambient>
+      <shadows>0</shadows>
+      <grid>0</grid>
+     <background>0 0 0 1</background>
+    </scene>
+    
+    <gui>
+        <camera name="cam1">
+            <pose>4.0 0 0 0 0 3.141596</pose>
+        </camera>
+    </gui>
+
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+      <gravity>0 0 0</gravity>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>20</iters>
+          <sor>1.3</sor>
+        </solver>
+        <constraints>
+          <cfm>0.0000000001</cfm>
+          <erp>0.1</erp>
+          <contact_max_correcting_vel>1.0</contact_max_correcting_vel>
+          <contact_surface_layer>0.01</contact_surface_layer>
+        </constraints>
+      </ode>
+    </physics>
+
+    <include>
+      <uri>model://iss</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <include>
+        <name>R2_Stow_Handrail</name>
+        <uri>model://handrail_41_5</uri>
+        <pose>-3.2258 -0.82969 -1.09314 0 0 0</pose>
+    </include>
+
+    <include>
+        <name>Handrail_1</name>
+        <uri>model://handrail_30</uri>
+        <pose>-2.2098 -0.67729 -1.09314 0 0 1.5708</pose>
+    </include>
+
+    <include>
+        <name>CTB_1</name>
+        <uri>model://CTB</uri>
+        <pose>-3.0988 -1.76948955 -0.7731 1.5708 0 0</pose>
+    </include>
+
+    <include>
+        <name>CTB_2</name>
+        <uri>model://CTB</uri>
+        <pose>-3.0988 -1.94729 -0.34123 1.5708 0 0</pose>
+    </include>
+
+    <include>
+        <name>CTB_3</name>
+        <uri>model://CTB</uri>
+        <pose>-3.0988 -1.42659 -0.3413 1.5708 0 0</pose>
+    </include>
+
+    <include>
+        <name>M_01_Bag</name>
+        <uri>model://M_01_Bag</uri>
+        <pose>-2.7686 -1.8965 0.4715 1.5708 0.2608 1.5708</pose>
+    </include>
+
+    <!-- A global light source -->
+    <light type="point" name="point_white1">
+      <cast_shadows>0</cast_shadows>
+      <pose>-2.54 0 0 0 0 0</pose>
+      <diffuse>0.4 0.4 0.4 1</diffuse>
+      <specular>.1 .1 .1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.2</constant>
+        <linear>0.1</linear>
+        <quadratic>0.0</quadratic>
+      </attenuation>
+    </light>
+    <light type="point" name="point_white2">
+      <cast_shadows>0</cast_shadows>
+      <pose>0 0 0 0 0 0</pose>
+      <diffuse>0.4 0.4 0.4 1</diffuse>
+      <specular>.1 .1 .1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.2</constant>
+        <linear>0.1</linear>
+        <quadratic>0.0</quadratic>
+      </attenuation>
+    </light>
+    <light type="point" name="point_white3">
+      <cast_shadows>0</cast_shadows>
+      <pose>2.54 0 0 0 0 0</pose>
+      <diffuse>0.4 0.4 0.4 1</diffuse>
+      <specular>.1 .1 .1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.2</constant>
+        <linear>0.1</linear>
+        <quadratic>0.0</quadratic>
+      </attenuation>
+    </light>
+
+  </world>
+</sdf>

@@ -1,0 +1,57 @@
+<sdf version='1.4'>
+  <model name='weight20_model'>
+    <link name='weight20'>
+      <pose>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0.04 0 0 -0 0</pose>
+        <mass>9.07</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='weight20_collision'>
+        <pose>0 0 0 1.57 -5.55112e-17 1.57</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://weight20/meshes/weight20.dae</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='weight20_visual'>
+        <pose>0 0 0 1.57 -5.55112e-17 1.57</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://weight20/meshes/weight20.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Black</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+  </model>
+</sdf>

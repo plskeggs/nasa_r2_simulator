@@ -1,0 +1,35 @@
+<launch>
+
+  <rosparam command="load" file="$(find nasa_robodyn_ros)/launch/default_controller_config.yaml" />
+
+  <include file="$(find nasa_supervisors_control)/launch/r2_joint_trajectory.launch" ns="r2" >
+    <arg name="controller_name" value="l_arm_controller" />
+    <arg name="supervisor" value="r2_teleop" />
+  </include>
+
+  <include file="$(find nasa_supervisors_control)/launch/r2_joint_trajectory.launch" ns="r2" >
+    <arg name="controller_name" value="r_arm_controller" />
+    <arg name="supervisor" value="r2_teleop" />
+  </include>
+
+  <include file="$(find nasa_supervisors_control)/launch/r2_joint_trajectory.launch" ns="r2" >
+    <arg name="controller_name" value="l_hand_controller" />
+    <arg name="supervisor" value="r2_teleop" />
+  </include>
+
+  <include file="$(find nasa_supervisors_control)/launch/r2_joint_trajectory.launch" ns="r2" >
+    <arg name="controller_name" value="r_hand_controller" />
+    <arg name="supervisor" value="r2_teleop" />
+  </include>
+
+  <include file="$(find nasa_supervisors_control)/launch/r2_joint_trajectory.launch" ns="r2" >
+    <arg name="controller_name" value="neck_controller" />
+    <arg name="supervisor" value="r2_teleop" />
+  </include>
+
+  <include file="$(find nasa_supervisors_control)/launch/r2_joint_trajectory.launch" ns="r2" >
+    <arg name="controller_name" value="waist_controller" />
+    <arg name="supervisor" value="r2_teleop" />
+  </include>
+
+</launch>

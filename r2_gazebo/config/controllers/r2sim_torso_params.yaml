@@ -1,0 +1,225 @@
+r2_sim_params:
+    # list of initial joint positions
+    # omitted joints default to 0.0
+    initial_position: # start the robot in this position
+        radians: false
+        position:
+          r2:
+            waist/joint0: 0 # setting joint0 to nonzero doesn't work (inexplicably)
+            neck:
+                joint0: -5.0
+                joint1: 0.0
+                joint2: 0.0
+            left_arm:
+                joint0: 50.0
+                joint1: -80.0
+                joint2: -105.0
+                joint3: -140.0
+                joint4: 80.0
+                wrist/pitch: 0.0
+                wrist/yaw: 0.0
+            right_arm:
+                joint0: -50.0
+                joint1: -80.0
+                joint2: 105.0
+                joint3: -140.0
+                joint4: -80.0
+                wrist/pitch: 0.0
+                wrist/yaw: 0.0
+                        
+    # PID values are [kp, ki, kd, imax, imin, command_max, command_min]
+    # Only the first 3 are required, the others default to 0.0 meaning they are unused
+    # position_pid and velocity_pid are available and should be set for position or velocity control, respectively
+    position_pid: 
+        r2:
+            waist:
+                joint0:
+                    [800.0, 0, 150]
+                    
+            neck:
+                joint0:
+                    [40.0, 0, 2]
+                joint1:
+                    [40.0, 0, 2]
+                joint2:
+                    [40.0, 0, 2]
+                    
+            left_arm:
+                joint0:
+                    [1000, 0, 10]
+                joint1:
+                    [1000, 0, 10]
+                joint2:
+                    [1000, 0, 10]
+                joint3:
+                    [1000, 0, 10]
+                joint4:
+                    [100, 0, 10]
+                wrist/pitch:
+                    [100, 0, 10]
+                wrist/yaw:
+                    [100, 0, 10]
+                hand:
+                    thumb:
+                        roll:
+                            [6, 0.0, 0.3]
+                        proximal:
+                            [3, 0.0, 0.4]
+                        medial:
+                            [.6, 0.0, 0.1]
+                        distal:
+                            [.25, 0.0, 0.035]
+                    index:
+                        yaw:
+                            [6, 0.0, 0.3]
+                        proximal:
+                            [3, 0.0, 0.4]
+                        medial:
+                            [.6, 0.0, 0.1]
+                        distal:
+                            [.25, 0.0, 0.035]
+                    middle:
+                        yaw:
+                            [6, 0.0, 0.3]
+                        proximal:
+                            [3, 0.0, 0.4]
+                        medial:
+                            [.6, 0.0, 0.1]
+                        distal:
+                            [.25, 0.0, 0.035]
+                    ringlittle:
+                        ring:
+                            [3, 0.0, 0.4]
+                        ringMedial:
+                            [.6, 0.0, 0.1]
+                        ringDistal:
+                            [.25, 0.0, 0.035]
+                        little:
+                            [3, 0.0, 0.4]
+                        littleMedial:
+                            [.6, 0.0, 0.1]
+                        littleDistal:
+                            [.25, 0.0, 0.035]
+                            
+            right_arm:
+                joint0:
+                    [1000, 0, 10]
+                joint1:
+                    [1000, 0, 10]
+                joint2:
+                    [1000, 0, 10]
+                joint3:
+                    [1000, 0, 10]
+                joint4:
+                    [100, 0, 10]
+                wrist/pitch:
+                    [100, 0, 10]
+                wrist/yaw:
+                    [100, 0, 10]
+                hand:
+                    thumb:
+                        roll:
+                            [6, 0.0, 0.3]
+                        proximal:
+                            [3, 0.0, 0.4]
+                        medial:
+                            [.6, 0.0, 0.1]
+                        distal:
+                            [.25, 0.0, 0.035]
+                    index:
+                        yaw:
+                            [6, 0.0, 0.3]
+                        proximal:
+                            [3, 0.0, 0.4]
+                        medial:
+                            [.6, 0.0, 0.1]
+                        distal:
+                            [.25, 0.0, 0.035]
+                    middle:
+                        yaw:
+                            [6, 0.0, 0.3]
+                        proximal:
+                            [3, 0.0, 0.4]
+                        medial:
+                            [.6, 0.0, 0.1]
+                        distal:
+                            [.25, 0.0, 0.035]
+                    ringlittle:
+                        ring:
+                            [3, 0.0, 0.4]
+                        ringMedial:
+                            [.6, 0.0, 0.1]
+                        ringDistal:
+                            [.25, 0.0, 0.035]
+                        little:
+                            [3, 0.0, 0.4]
+                        littleMedial:
+                            [.6, 0.0, 0.1]
+                        littleDistal:
+                            [.25, 0.0, 0.035]
+                            
+    # list of dependencies with a scale to apply to commands (pos, vel, effort)
+    # parent:
+    #     children: list of dependent joints
+    #     factors: list of scale values
+    # a joint can be dependent on itself if a scale needs to be applied to commands
+    dependency:
+        r2:
+            left_arm/hand:
+                index/medial:
+                    children: r2/left_arm/hand/index/distal
+                    factors: 1.0
+                    
+                middle/medial:
+                    children: r2/left_arm/hand/middle/distal
+                    factors: 1.0
+                    
+                ringlittle/ring:
+                    children: 
+                        - r2/left_arm/hand/ringlittle/ring
+                        - r2/left_arm/hand/ringlittle/ringMedial
+                        - r2/left_arm/hand/ringlittle/ringDistal
+                    factors:
+                        - 0.5
+                        - 0.5
+                        - 0.5
+                    
+                ringlittle/little:
+                    children: 
+                        - r2/left_arm/hand/ringlittle/little
+                        - r2/left_arm/hand/ringlittle/littleMedial
+                        - r2/left_arm/hand/ringlittle/littleDistal
+                    factors:
+                        - 0.5
+                        - 0.5
+                        - 0.5
+                    
+            right_arm/hand:
+                index/medial:
+                    children: r2/right_arm/hand/index/distal
+                    factors: 1.0
+                    
+                middle/medial:
+                    children: r2/right_arm/hand/middle/distal
+                    factors: 1.0
+                    
+                ringlittle/ring:
+                    children: 
+                        - r2/right_arm/hand/ringlittle/ring
+                        - r2/right_arm/hand/ringlittle/ringMedial
+                        - r2/right_arm/hand/ringlittle/ringDistal
+                    factors:
+                        - 0.5
+                        - 0.5
+                        - 0.5
+                    
+                ringlittle/little:
+                    children: 
+                        - r2/right_arm/hand/ringlittle/little
+                        - r2/right_arm/hand/ringlittle/littleMedial
+                        - r2/right_arm/hand/ringlittle/littleDistal
+                    factors:
+                        - 0.5
+                        - 0.5
+                        - 0.5
+                    

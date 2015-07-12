@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot>
+
+  <gazebo>
+    <plugin name="iss_taskboard_gazebo" filename="libiss_taskboard_gazebo.so">
+    </plugin>
+  </gazebo>
+
+</robot>
