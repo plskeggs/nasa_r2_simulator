@@ -13,11 +13,11 @@
 #include <boost/bind.hpp>
 #include <stdio.h>
 #include <math.h>
-#include <common/Events.hh>
+#include <gazebo/common/Events.hh>
 #include <std_msgs/String.h>
-#include <math/Angle.hh>
-#include <math/Pose.hh>
-#include <msgs/MessageTypes.hh>
+#include <gazebo/math/Angle.hh>
+#include <gazebo/math/Pose.hh>
+#include <gazebo/msgs/MessageTypes.hh>
 
 using namespace gazebo;
 using namespace iss_taskboard_gazebo;
