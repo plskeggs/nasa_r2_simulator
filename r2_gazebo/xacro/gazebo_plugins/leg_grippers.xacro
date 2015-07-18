@@ -7,8 +7,8 @@
       <gripperAttachLink>${robot_name}left_ankle_roll</gripperAttachLink>
       <gripperLink>${robot_name}left_leg/gripper/jaw_right</gripperLink>
       <gripperLink>${robot_name}left_leg/gripper/jaw_left</gripperLink>
-      <maxRelativeMotionRate>0.0001</maxRelativeMotionRate> <!--units/second-->
-      <attachWait>2.0</attachWait> <!--seconds-->
+      <maxRelativeMotionRate>0.005</maxRelativeMotionRate> <!--units/second-->
+      <attachWait>0.5</attachWait> <!--seconds-->
       <detachWait>0.0</detachWait> <!--seconds-->
     </plugin>
   </gazebo>
@@ -19,8 +19,8 @@
       <gripperAttachLink>${robot_name}right_ankle_roll</gripperAttachLink>
       <gripperLink>${robot_name}right_leg/gripper/jaw_right</gripperLink>
       <gripperLink>${robot_name}right_leg/gripper/jaw_left</gripperLink>
-      <maxRelativeMotionRate>0.0001</maxRelativeMotionRate> <!--units/second-->
-      <attachWait>2.0</attachWait> <!--seconds-->
+      <maxRelativeMotionRate>0.005</maxRelativeMotionRate> <!--units/second-->
+      <attachWait>0.5</attachWait> <!--seconds-->
       <detachWait>0.0</detachWait> <!--seconds-->
     </plugin>
   </gazebo>

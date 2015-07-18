@@ -26,18 +26,18 @@ r2_sim_params:
                 joint4: -80.0
                 wrist/pitch: 0.0
                 wrist/yaw: 0.0
-            left_leg: 
+            left_leg:
                 joint0: 50.0
                 joint1: 0.0
                 joint2: -10.0
                 joint3: 100.0
                 joint4: 0.0
                 joint5: 53.0
-                joint6: -100.0
+                joint6: 0.0
                 gripper:
-                    joint0: 30.0
+                    joint0: 0.0
 
-            right_leg: 
+            right_leg:
                 joint0: -50.0
                 joint1: 0.0
                 joint2: 10.0
@@ -47,16 +47,16 @@ r2_sim_params:
                 joint6: -100.0
                 gripper:
                     joint0: 30.0
-                        
+
     # PID values are [kp, ki, kd, imax, imin, command_max, command_min]
     # Only the first 3 are required, the others default to 0.0 meaning they are unused
     # position_pid and velocity_pid are available and should be set for position or velocity control, respectively
-    position_pid: 
+    position_pid:
         r2:
             waist:
                 joint0:
                     [800.0, 0, 150]
-                    
+
             neck:
                 joint0:
                     [40.0, 0, 2]
@@ -64,7 +64,7 @@ r2_sim_params:
                     [40.0, 0, 2]
                 joint2:
                     [40.0, 0, 2]
-                    
+
             left_arm:
                 joint0:
                     [1000, 0, 10]
@@ -121,7 +121,7 @@ r2_sim_params:
                             [.6, 0.0, 0.1]
                         littleDistal:
                             [.25, 0.0, 0.035]
-                            
+
             right_arm:
                 joint0:
                     [1000, 0, 10]
@@ -201,7 +201,7 @@ r2_sim_params:
                         [100, 0, 1]
                     jawRight:
                         [100, 0, 1]
-                        
+
             right_leg:
                 joint0:
                     [800, 0, 25]
@@ -224,7 +224,7 @@ r2_sim_params:
                         [100, 0, 1]
                     jawRight:
                         [100, 0, 1]
-                            
+
     # list of dependencies with a scale to apply to commands (pos, vel, effort)
     # parent:
     #     children: list of dependent joints
@@ -236,13 +236,13 @@ r2_sim_params:
                 index/medial:
                     children: r2/left_arm/hand/index/distal
                     factors: 1.0
-                    
+
                 middle/medial:
                     children: r2/left_arm/hand/middle/distal
                     factors: 1.0
-                    
+
                 ringlittle/ring:
-                    children: 
+                    children:
                         - r2/left_arm/hand/ringlittle/ring
                         - r2/left_arm/hand/ringlittle/ringMedial
                         - r2/left_arm/hand/ringlittle/ringDistal
@@ -250,9 +250,9 @@ r2_sim_params:
                         - 0.5
                         - 0.5
                         - 0.5
-                    
+
                 ringlittle/little:
-                    children: 
+                    children:
                         - r2/left_arm/hand/ringlittle/little
                         - r2/left_arm/hand/ringlittle/littleMedial
                         - r2/left_arm/hand/ringlittle/littleDistal
@@ -260,18 +260,18 @@ r2_sim_params:
                         - 0.5
                         - 0.5
                         - 0.5
-                    
+
             right_arm/hand:
                 index/medial:
                     children: r2/right_arm/hand/index/distal
                     factors: 1.0
-                    
+
                 middle/medial:
                     children: r2/right_arm/hand/middle/distal
                     factors: 1.0
-                    
+
                 ringlittle/ring:
-                    children: 
+                    children:
                         - r2/right_arm/hand/ringlittle/ring
                         - r2/right_arm/hand/ringlittle/ringMedial
                         - r2/right_arm/hand/ringlittle/ringDistal
@@ -279,9 +279,9 @@ r2_sim_params:
                         - 0.5
                         - 0.5
                         - 0.5
-                    
+
                 ringlittle/little:
-                    children: 
+                    children:
                         - r2/right_arm/hand/ringlittle/little
                         - r2/right_arm/hand/ringlittle/littleMedial
                         - r2/right_arm/hand/ringlittle/littleDistal
@@ -291,22 +291,22 @@ r2_sim_params:
                         - 0.5
 
             left_leg/gripper/joint0:
-                children: 
+                children:
                     - r2/left_leg/gripper/joint0
                     - r2/left_leg/gripper/jawLeft
                     - r2/left_leg/gripper/jawRight
-                factors: 
+                factors:
                     - 1.0
                     - 1.0
                     - 1.0
-                
+
             right_leg/gripper/joint0:
-                children: 
+                children:
                     - r2/right_leg/gripper/joint0
                     - r2/right_leg/gripper/jawLeft
                     - r2/right_leg/gripper/jawRight
-                factors: 
+                factors:
                     - 1.0
                     - 1.0
                     - 1.0
-                    
+
