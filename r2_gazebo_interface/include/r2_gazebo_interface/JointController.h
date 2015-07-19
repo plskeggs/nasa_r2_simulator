@@ -1,15 +1,15 @@
 #ifndef JOINTCONTROLLER_H
 #define JOINTCONTROLLER_H
 
-#include <common/PID.hh>
-#include <common/Time.hh>
+#include <gazebo/common/PID.hh>
+#include <gazebo/common/Time.hh>
 #include <nasa_r2_common_msgs/JointControl.h>
 #include <nasa_r2_common_msgs/JointStatus.h>
-#include <physics/Joint.hh>
-#include <physics/Link.hh>
-#include <physics/Model.hh>
-#include <physics/PhysicsTypes.hh>
-#include <physics/World.hh>
+#include <gazebo/physics/Joint.hh>
+#include <gazebo/physics/Link.hh>
+#include <gazebo/physics/Model.hh>
+#include <gazebo/physics/PhysicsTypes.hh>
+#include <gazebo/physics/World.hh>
 #include <boost/thread.hpp>
 #include <map>
 #include <ros/console.h>

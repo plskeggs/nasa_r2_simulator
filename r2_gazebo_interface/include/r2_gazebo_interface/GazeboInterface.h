@@ -1,17 +1,17 @@
 #ifndef GAZEBOINTERFACE_H
 #define GAZEBOINTERFACE_H
 
-#include <common/Events.hh>
-#include <common/Plugin.hh>
+#include <gazebo/common/Events.hh>
+#include <gazebo/common/Plugin.hh>
 #include <r2_gazebo_interface/RobotController.h>
 #include <nasa_r2_common_msgs/JointCapability.h>
 #include <nasa_r2_common_msgs/JointCommand.h>
 #include <nasa_r2_common_msgs/JointControl.h>
 #include <nasa_r2_common_msgs/JointStatus.h>
 #include <nasa_r2_common_msgs/JointStatusArray.h>
-#include <physics/Joint.hh>
-#include <physics/Model.hh>
-#include <physics/World.hh>
+#include <gazebo/physics/Joint.hh>
+#include <gazebo/physics/Model.hh>
+#include <gazebo/physics/World.hh>
 #include <ros/ros.h>
 #include <sensor_msgs/JointState.h>
 

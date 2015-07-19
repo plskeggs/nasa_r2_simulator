@@ -32,6 +32,7 @@
         </controller:gazebo_ros_laser>
       </sensor:ray>
     </gazebo>
+
   </xacro:macro>
 
 </robot>
