@@ -11,16 +11,15 @@
   <arg name="ros_control"  default="false" />
 
   <!-- load robot -->
-  <param name="robot_description" command="$(find xacro)/xacro.py '$(find r2_gazebo)/xacro/r2c_full.urdf.xacro'" />  
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find r2_gazebo)/xacro/r2c_full.urdf.xacro'" />
   <rosparam file="$(find r2_gazebo)/config/controllers/r2sim_full_params.yaml" command="load" />
-  <node name="spawn_r2" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model r2 -paused=true -z 2" respawn="false" output="screen" />
+  <node name="spawn_r2" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model r2 -paused=true -y 0.03 -z 1.425" respawn="false" output="screen" />
 
   <!-- convert joint states to TF transforms for rviz, etc -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
 
   <!-- reference frame broadcaster for moveit -->
   <node pkg="tf" type="static_transform_publisher" name="moveit_odom_broadcaster" args="0 0 0 0 0 0 reference_frame world 100" />
-
   <node pkg="tf" type="static_transform_publisher" name="octomap_odom_broadcaster" args="0 0 0 0 0 0 /world /map 100" if="$(arg octomap)"/>
   <node pkg="octomap_server" type="octomap_server_node" name="octomap_server" args="cloud_in:=/r2/asus/depth/points _resolution:=0.02" if="$(arg octomap)"/>
 
