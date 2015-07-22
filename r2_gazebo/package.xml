@@ -17,6 +17,7 @@
   <run_depend>r2_gazebo_gripper</run_depend>
   <run_depend>nasa_robodyn_ros</run_depend>
   <run_depend>r2_description</run_depend>
+  <run_depend>gazebo_ros_control</run_depend>
 
   <export>
     <gazebo_ros gazebo_media_path="${prefix}" />
