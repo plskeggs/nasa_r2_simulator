@@ -1,21 +1,21 @@
 #ifndef GAZEBOGRIPPER_H
 #define GAZEBOGRIPPER_H
 
-#include "common/Plugin.hh"
-#include "common/Events.hh"
+#include <gazebo/common/Plugin.hh>
+#include <gazebo/common/Events.hh>
 
-#include "physics/Gripper.hh"
+#include <gazebo/physics/Gripper.hh>
 
 #include <ros/ros.h>
 #include <sensor_msgs/JointState.h>
 
-#include "physics/Model.hh"
-#include "physics/Joint.hh"
-#include "physics/World.hh"
-#include "physics/Link.hh"
-#include "physics/PhysicsEngine.hh"
-#include "physics/Collision.hh"
-#include "physics/Contact.hh"
+#include <gazebo/physics/Model.hh>
+#include <gazebo/physics/Joint.hh>
+#include <gazebo/physics/World.hh>
+#include <gazebo/physics/Link.hh>
+#include <gazebo/physics/PhysicsEngine.hh>
+#include <gazebo/physics/Collision.hh>
+#include <gazebo/physics/Contact.hh>
 
 namespace gazebo
 {

@@ -1,6 +1,6 @@
 #include "r2_gazebo_gripper/GazeboGripper.h"
-#include <physics/physics.hh>
-#include <transport/transport.hh>
+#include <gazebo/physics/physics.hh>
+#include <gazebo/transport/transport.hh>
 
 using namespace gazebo;
 
