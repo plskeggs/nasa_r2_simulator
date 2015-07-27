@@ -8,7 +8,8 @@ R2RosArbiter::R2RosArbiter(ros::NodeHandle nh)
     labeledPoseSettingsIn      = nh.subscribe("/pose_ref_settings", 1, &R2RosArbiter::labeledPoseSettingsCallback, this);
     labeledJointStateIn        = nh.subscribe("/desired_torque_limits", 1, &R2RosArbiter::labeledJointStateCallback, this);
     labeledGainsIn             = nh.subscribe("/joint_desired_dynamics", 1, &R2RosArbiter::labeledGainsCallback, this);
-    labeledJointTrajIn         = nh.subscribe("/joint_refs", 32, &R2RosArbiter::labeledJointTrajectoryCallback, this);
+    labeledJointRefIn         = nh.subscribe("/joint_refs", 32, &R2RosArbiter::labeledJointRefCallback, this);
+    labeledJointTrajIn         = nh.subscribe("/joint_traj", 32, &R2RosArbiter::labeledJointTrajCallback, this);
     labeledPoseTrajIn          = nh.subscribe("/pose_refs", 32, &R2RosArbiter::labeledPoseTrajectoryCallback, this);
     labeledGripperCommandIn    = nh.subscribe("/gripper_commands", 10, &R2RosArbiter::labeledGripperCommandCallback, this);
 
@@ -16,7 +17,8 @@ R2RosArbiter::R2RosArbiter(ros::NodeHandle nh)
     poseSettingsOut  = nh.advertise<nasa_r2_common_msgs::ControllerPoseSettings>("pose_ref_settings", 1);
     jointStateOut    = nh.advertise<sensor_msgs::JointState>("joint_states", 1);
     gainsOut         = nh.advertise<nasa_r2_common_msgs::Gains>("gains", 1);
-    jointTrajOut     = nh.advertise<nasa_r2_common_msgs::JointTrajectoryReplan>("joint_refs", 32);
+    jointRefsOut     = nh.advertise<nasa_r2_common_msgs::JointTrajectoryReplan>("joint_refs", 32);
+    jointTrajOut     = nh.advertise<trajectory_msgs::JointTrajectory>("joint_traj", 32);
     poseTrajOut      = nh.advertise<nasa_r2_common_msgs::PoseTrajectoryReplan>("pose_refs", 32);
     gripperCmdOut    = nh.advertise<nasa_r2_common_msgs::GripperPositionCommand>("gripper_cmd", 10);
 
@@ -87,7 +89,7 @@ void R2RosArbiter::labeledGainsCallback(const nasa_r2_common_msgs::LabeledGains&
     writeSuccessStatus("Gains");
 }
 
-void R2RosArbiter::labeledJointTrajectoryCallback(const nasa_r2_common_msgs::LabeledJointTrajectory& msg)
+void R2RosArbiter::labeledJointRefCallback(const nasa_r2_common_msgs::LabeledJointTrajectory& msg)
 {
     nasa_r2_common_msgs::JointTrajectoryReplan passthrough;
     trajectory_msgs::JointTrajectory trajectory;
@@ -96,8 +98,18 @@ void R2RosArbiter::labeledJointTrajectoryCallback(const nasa_r2_common_msgs::Lab
     trajectory.points = msg.points;
     passthrough.header = msg.header;
     passthrough.trajectory = trajectory;
-    jointTrajOut.publish(passthrough);
+    jointRefsOut.publish(passthrough);
     writeSuccessStatus("JointRef");
+}
+
+void R2RosArbiter::labeledJointTrajCallback(const nasa_r2_common_msgs::LabeledJointTrajectory& msg)
+{
+    trajectory_msgs::JointTrajectory passthrough;
+    passthrough.header = msg.header;
+    passthrough.joint_names = msg.joint_names;
+    passthrough.points = msg.points;
+    jointTrajOut.publish(passthrough);
+    writeSuccessStatus("JointTraj");
 }
 
 void R2RosArbiter::labeledPoseTrajectoryCallback(const nasa_r2_common_msgs::LabeledPoseTrajectory& msg)

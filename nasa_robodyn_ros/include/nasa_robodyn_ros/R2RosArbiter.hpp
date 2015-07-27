@@ -33,7 +33,8 @@ public:
     void labeledPoseSettingsCallback(const nasa_r2_common_msgs::LabeledControllerPoseSettings& msg);
     void labeledJointStateCallback(const nasa_r2_common_msgs::LabeledJointState& msg);
     void labeledGainsCallback(const nasa_r2_common_msgs::LabeledGains& msg);
-    void labeledJointTrajectoryCallback(const nasa_r2_common_msgs::LabeledJointTrajectory& msg);
+    void labeledJointRefCallback(const nasa_r2_common_msgs::LabeledJointTrajectory& msg);
+    void labeledJointTrajCallback(const nasa_r2_common_msgs::LabeledJointTrajectory& msg);
     void labeledPoseTrajectoryCallback(const nasa_r2_common_msgs::LabeledPoseTrajectory& msg);
     void labeledGripperCommandCallback(const nasa_r2_common_msgs::LabeledGripperPositionCommand& msg);
 
@@ -47,6 +48,7 @@ private:
     ros::Subscriber labeledPoseSettingsIn;
     ros::Subscriber labeledJointStateIn;
     ros::Subscriber labeledGainsIn;
+    ros::Subscriber labeledJointRefIn;
     ros::Subscriber labeledJointTrajIn;
     ros::Subscriber labeledPoseTrajIn;
     ros::Subscriber labeledGripperCommandIn;
@@ -55,6 +57,7 @@ private:
     ros::Publisher poseSettingsOut;
     ros::Publisher jointStateOut;
     ros::Publisher gainsOut;
+    ros::Publisher jointRefsOut;
     ros::Publisher jointTrajOut;
     ros::Publisher poseTrajOut;
     ros::Publisher gripperCmdOut;
