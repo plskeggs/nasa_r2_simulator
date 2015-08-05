@@ -25,7 +25,7 @@
   <rosparam file="$(find r2_gazebo)/config/controllers/r2_fullbody_generic_traj_control.yaml" command="load"/>
 
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" ns="/r2" args="r_arm_controller l_arm_controller r_hand_controller l_hand_controller l_leg_controller r_leg_controller l_foot_controller r_foot_controller neck_controller waist_controller joint_state_controller"/>
+    output="screen" ns="/r2" args="r_arm_controller l_arm_controller r_hand_controller l_hand_controller l_leg_controller r_leg_controller l_foot_controller r_foot_controller neck_controller waist_controller joint_state_controller" />
 
   <!-- convert joint states to TF transforms for rviz, etc -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
@@ -35,6 +35,9 @@
 
   <node pkg="tf" type="static_transform_publisher" name="octomap_odom_broadcaster" args="0 0 0 0 0 0 /world /map 100" if="$(arg octomap)"/>
   <node pkg="octomap_server" type="octomap_server_node" name="octomap_server" args="cloud_in:=/r2/asus/depth/points _resolution:=0.02" if="$(arg octomap)"/>
-
+  
+  <!-- remap js -->
+  <node name="js_remap" pkg="topic_tools" type="relay" respawn="true" output="screen" args="/r2/joint_states /joint_states"/>
+  
 </launch>
 
