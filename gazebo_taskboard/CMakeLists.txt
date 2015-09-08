@@ -73,3 +73,4 @@ add_library(gazebo_taskboard
   src/${PROJECT_NAME}/GazeboTaskboard.cpp
 )
 
+add_dependencies(gazebo_taskboard ${catkin_EXPORTED_TARGETS} ${gazebo_taskboard_EXPORTED_TARGETS})
