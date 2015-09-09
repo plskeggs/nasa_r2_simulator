@@ -72,7 +72,7 @@ add_library(gazebo_interface
   src/${PROJECT_NAME}/RobotController.cpp
 )
 
-add_dependencies(gazebo_interface r2_msgs_generate_messages_cpp)
+add_dependencies(gazebo_interface ${catkin_EXPORTED_TARGETS})
 
 ## Declare a cpp executable
 # add_executable(r2_gazebo_node src/r2_gazebo_node.cpp)
