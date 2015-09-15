@@ -4,6 +4,7 @@ project(iss_taskboard_gazebo)
 find_package(catkin REQUIRED COMPONENTS message_generation gazebo_ros rostest)
 find_package(xacro REQUIRED)
 find_package(gazebo REQUIRED)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
 
 catkin_destinations()
 
