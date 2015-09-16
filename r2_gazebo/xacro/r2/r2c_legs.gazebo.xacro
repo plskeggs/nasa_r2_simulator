@@ -12,6 +12,7 @@
 
   <macro name="gazebo_legs_joint" params="name">
      <gazebo reference="${name}">
+        <implicitSpringDamper>1</implicitSpringDamper>
         <stopKd value="1.0" />
         <stopKp value="1000000.0" />
      </gazebo>
