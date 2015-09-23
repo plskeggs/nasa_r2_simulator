@@ -5,7 +5,9 @@
   <macro name="r2_trans" params="part reduction tc">
      <transmission name="${part}_trans">
        <type>transmission_interface/SimpleTransmission</type>
-       <joint name="${part}"/>
+       <joint name="${part}">
+         <hardwareInterface>EffortJointInterface</hardwareInterface>
+       </joint>
        <actuator name="${part}_motor">
          <hardwareInterface>EffortJointInterface</hardwareInterface>
          <mechanicalReduction>${reduction}</mechanicalReduction>
