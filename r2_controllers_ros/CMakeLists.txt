@@ -21,9 +21,6 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #uncomment if you have defined services
 #rosbuild_gensrv()
 
-# Get access to nasa_cmake
-rosbuild_find_ros_package(nasa_cmake)
-list(APPEND CMAKE_MODULE_PATH ${nasa_cmake_PACKAGE_PATH})
 find_package(Log4cpp REQUIRED)
 include_directories(${Log4cpp_INCLUDE_DIR})
 
