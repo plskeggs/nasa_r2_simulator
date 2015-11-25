@@ -1,6 +1,0 @@
-int32 index
-int32 mode
-float64 value
-float64 duration
----
-bool ok

@@ -1,5 +1,0 @@
-int32 index
-float64 force
-float64 duration
----
-bool ok
