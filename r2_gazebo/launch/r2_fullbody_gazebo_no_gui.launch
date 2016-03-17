@@ -3,6 +3,7 @@
   <arg name="robot"     default="true" />
   <arg name="gui"       default="false" />
   <arg name="world"     default="r2_empty" /> <!-- r2_ISS,  r2_ISS_simple, r2_empty_no_gravity-->
+  <arg name="world_path" default="$(find r2_gazebo)/worlds" /> 
   <arg name="gravity"   default="true" />
   <arg name="debug"     default="false" />
   <arg name="i_control" default="false" />
@@ -13,8 +14,8 @@
   <param name="/use_sim_time" value="true"/>
 
   <!-- load world -->
-  <node name="gazebo" pkg="gazebo_ros" type="debug" args="$(find r2_gazebo)/worlds/$(arg world).world" output="screen" respawn="false" if="$(arg debug)"/>
-  <node name="gazebo" pkg="gazebo_ros" type="gzserver" args="$(find r2_gazebo)/worlds/$(arg world).world" output="screen" respawn="false" unless="$(arg debug)"/>
+  <node name="gazebo" pkg="gazebo_ros" type="debug" args="$(arg world_path)/$(arg world).world" output="screen" respawn="false" if="$(arg debug)"/>
+  <node name="gazebo" pkg="gazebo_ros" type="gzserver" args="--verbose $(arg world_path)/$(arg world).world" output="screen" respawn="false" unless="$(arg debug)"/>
 
   <group if="$(arg gravity)">
     <param name="/gravity/x" value="0"/>
