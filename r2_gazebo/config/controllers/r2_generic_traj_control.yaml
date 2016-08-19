@@ -63,13 +63,13 @@ r2:
       - r2/left_arm/joint5
       - r2/left_arm/joint6
     gains:
-      r2/left_arm/joint0: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
-      r2/left_arm/joint1: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
-      r2/left_arm/joint2: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
-      r2/left_arm/joint3: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
-      r2/left_arm/joint4: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
-      r2/left_arm/joint5: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
-      r2/left_arm/joint6: {p: 1000.0, d: 60, i: 100, i_clamp: 500.0}
+      r2/left_arm/joint0: {p: 5000.0, d: 0, i: 100, i_clamp: 400.0}
+      r2/left_arm/joint1: {p: 5000.0, d: 0, i: 100, i_clamp: 400.0}
+      r2/left_arm/joint2: {p: 5000.0, d: 0, i: 100, i_clamp: 400.0}
+      r2/left_arm/joint3: {p: 5000.0, d: 0, i: 100, i_clamp: 400.0}
+      r2/left_arm/joint4: {p: 1000.0, d: 0, i: 100, i_clamp: 400.0}
+      r2/left_arm/joint5: {p: 1000.0, d: 0, i: 100, i_clamp: 400.0}
+      r2/left_arm/joint6: {p: 1000.0, d: 0, i: 100, i_clamp: 400.0}
     follow_joint_trajectory:
       joints:
         - r2/left_arm/joint0
@@ -104,7 +104,7 @@ r2:
     joints:
       - r2/waist/joint0
     gains:
-      r2/waist/joint0: {p: 1000.0, d: 700, i: 100, i_clamp: 500.0}
+      r2/waist/joint0: {p: 2.5, d: 1, i: 0, i_clamp: 500.0}
     follow_joint_trajectory_node:
       joints:
         - r2/waist/joint0
