@@ -26,7 +26,7 @@ void GazeboGripper::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     // Store the pointer to the model
     modelPtr = _model;
 
-    prevUpdateTime = _model->GetWorld()->GetSimTime();
+    prevUpdateTime = _model->GetWorld()->SimTime();
     prevContactUpdateTime = prevUpdateTime;
 
     // get params
@@ -121,7 +121,7 @@ void GazeboGripper::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
         return;
     }
 
-    fixedJointPtr = modelPtr->GetWorld()->GetPhysicsEngine()->CreateJoint("revolute");
+    fixedJointPtr = modelPtr->GetWorld()->Physics()->CreateJoint("revolute");
 
     // @todo: fix collision
     /*
@@ -159,7 +159,7 @@ void GazeboGripper::Init()
 
 void GazeboGripper::onUpdate()
 {
-    common::Time currTime = modelPtr->GetWorld()->GetSimTime();
+    common::Time currTime = modelPtr->GetWorld()->SimTime();
 
     if ((currTime - prevUpdateTime).Double() < updateTime)
     {
@@ -173,7 +173,7 @@ void GazeboGripper::onUpdate()
 
 void GazeboGripper::handleContact()
 {
-    common::Time currTime = modelPtr->GetWorld()->GetSimTime();
+    common::Time currTime = modelPtr->GetWorld()->SimTime();
     double elapsedTime = (currTime - prevContactUpdateTime).Double();
     prevContactUpdateTime = currTime;
 
@@ -218,7 +218,7 @@ void GazeboGripper::handleContact()
                 }
                 else
                 {
-                    math::Pose diff = cc[iter->first]->GetLink()->GetWorldPose() - modelPtr->GetLink(gripperAttachLink)->GetWorldPose();
+                    ignition::math::Pose3d diff = cc[iter->first]->GetLink()->WorldPose() - modelPtr->GetLink(gripperAttachLink)->WorldPose();
 
                     double relMotionRate; // find relative motion rate
                     if (contactDuration <= elapsedTime)
@@ -228,7 +228,7 @@ void GazeboGripper::handleContact()
                     }
                     else
                     {
-                        relMotionRate = (diff - prevDiff).pos.GetSquaredLength() / elapsedTime;
+                        relMotionRate = (diff - prevDiff).Pos().SquaredLength() / elapsedTime;
                     }
                     prevDiff = diff;
 
@@ -272,10 +272,10 @@ void GazeboGripper::handleAttach(physics::LinkPtr linkPtr)
 {
     attached = true;
 
-    fixedJointPtr->Load(modelPtr->GetLink(gripperAttachLink), linkPtr, math::Pose(0, 0, 0, 0, 0, 0));
+    fixedJointPtr->Load(modelPtr->GetLink(gripperAttachLink), linkPtr, ignition::math::Pose3d(0, 0, 0, 0, 0, 0));
     fixedJointPtr->Init();
-    fixedJointPtr->SetHighStop(0, 0);
-    fixedJointPtr->SetLowStop(0, 0);
+    fixedJointPtr->SetUpperLimit(0, 0);
+    fixedJointPtr->SetLowerLimit(0, 0);
 
     ROS_INFO("GazeboGripper attached to %s", linkPtr->GetName().c_str());
 }

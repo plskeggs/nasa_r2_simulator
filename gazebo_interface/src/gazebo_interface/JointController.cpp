@@ -29,8 +29,8 @@ JointController::JointController(physics::JointPtr _jointPtr, bool _advancedMode
     currStatusPtr->embeddedMotCom = true; // default to true on startup
 
     ROS_DEBUG("GetLimits for %s", _jointPtr->GetName().c_str());
-    jointLowLimit = _jointPtr->GetLowStop(0).Radian();
-    jointHighLimit = _jointPtr->GetHighStop(0).Radian();
+    jointLowLimit = _jointPtr->LowerLimit(0);
+    jointHighLimit = _jointPtr->UpperLimit(0);
 
     // set brake based on mode
     releaseBrake(!_advancedMode);
@@ -107,7 +107,7 @@ void JointController::update(common::Time& stepTime)
         cmd = effort;
         break;
     case POS_COM:
-        cmd = posPid.Update(jointPtr->GetAngle(0).Radian() - position, stepTime);
+        cmd = posPid.Update(jointPtr->Position(0) - position, stepTime);
         break;
     case VEL_COM:
         cmd = velPid.Update(jointPtr->GetVelocity(0) - velocity, stepTime);
@@ -180,14 +180,14 @@ void JointController::releaseBrake(bool release)
     ROS_DEBUG("%s brake for %s", release ? "release" : "set", jointPtr->GetName().c_str());
     if (release)
     {
-        jointPtr->SetHighStop(0, jointHighLimit);
-        jointPtr->SetLowStop(0, jointLowLimit);
+        jointPtr->SetUpperLimit(0, jointHighLimit);
+        jointPtr->SetLowerLimit(0, jointLowLimit);
     }
     else
     {
-        math::Angle currAngle = jointPtr->GetAngle(0);
-        jointPtr->SetHighStop(0, currAngle);
-        jointPtr->SetLowStop(0, currAngle);
+        ignition::math::Angle currAngle = jointPtr->Position(0);
+        jointPtr->SetUpperLimit(0, currAngle.Radian());
+        jointPtr->SetLowerLimit(0, currAngle.Radian());
     }
     currStatusPtr->brakeReleased = release;
 }

@@ -11,12 +11,15 @@
 
 #include <gazebo_taskboard/GazeboTaskboard.h>
 #include <boost/bind.hpp>
+#include <boost/format.hpp>
+#include <boost/algorithm/string.hpp>
 #include <stdio.h>
 #include <math.h>
 #include <gazebo/common/Events.hh>
 #include <std_msgs/String.h>
-#include <gazebo/math/Angle.hh>
-#include <gazebo/math/Pose.hh>
+#include <ignition/math/Angle.hh>
+#include <ignition/math/Pose3.hh>
+#include <ignition/math/Vector3.hh>
 #include <gazebo/msgs/MessageTypes.hh>
 
 using namespace gazebo;
@@ -56,7 +59,7 @@ const double SAFE_TOGGLE_MIDDLE_LIMIT_ANGLE = -0.47;
 const double SAFE_TOGGLE_HALF_ANGLE = 0.47;
 
 /// @brief Zero vector constant for convenience
-const math::Vector3 ZERO_VECTOR = math::Vector3(0, 0, 0);
+const ignition::math::Vector3<double> ZERO_VECTOR = ignition::math::Vector3<double>(0, 0, 0);
 
 /// @brief The available LED colors
 enum LedColor
@@ -105,12 +108,12 @@ struct GazeboTaskboardSlot1::Led
     /// @brief the color of this led
     LedColor color;
     /// @brief the pose of this led
-    math::Pose pose;
+    ignition::math::Pose3d pose;
 
     /// @brief Led default contructor
     Led();
     /// @brief Led constructor that initializes led instance with the given parameters
-    Led(int index_, bool numPadLed_, LedColor color_, math::Pose pose_);
+    Led(int index_, bool numPadLed_, LedColor color_, ignition::math::Pose3d pose_);
     /// @brief Create led model in the physics world
     void CreateModel(physics::WorldPtr world);
     /// @brief Setup led model in the physics world
@@ -145,7 +148,7 @@ struct GazeboTaskboardSlot1::TaskboardLeds
     Led toggleA05Led;
 
     /// @brief TaskboardLeds  constructor.
-    TaskboardLeds(const math::Pose& pose);
+    TaskboardLeds(const ignition::math::Pose3d& pose);
 
     /// @brief Creates led's models in the physics world.
     void CreateModels(physics::WorldPtr world);
@@ -234,25 +237,25 @@ struct BaseManipulationState
 struct PowerCoverManipulationState : BaseManipulationState
 {
     /// @brief anglue velocity parameter
-    math::Vector3 angularVelocity;
+    ignition::math::Vector3<double> angularVelocity;
 };
 /// @brief Holds manipulation state for power switch.
 struct PowerSwitchManipulationState : BaseManipulationState
 {
     /// @brief anglue velocity parameter
-    math::Vector3 angularVelocity;
+    ignition::math::Vector3<double> angularVelocity;
 };
 /// @brief Holds manipulation state for rocker switch.
 struct RockerSwitchManipulationState : BaseManipulationState
 {
     /// @brief torque parameter
-    math::Vector3 torque;
+    ignition::math::Vector3<double> torque;
 };
 /// @brief Holds manipulation state for numpad buttons.
 struct NumPadButtonManipulationState : BaseManipulationState
 {
     /// @brief force parameter
-    math::Vector3 force;
+    ignition::math::Vector3<double> force;
 };
 /// @brief Holds manipulation state for safe toggles (A03/A04/A05).
 struct SafeToggleManipulationState : BaseManipulationState
@@ -313,7 +316,7 @@ GazeboTaskboardSlot1::GazeboTaskboardSlot1()
 {}
 
 /**
- * @brief Plugin's desctructor.
+ * @brief Plugin's destructor.
  *
  * Stops listening to the world update event.
  */
@@ -321,7 +324,7 @@ GazeboTaskboardSlot1::~GazeboTaskboardSlot1()
 {
     if (updateConnection)
     {
-        event::Events::DisconnectWorldUpdateBegin(updateConnection);
+        // deprecated: event::Events::DisconnectWorldUpdateBegin(updateConnection);
         updateConnection.reset();
     }
 }
@@ -370,7 +373,7 @@ void GazeboTaskboardSlot1::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
     manipulationState.reset(new ManipulationState);
 
     //  Initialize LEDs
-    leds.reset(new TaskboardLeds(model->GetWorldPose()));
+    leds.reset(new TaskboardLeds(model->WorldPose()));
 
     // Initialize controller according to the model state
     state.reset(new TaskboardSlot1State);
@@ -500,24 +503,24 @@ bool GazeboTaskboardSlot1::InitJoints()
 void GazeboTaskboardSlot1::DeriveStateFromModel()
 {
     // Initialize powerCoverState
-    math::Pose pose = linkPowerCover->GetRelativePose();
-    double angle = pose.rot.GetRoll();
+    ignition::math::Pose3d pose = linkPowerCover->RelativePose();
+    double angle = pose.Rot().Roll();
     state->isCoverOpen = (angle < POWER_COVER_JOINT_THRESHOLD);
 
     // Initialize powerSwitchState.
     // If the power is on then turn on the leds that should be on in current state.
-    pose = linkPowerSwitch->GetRelativePose();
-    angle = pose.rot.GetRoll();
+    pose = linkPowerSwitch->RelativePose();
+    angle = pose.Rot().Roll();
     state->powerSwitchState = (angle < M_PI_2) ? eTwoWayState_Up : eTwoWayState_Down;
 
     // Initialize toggleA03State
-    pose = linksSafeToggle[0]->GetRelativePose();
-    angle = pose.rot.GetRoll();
+    pose = linksSafeToggle[0]->RelativePose();
+    angle = pose.Rot().Roll();
     state->toggleA03State = (angle < M_PI_2) ? eTwoWayState_Up : eTwoWayState_Down;
 
     // Initialize toggleA04State
-    pose = linksSafeToggle[1]->GetRelativePose();
-    angle = pose.rot.GetRoll();
+    pose = linksSafeToggle[1]->RelativePose();
+    angle = pose.Rot().Roll();
     if (angle < M_PI_2 - SAFE_TOGGLE_HALF_ANGLE/2)
     {
         state->toggleA04State = eThreeWayState_Up;
@@ -532,8 +535,8 @@ void GazeboTaskboardSlot1::DeriveStateFromModel()
     }
 
     // Initialize toggleA05State
-    pose = linksSafeToggle[2]->GetRelativePose();
-    angle = pose.rot.GetRoll();
+    pose = linksSafeToggle[2]->RelativePose();
+    angle = pose.Rot().Roll();
     state->toggleA05State = (angle < M_PI_2) ? eTwoWayState_Up : eTwoWayState_Down;
 }
 
@@ -582,13 +585,13 @@ void GazeboTaskboardSlot1::OnUpdate()
  */
 void GazeboTaskboardSlot1::MonitorPowerCoverStateChanges()
 {
-    math::Pose pose = linkPowerCover->GetRelativePose();
-    const double angle = pose.rot.GetRoll();
+    ignition::math::Pose3d pose = linkPowerCover->RelativePose();
+    const double angle = pose.Rot().Roll();
     const double threshold = deg2rad(1.0);
 
     if (angle > threshold && angle < M_PI_2 - threshold)
     {
-        math::Vector3 torque = computeEmpiricalTorque(angle - POWER_COVER_JOINT_THRESHOLD, 1.0, 1.0, 1.5, 15);
+        ignition::math::Vector3<double> torque = computeEmpiricalTorque(angle - POWER_COVER_JOINT_THRESHOLD, 1.0, 1.0, 1.5, 15);
         linkPowerCover->SetTorque(torque);
     }
     else if (angle <= threshold)
@@ -625,12 +628,12 @@ void GazeboTaskboardSlot1::MonitorPowerSwitchStateChanges()
     const double downDirLimit = M_PI/2 + halfAngle;
     const double threshold = deg2rad(1.0);
 
-    math::Pose pose = linkPowerSwitch->GetRelativePose();
-    const double angle = pose.rot.GetRoll();
+    ignition::math::Pose3d pose = linkPowerSwitch->RelativePose();
+    const double angle = pose.Rot().Roll();
 
     if (angle > upDirLimit + threshold && angle < downDirLimit - threshold)
     {
-        math::Vector3 torque = computeEmpiricalTorque(angle - M_PI_2, 1.0, 1.0, 1.3, 20);
+        ignition::math::Vector3<double> torque = computeEmpiricalTorque(angle - M_PI_2, 1.0, 1.0, 1.3, 20);
         linkPowerSwitch->SetTorque(torque);
     }
     else if (angle <= upDirLimit + threshold)
@@ -669,15 +672,15 @@ void GazeboTaskboardSlot1::MonitorRockerSwitchA01StateChanges()
     const double downStateLimit = M_PI_2 + halfAngle;
     const double threshold = deg2rad(2.0);
 
-    math::Pose pose = linkA01Switch->GetRelativePose();
-    double angle = pose.rot.GetRoll();
+    ignition::math::Pose3d pose = linkA01Switch->RelativePose();
+    double angle = pose.Rot().Roll();
 
     if (angle < M_PI_2 - threshold ||  angle > M_PI_2 + threshold)
     {
         // Switch is out of stable position, try to put it back
         const double sign = (angle < M_PI_2) ? 1.0 : -1.0;
         const double deviationAngle = sign * std::max(halfAngle - fabs(angle - M_PI_2), 0.0);
-        math::Vector3 torque = computeEmpiricalTorque(deviationAngle, 8.5, 4.0, 2.5, 7);
+        ignition::math::Vector3<double> torque = computeEmpiricalTorque(deviationAngle, 8.5, 4.0, 2.5, 7);
         linkA01Switch->SetTorque(torque);
 
         // Check for new state (UP or DOWN)
@@ -730,12 +733,12 @@ void GazeboTaskboardSlot1::MonitorNumpadStateChanges()
     for (int i = 0; i < NUM_PAD_BUTTONS_COUNT; i++)
     {
         linksNumPad[i]->SetForce(ZERO_VECTOR);
-        linksNumPad[i]->AddRelativeForce(math::Vector3(0, 0, 5));
+        linksNumPad[i]->AddRelativeForce(ignition::math::Vector3<double>(0, 0, 5));
     }
     // Check for state changes
     for (int i = 0; i < NUM_PAD_BUTTONS_COUNT; i++)
     {
-        const double offset = linksNumPad[i]->GetRelativePose().pos.y;
+        const double offset = linksNumPad[i]->RelativePose().Pos().Y();
 
         bool selected = (offset < selRelOffset + epsilon);
         if (selected ^ state->numPadButtonsSelectedState[i])
@@ -768,12 +771,12 @@ bool GazeboTaskboardSlot1::UpdateTransitionFromOutState2Way(
     const double upDirLimit = M_PI_2 - halfAngle;
     const double downDirLimit = M_PI_2 + halfAngle;
 
-    math::Pose pose = link->GetRelativePose();
-    const double angle = pose.rot.GetRoll();
+    ignition::math::Pose3d pose = link->RelativePose();
+    const double angle = pose.Rot().Roll();
 
     if (angle > upDirLimit + threshold && angle < downDirLimit - threshold)
     {
-        math::Vector3 torque = computeEmpiricalTorque(angle - M_PI_2, 0.8, 1.0, 1.5, 15);
+        ignition::math::Vector3<double> torque = computeEmpiricalTorque(angle - M_PI_2, 0.8, 1.0, 1.5, 15);
         link->SetTorque(torque);
         return false;
     }
@@ -781,15 +784,15 @@ bool GazeboTaskboardSlot1::UpdateTransitionFromOutState2Way(
     {
         state = eTwoWayState_Up;
         // Latch the joint
-        joint->SetHighStop(0, math::Angle(SAFE_TOGGLE_LOWER_LIMIT_ANGLE + threshold));
-        joint->SetLowStop(0, math::Angle(SAFE_TOGGLE_LOWER_LIMIT_ANGLE - threshold));
+        joint->SetUpperLimit(0, SAFE_TOGGLE_LOWER_LIMIT_ANGLE + threshold);
+        joint->SetLowerLimit(0, SAFE_TOGGLE_LOWER_LIMIT_ANGLE - threshold);
     }
     else
     {
         state = eTwoWayState_Down;
         // Latch the joint
-        joint->SetHighStop(0, math::Angle(SAFE_TOGGLE_UPPER_LIMIT_ANGLE + threshold));
-        joint->SetLowStop(0, math::Angle(SAFE_TOGGLE_UPPER_LIMIT_ANGLE - threshold));
+        joint->SetUpperLimit(0, SAFE_TOGGLE_UPPER_LIMIT_ANGLE + threshold);
+        joint->SetLowerLimit(0, SAFE_TOGGLE_UPPER_LIMIT_ANGLE - threshold);
     }
     return true;
 }
@@ -812,18 +815,18 @@ bool GazeboTaskboardSlot1::UpdateTransitionFromOutState3Way(
     const double downDirLimit = M_PI/2 + halfAngle;
     const double threshold = deg2rad(1.0);
 
-    math::Pose pose = link->GetRelativePose();
-    double angle = pose.rot.GetRoll();
+    ignition::math::Pose3d pose = link->RelativePose();
+    double angle = pose.Rot().Roll();
 
     if (angle > upDirLimit + threshold && angle < M_PI_2 - threshold)
     {
-        math::Vector3 torque = computeEmpiricalTorque(angle - (M_PI_2 - halfAngle/2), 0.8, 1.0, 1.5, 15);
+        ignition::math::Vector3<double> torque = computeEmpiricalTorque(angle - (M_PI_2 - halfAngle/2), 0.8, 1.0, 1.5, 15);
         link->SetTorque(torque);
         return false;
     }
     else if (angle > M_PI_2 + threshold && angle < downDirLimit - threshold)
     {
-        math::Vector3 torque = computeEmpiricalTorque(angle - (M_PI_2 + halfAngle/2), 0.8, 1.0, 1.5, 15);
+        ignition::math::Vector3<double> torque = computeEmpiricalTorque(angle - (M_PI_2 + halfAngle/2), 0.8, 1.0, 1.5, 15);
         link->SetTorque(torque);
         return false;
     }
@@ -831,24 +834,24 @@ bool GazeboTaskboardSlot1::UpdateTransitionFromOutState3Way(
     {
         state = eThreeWayState_Up;
         // Latch the joint
-        joint->SetHighStop(0, math::Angle(SAFE_TOGGLE_LOWER_LIMIT_ANGLE + threshold));
-        joint->SetLowStop(0, math::Angle(SAFE_TOGGLE_LOWER_LIMIT_ANGLE - threshold));
+        joint->SetUpperLimit(0, SAFE_TOGGLE_LOWER_LIMIT_ANGLE + threshold);
+        joint->SetLowerLimit(0, SAFE_TOGGLE_LOWER_LIMIT_ANGLE - threshold);
         link->SetTorque(ZERO_VECTOR);
     }
     else if (angle >= downDirLimit - threshold)
     {
         state = eThreeWayState_Down;
         // Latch the joint
-        joint->SetHighStop(0, math::Angle(SAFE_TOGGLE_UPPER_LIMIT_ANGLE + threshold));
-        joint->SetLowStop(0, math::Angle(SAFE_TOGGLE_UPPER_LIMIT_ANGLE - threshold));
+        joint->SetUpperLimit(0, SAFE_TOGGLE_UPPER_LIMIT_ANGLE + threshold);
+        joint->SetLowerLimit(0, SAFE_TOGGLE_UPPER_LIMIT_ANGLE - threshold);
         link->SetTorque(ZERO_VECTOR);
     }
     else
     {
         state = eThreeWayState_Center;
         // Latch the joint
-        joint->SetHighStop(0, math::Angle(SAFE_TOGGLE_MIDDLE_LIMIT_ANGLE + threshold));
-        joint->SetLowStop(0, math::Angle(SAFE_TOGGLE_MIDDLE_LIMIT_ANGLE - threshold));
+        joint->SetUpperLimit(0, SAFE_TOGGLE_MIDDLE_LIMIT_ANGLE + threshold);
+        joint->SetLowerLimit(0, SAFE_TOGGLE_MIDDLE_LIMIT_ANGLE - threshold);
         link->SetTorque(ZERO_VECTOR);
     }
     return true;
@@ -869,9 +872,9 @@ void GazeboTaskboardSlot1::MonitorSafeTogglesStateChanges()
     float offsets[SAFE_TOGGLES_COUNT]; // toggles pulled out offsets
     for (int i = 0; i < SAFE_TOGGLES_COUNT; i++)
     {
-        const math::Pose outPose = linksBaseSafeToggle[i]->GetRelativePose();
-        const math::Pose pose = linksSafeToggle[i]->GetRelativePose();
-        offsets[i] = std::max(pullOutDistance - outPose.CoordPositionSub(pose).z, 0.0);
+        const ignition::math::Pose3d outPose = linksBaseSafeToggle[i]->RelativePose();
+        const ignition::math::Pose3d pose = linksSafeToggle[i]->RelativePose();
+        offsets[i] = std::max(pullOutDistance - outPose.CoordPositionSub(pose).Z(), 0.0);
         isOut[i] = (offsets[i] > pullOutDistance - delta);
     }
      // Set OUT state
@@ -882,8 +885,8 @@ void GazeboTaskboardSlot1::MonitorSafeTogglesStateChanges()
             state->isSafeToggleOut[i] = true;
 
             // Release revolute joint
-            safeTogglesRevoluteJoints[i]->SetHighStop(0, math::Angle(SAFE_TOGGLE_UPPER_LIMIT_ANGLE));
-            safeTogglesRevoluteJoints[i]->SetLowStop(0, math::Angle(SAFE_TOGGLE_LOWER_LIMIT_ANGLE));
+            safeTogglesRevoluteJoints[i]->SetUpperLimit(0, SAFE_TOGGLE_UPPER_LIMIT_ANGLE);
+            safeTogglesRevoluteJoints[i]->SetLowerLimit(0, SAFE_TOGGLE_LOWER_LIMIT_ANGLE);
 
             // turn off LEDs
             switch (i)
@@ -944,7 +947,7 @@ void GazeboTaskboardSlot1::MonitorSafeTogglesStateChanges()
         if (state->isSafeToggleOut[i] || offsets[i] > delta)
         {
             linksSafeToggle[i]->SetForce(ZERO_VECTOR);
-            linksSafeToggle[i]->AddRelativeForce(math::Vector3(0, 0, -2));
+            linksSafeToggle[i]->AddRelativeForce(ignition::math::Vector3<double>(0, 0, -2));
         }
         else if (offsets[i] <= delta/2)
         {
@@ -1048,19 +1051,19 @@ void GazeboTaskboardSlot1::SetLedState(Led& led, bool on)
     }
 
     // Get current pose
-    math::Pose pose = led.onModel->GetRelativePose();
-    math::Pose pose2 = led.offModel->GetRelativePose();
+    ignition::math::Pose3d pose = led.onModel->RelativePose();
+    ignition::math::Pose3d pose2 = led.offModel->RelativePose();
 
     // Update pose based on new LED state
     if (on)
     {
-        pose.pos.z -= LED_HIDE_OFFSET;
-        pose2.pos.z += LED_HIDE_OFFSET2;
+        pose.Pos().Z() -= LED_HIDE_OFFSET;
+        pose2.Pos().Z() += LED_HIDE_OFFSET2;
     }
     else
     {
-        pose.pos.z += LED_HIDE_OFFSET;
-        pose2.pos.z -= LED_HIDE_OFFSET2;
+        pose.Pos().Z() += LED_HIDE_OFFSET;
+        pose2.Pos().Z() -= LED_HIDE_OFFSET2;
     }
     led.onModel->SetLinkWorldPose(pose, led.onLinkName);
     led.offModel->SetLinkWorldPose(pose2, led.offLinkName);
@@ -1143,14 +1146,14 @@ void GazeboTaskboardSlot1::TurnOffAllLeds()
 bool GazeboTaskboardSlot1::ManipulatePowerCover(
     ManipulatePowerCover::Request& request, ManipulatePowerCover::Response& response)
 {
-    math::Pose globalPose = model->GetWorldPose();
+    ignition::math::Pose3d globalPose = model->WorldPose();
     const double velocity = request.angle / request.duration;
 
     PowerCoverManipulationState &manipState = manipulationState->powerCover;
 
     manipState.duration = request.duration;
     manipState.startTime = GetTime();
-    manipState.angularVelocity = globalPose.rot * math::Vector3(velocity, 0, 0);
+    manipState.angularVelocity = globalPose.Rot() * ignition::math::Vector3<double>(velocity, 0, 0);
 
     linkPowerCover->SetAngularVel(manipState.angularVelocity);
     return true;
@@ -1169,14 +1172,14 @@ bool GazeboTaskboardSlot1::ManipulatePowerCover(
 bool GazeboTaskboardSlot1::ManipulatePowerSwitch(
     ManipulatePowerSwitch::Request& request, ManipulatePowerSwitch::Response& response)
 {
-    math::Pose globalPose = model->GetWorldPose();
+    ignition::math::Pose3d globalPose = model->WorldPose();
     const double velocity = request.angle / request.duration;
 
     PowerSwitchManipulationState &manipState = manipulationState->powerSwitch;
 
     manipState.duration = request.duration;
     manipState.startTime = GetTime();
-    manipState.angularVelocity = globalPose.rot * math::Vector3(velocity, 0, 0);
+    manipState.angularVelocity = globalPose.Rot() * ignition::math::Vector3<double>(velocity, 0, 0);
 
     linkPowerSwitch->SetAngularVel(manipState.angularVelocity);
     return true;
@@ -1195,13 +1198,13 @@ bool GazeboTaskboardSlot1::ManipulatePowerSwitch(
 bool GazeboTaskboardSlot1::ManipulateRockerSwitch(
     ManipulateRockerSwitch::Request& request, ManipulateRockerSwitch::Response& response)
 {
-    math::Pose globalPose = model->GetWorldPose();
+    ignition::math::Pose3d globalPose = model->WorldPose();
 
     RockerSwitchManipulationState &manipState = manipulationState->rockerSwitch;
 
     manipState.startTime = GetTime();
     manipState.duration = request.duration;
-    manipState.torque = globalPose.rot * math::Vector3(request.torque, 0, 0);
+    manipState.torque = globalPose.Rot() * ignition::math::Vector3<double>(request.torque, 0, 0);
 
     linkA01Switch->SetTorque(manipState.torque);
     return true;
@@ -1228,7 +1231,7 @@ bool GazeboTaskboardSlot1::ManipulateNumPad(
 
     manipState.startTime = GetTime();
     manipState.duration = request.duration;
-    manipState.force = math::Vector3(0, 0, -request.force);
+    manipState.force = ignition::math::Vector3<double>(0, 0, -request.force);
 
     linksNumPad[request.index]->AddRelativeForce(manipState.force);
     return true;
@@ -1266,13 +1269,13 @@ bool GazeboTaskboardSlot1::ManipulateSafeToggle(
     if (request.mode == 0)
     {
         link->SetForce(ZERO_VECTOR);
-        link->AddRelativeForce(math::Vector3(0, 0, manipState.value));
+        link->AddRelativeForce(ignition::math::Vector3<double>(0, 0, manipState.value));
     }
     else
     {
         const double velocity = manipState.value / manipState.duration;
-        math::Pose basePose = model->GetWorldPose();
-        math::Vector3 angularVelocity =  basePose.rot * math::Vector3(velocity, 0, 0);
+        ignition::math::Pose3d basePose = model->WorldPose();
+        ignition::math::Vector3<double> angularVelocity =  basePose.Rot() * ignition::math::Vector3<double>(velocity, 0, 0);
         link->SetAngularVel(angularVelocity);
     }
     return true;
@@ -1359,7 +1362,7 @@ void GazeboTaskboardSlot1::HandleManipulation()
             else // refresh manipulation influence
             {
                 link->SetForce(ZERO_VECTOR);
-                link->AddRelativeForce(math::Vector3(0, 0,  manipState.value));
+                link->AddRelativeForce(ignition::math::Vector3<double>(0, 0,  manipState.value));
             }
         }
         SafeToggleManipulationState &manipState2 = manipulationState->safeToggles[i][1];
@@ -1376,8 +1379,8 @@ void GazeboTaskboardSlot1::HandleManipulation()
             else // refresh manipulation influence
             {
                 const double velocity = manipState2.value / manipState2.duration;
-                math::Pose basePose = model->GetWorldPose();
-                math::Vector3 angularVelocity =  basePose.rot * math::Vector3(velocity, 0, 0);
+                ignition::math::Pose3d basePose = model->WorldPose();
+                ignition::math::Vector3<double> angularVelocity =  basePose.Rot() * ignition::math::Vector3<double>(velocity, 0, 0);
                 link->SetAngularVel(angularVelocity);
             }
         }
@@ -1395,12 +1398,12 @@ void GazeboTaskboardSlot1::HandleManipulation()
  *
  * @return the computed torque vector
  */
-math::Vector3 GazeboTaskboardSlot1::computeEmpiricalTorque(
+ignition::math::Vector3<double> GazeboTaskboardSlot1::computeEmpiricalTorque(
     double deviationAngle, double initialValue,
     double snapCoeff, double snapExp, double torqueCoeff) const
 {
     // Horizontal direction along taskboard, it's an axis of rotation for the most switches.
-    const math::Vector3 axis = model->GetWorldPose().rot * math::Vector3(1, 0, 0);
+    const ignition::math::Vector3<double> axis = model->WorldPose().Rot() * ignition::math::Vector3<double>(1, 0, 0);
     // Rotation direction
     const double sign = (deviationAngle < 0) ? 1.0 : -1.0;
     // Torque amount expression for physically plausible behavior
@@ -1415,7 +1418,7 @@ math::Vector3 GazeboTaskboardSlot1::computeEmpiricalTorque(
  */
 double GazeboTaskboardSlot1::GetTime() const
 {
-    return model->GetWorld()->GetSimTime().Double();
+    return model->GetWorld()->SimTime().Double();
 }
 
 //----------------------------------------------------------------------------------------
@@ -1436,7 +1439,7 @@ GazeboTaskboardSlot1::Led::Led()
  * @param color_ the led color in ON state
  * @param pose_ the led position
  */
-GazeboTaskboardSlot1::Led::Led(int index_, bool numPadLed_, LedColor color_, math::Pose pose_)
+GazeboTaskboardSlot1::Led::Led(int index_, bool numPadLed_, LedColor color_, ignition::math::Pose3d pose_)
 : isOn(false)
 , index(index_)
 , numPadLed(numPadLed_)
@@ -1495,17 +1498,17 @@ void GazeboTaskboardSlot1::Led::CreateModel(physics::WorldPtr world)
                               % (numPadLed ? NUMPAD_LED_RADIUS : SIMPLE_LED_RADIUS));
 
     // Prepare template
-    double roll = pose.rot.GetRoll();
-    double pitch = pose.rot.GetPitch();
-    double yaw = pose.rot.GetYaw();
+    double roll = pose.Rot().Roll();
+    double pitch = pose.Rot().Pitch();
+    double yaw = pose.Rot().Yaw();
     std::string xml = boost::str(boost::format(sdfTemplate)
-                                 % pose.pos.x % pose.pos.y
+                                 % pose.Pos().X() % pose.Pos().Y()
                                  % roll % pitch % yaw);
     std::string xml2 = xml;
 
     // SDF xml for turned on LED
     boost::replace_all(xml, "MODELNAME", ledName);
-    boost::replace_all(xml, "ZPOS", boost::str(boost::format("%1%") % (pose.pos.z + LED_HIDE_OFFSET)));
+    boost::replace_all(xml, "ZPOS", boost::str(boost::format("%1%") % (pose.Pos().Z() + LED_HIDE_OFFSET)));
     boost::replace_all(xml, "LINKNAME", ledLinkName);
     boost::replace_all(xml, "COLLISIONNAME", ledCollisionName);
     boost::replace_all(xml, "VISUALNAME", ledVisualName);
@@ -1514,7 +1517,7 @@ void GazeboTaskboardSlot1::Led::CreateModel(physics::WorldPtr world)
 
     // SDF xml for turned off LED
     boost::replace_all(xml2, "MODELNAME", ledName2);
-    boost::replace_all(xml2, "ZPOS", boost::str(boost::format("%1%") % (pose.pos.z + LED_HIDE_OFFSET2)));
+    boost::replace_all(xml2, "ZPOS", boost::str(boost::format("%1%") % (pose.Pos().Z() + LED_HIDE_OFFSET2)));
     boost::replace_all(xml2, "LINKNAME", ledLinkName2);
     boost::replace_all(xml2, "COLLISIONNAME", ledCollisionName2);
     boost::replace_all(xml2, "VISUALNAME", ledVisualName2);
@@ -1556,7 +1559,7 @@ void GazeboTaskboardSlot1::Led::SetupModel(physics::WorldPtr world)
 {
     if (!onModel)
     {
-        onModel = world->GetModel(onModelName);
+        onModel = world->ModelByName(onModelName);
         if (!onModel)
         {
             ROS_FATAL("SetupModel: failed to get model %s", onModelName.c_str());
@@ -1564,7 +1567,7 @@ void GazeboTaskboardSlot1::Led::SetupModel(physics::WorldPtr world)
         }
         onModel->SetCollideMode("none");
 
-        offModel = world->GetModel(offModelName);
+        offModel = world->ModelByName(offModelName);
         if (!offModel)
         {
             ROS_FATAL("SetupModel: failed to get model %s", offModelName.c_str());
@@ -1572,8 +1575,8 @@ void GazeboTaskboardSlot1::Led::SetupModel(physics::WorldPtr world)
         }
         offModel->SetCollideMode("none");
 
-        math::Pose pose2 = offModel->GetRelativePose();
-        pose2.pos.z -= LED_HIDE_OFFSET2;
+        ignition::math::Pose3d pose2 = offModel->RelativePose();
+        pose2.Pos().Z() -= LED_HIDE_OFFSET2;
         offModel->SetWorldPose(pose2);
     }
 }
@@ -1586,38 +1589,38 @@ void GazeboTaskboardSlot1::Led::SetupModel(physics::WorldPtr world)
  *
  * @param modelPose the taskboard model pose
  */
-GazeboTaskboardSlot1::TaskboardLeds::TaskboardLeds(const math::Pose& modelPose)
+GazeboTaskboardSlot1::TaskboardLeds::TaskboardLeds(const ignition::math::Pose3d& modelPose)
 {
     struct LedsInfo {
         Led& led;
         bool numPadLed;
         LedColor color;
-        math::Vector3 offset;
+        ignition::math::Vector3<double> offset;
     } ledsInfo[] = {
-        { powerSwitchLed,       false,  eLedColor_Green,  math::Vector3(0.3250, -0.4720, 1.4110) },
-        { rockerSwitchUpLed,    false,  eLedColor_Green,  math::Vector3(0.3245, -0.4720, 1.3340) },
-        { rockerSwitchDownLed,  false,  eLedColor_Blue,   math::Vector3(0.3245, -0.4720, 1.2834) },
-        { numPadLeds[0],        true,   eLedColor_Blue,   math::Vector3(0.4496, -0.4755, 1.3358) },
-        { numPadLeds[1],        true,   eLedColor_Green,  math::Vector3(0.4230, -0.4755, 1.3358) },
-        { numPadLeds[2],        true,   eLedColor_Blue,   math::Vector3(0.3964, -0.4755, 1.3358) },
-        { numPadLeds[3],        true,   eLedColor_Green,  math::Vector3(0.4496, -0.4755, 1.3095) },
-        { numPadLeds[4],        true,   eLedColor_Blue,   math::Vector3(0.4230, -0.4755, 1.3095) },
-        { numPadLeds[5],        true,   eLedColor_Green,  math::Vector3(0.3964, -0.4755, 1.3095) },
-        { numPadLeds[6],        true,   eLedColor_Blue,   math::Vector3(0.4496, -0.4755, 1.2833) },
-        { numPadLeds[7],        true,   eLedColor_Green,  math::Vector3(0.4230, -0.4755, 1.2833) },
-        { numPadLeds[8],        true,   eLedColor_Blue,   math::Vector3(0.3964, -0.4755, 1.2833) },
-        { toggleA03Led,         false,  eLedColor_Green,  math::Vector3(0.4449, -0.4720, 1.2365) },
-        { toggleA04TopLed,      false,  eLedColor_Green,  math::Vector3(0.3812, -0.4720, 1.2365) },
-        { toggleA04BottomLed,   false,  eLedColor_Blue,   math::Vector3(0.3812, -0.4720, 1.1855) },
-        { toggleA05Led,         false,  eLedColor_Green,  math::Vector3(0.3185, -0.4720, 1.2365) }
+        { powerSwitchLed,       false,  eLedColor_Green,  ignition::math::Vector3<double>(0.3250, -0.4720, 1.4110) },
+        { rockerSwitchUpLed,    false,  eLedColor_Green,  ignition::math::Vector3<double>(0.3245, -0.4720, 1.3340) },
+        { rockerSwitchDownLed,  false,  eLedColor_Blue,   ignition::math::Vector3<double>(0.3245, -0.4720, 1.2834) },
+        { numPadLeds[0],        true,   eLedColor_Blue,   ignition::math::Vector3<double>(0.4496, -0.4755, 1.3358) },
+        { numPadLeds[1],        true,   eLedColor_Green,  ignition::math::Vector3<double>(0.4230, -0.4755, 1.3358) },
+        { numPadLeds[2],        true,   eLedColor_Blue,   ignition::math::Vector3<double>(0.3964, -0.4755, 1.3358) },
+        { numPadLeds[3],        true,   eLedColor_Green,  ignition::math::Vector3<double>(0.4496, -0.4755, 1.3095) },
+        { numPadLeds[4],        true,   eLedColor_Blue,   ignition::math::Vector3<double>(0.4230, -0.4755, 1.3095) },
+        { numPadLeds[5],        true,   eLedColor_Green,  ignition::math::Vector3<double>(0.3964, -0.4755, 1.3095) },
+        { numPadLeds[6],        true,   eLedColor_Blue,   ignition::math::Vector3<double>(0.4496, -0.4755, 1.2833) },
+        { numPadLeds[7],        true,   eLedColor_Green,  ignition::math::Vector3<double>(0.4230, -0.4755, 1.2833) },
+        { numPadLeds[8],        true,   eLedColor_Blue,   ignition::math::Vector3<double>(0.3964, -0.4755, 1.2833) },
+        { toggleA03Led,         false,  eLedColor_Green,  ignition::math::Vector3<double>(0.4449, -0.4720, 1.2365) },
+        { toggleA04TopLed,      false,  eLedColor_Green,  ignition::math::Vector3<double>(0.3812, -0.4720, 1.2365) },
+        { toggleA04BottomLed,   false,  eLedColor_Blue,   ignition::math::Vector3<double>(0.3812, -0.4720, 1.1855) },
+        { toggleA05Led,         false,  eLedColor_Green,  ignition::math::Vector3<double>(0.3185, -0.4720, 1.2365) }
     };
     const int ledsCount = sizeof(ledsInfo) / sizeof(ledsInfo[0]);
-    const math::Quaternion rot = math::Quaternion(0.707, 0.707, 0, 0);
+    const ignition::math::Quaternion<double> rot = ignition::math::Quaternion<double>(0.707, 0.707, 0, 0);
 
     for (int i = 0; i < ledsCount; i++)
     {
         const LedsInfo &info = ledsInfo[i];
-        const math::Pose pose(modelPose.pos + modelPose.rot * info.offset, modelPose.rot * rot);
+        const ignition::math::Pose3d pose(modelPose.Pos() + modelPose.Rot() * info.offset, modelPose.Rot() * rot);
         info.led = Led(i, info.numPadLed, info.color, pose);
     }
 }

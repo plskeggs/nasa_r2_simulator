@@ -59,7 +59,7 @@ namespace gazebo
         double contactDuration;
         double nonContactDuration;
         common::Time prevContactUpdateTime;
-        math::Pose prevDiff;
+        ignition::math::Pose3d prevDiff;
     };
 }
 

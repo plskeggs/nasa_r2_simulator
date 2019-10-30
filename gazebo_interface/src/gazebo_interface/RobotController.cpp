@@ -14,7 +14,7 @@ using namespace gazebo;
 RobotController::RobotController(physics::ModelPtr _modelPtr)
 : modelPtr(_modelPtr)
 {
-    prevUpdateTime = _modelPtr->GetWorld()->GetSimTime();
+    prevUpdateTime = _modelPtr->GetWorld()->SimTime();
 }
 
 RobotController::~RobotController()
@@ -146,7 +146,7 @@ void RobotController::getJointStates(std::map<std::string, JointState>& posMap)
         std::map<std::string, JointState>::iterator it = posMap.find(name);
         if (it != posMap.end())
         {
-            it->second.position = jPtr->GetAngle(0).Radian();
+            it->second.position = jPtr->Position(0);
             it->second.velocity = jPtr->GetVelocity(0);
             it->second.effort = jPtr->GetForce(0);
         }
@@ -329,7 +329,7 @@ const nasa_r2_common_msgs::JointStatus& RobotController::getJointStatus(const st
 
 void RobotController::update()
 {
-    common::Time currTime = modelPtr->GetWorld()->GetSimTime();
+    common::Time currTime = modelPtr->GetWorld()->SimTime();
     common::Time stepTime = currTime - prevUpdateTime;
     prevUpdateTime = currTime;
 

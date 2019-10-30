@@ -26,8 +26,8 @@ void GazeboInterface::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     // Store the pointer to the model
     modelPtr = _model;
 
-    prevStatesUpdateTime = _model->GetWorld()->GetSimTime();
-    prevStatusUpdateTime = _model->GetWorld()->GetSimTime();
+    prevStatesUpdateTime = _model->GetWorld()->SimTime();
+    prevStatusUpdateTime = _model->GetWorld()->SimTime();
 
     // create controller
     robotControllerPtr.reset(new RobotController(modelPtr));
@@ -306,7 +306,7 @@ void GazeboInterface::Init()
             {
                 if (radians == false)
                 {
-                    val = GZ_DTOR(val);
+                    val = IGN_DTOR(val);
                 }
 
                 if (modelPtr->GetJoint(poseIt->first))
@@ -329,7 +329,7 @@ void GazeboInterface::Init()
         robotControllerPtr->setJointPositions(initialPoseMap);
     }
 
-    // get position PIDsmodelPtr->GetWorld()->GetSimTime()
+    // get position PIDsmodelPtr->GetWorld()->SimTime()
     if (paramsNodePtr->getParam("position_pid", param))
     {
         ROS_DEBUG("set position PIDs");
@@ -410,7 +410,7 @@ void GazeboInterface::Init()
         for (unsigned int i = 0; i < modelPtr->GetJointCount(); ++i)
         {
             physics::JointPtr jPtr = _joints[i];
-            robotControllerPtr->setJointPosTarget(jPtr->GetName(), jPtr->GetAngle(0).Radian());
+            robotControllerPtr->setJointPosTarget(jPtr->GetName(), jPtr->Position(0));
         }
     }
 
@@ -440,7 +440,7 @@ void GazeboInterface::Init()
 
 void GazeboInterface::update()
 {
-    common::Time currTime = modelPtr->GetWorld()->GetSimTime();
+    common::Time currTime = modelPtr->GetWorld()->SimTime();
 
     // update joint controller
     robotControllerPtr->update();

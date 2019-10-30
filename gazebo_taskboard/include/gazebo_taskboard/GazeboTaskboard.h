@@ -117,7 +117,7 @@ namespace gazebo
         void HandleManipulation();
 
         /// @brief Calculates empirical torque vector used to simulate switches/toggles rotation.
-        math::Vector3 computeEmpiricalTorque(double deviationAngle, double initialValue,
+        ignition::math::Vector3<double> computeEmpiricalTorque(double deviationAngle, double initialValue,
                                              double snapCoeff, double snapExp, double torqueCoeff) const;
 
         /// @brief Makes joint transition from current OUT position to nearest UP/DOWN state.
