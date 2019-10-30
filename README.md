@@ -2,5 +2,5 @@
 
 This repository was imported from [NASA's repository on bitbucket](https://bitbucket.org/nasa_ros_pkg/deprecated_nasa_r2_simulator.git).
 
-I've ported it to ROS Melodic.  There were a number of changes in Gazebo which required fixing.  A lot of them were related to replacing
+I've ported it to ROS Melodic (in the branch **melodic**; the **master** branch is still where the maintainers left it, other than this readme so it shows up in the default view on github).  There were a number of changes in Gazebo which required fixing.  A lot of them were related to replacing
 the Gazebo math library with [Ignition Robotics' math library](https://ignitionrobotics.org/api/math/4.0/annotated.html).
