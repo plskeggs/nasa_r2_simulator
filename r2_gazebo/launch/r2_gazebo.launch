@@ -24,7 +24,7 @@
   <!-- load robot -->
   <group if="$(arg robot)">
     <param name="robot_description" command="$(find xacro)/xacro.py '$(find r2_gazebo)/robots/r2.sim.urdf.xacro'" />
-    <node name="spawn_r2" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model r2 -paused=true -y 2" respawn="false" output="screen" />
+    <node name="spawn_r2" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model r2 -y 2" respawn="false" output="screen" />
   </group>
 
   <!-- Load joint controller configurations from YAML file to parameter server -->
