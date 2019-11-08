@@ -2230,7 +2230,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/waist/joint0"/>
     <actuator name="r2/waist_j0_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2239,7 +2239,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/joint0"/>
     <actuator name="r2/left_arm_j0_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2248,7 +2248,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/joint1"/>
     <actuator name="r2/left_arm_j1_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2257,7 +2257,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/joint2"/>
     <actuator name="r2/left_arm_j2_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2266,7 +2266,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/joint3"/>
     <actuator name="r2/left_arm_j3_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2275,7 +2275,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/joint4"/>
     <actuator name="r2/left_arm_j4_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2284,7 +2284,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/joint5"/>
     <actuator name="r2/left_arm_j5_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2293,7 +2293,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/joint6"/>
     <actuator name="r2/left_arm_j6_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2302,7 +2302,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/thumb/joint0"/>
     <actuator name="r2/left_arm/hand/thumb_j0_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2311,7 +2311,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/thumb/joint1"/>
     <actuator name="r2/left_arm/hand/thumb_j1_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2320,7 +2320,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/thumb/joint2"/>
     <actuator name="r2/left_arm/hand/thumb_j2_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2329,7 +2329,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/thumb/joint3"/>
     <actuator name="r2/left_arm/hand/thumb_j3_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2338,7 +2338,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/index/joint0"/>
     <actuator name="r2/left_arm/hand/index_j0_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2347,7 +2347,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/index/joint1"/>
     <actuator name="r2/left_arm/hand/index_j1_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2356,7 +2356,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/index/joint2"/>
     <actuator name="r2/left_arm/hand/index_j2_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2365,7 +2365,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/index/joint3"/>
     <actuator name="r2/left_arm/hand/index_j3_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2374,7 +2374,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/middle/joint0"/>
     <actuator name="r2/left_arm/hand/middle_j0_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2383,7 +2383,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/middle/joint1"/>
     <actuator name="r2/left_arm/hand/middle_j1_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2392,7 +2392,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/middle/joint2"/>
     <actuator name="r2/left_arm/hand/middle_j2_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2401,7 +2401,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/middle/joint3"/>
     <actuator name="r2/left_arm/hand/middle_j3_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2410,7 +2410,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/ring/joint0"/>
     <actuator name="r2/left_arm/hand/ring_j0_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2419,7 +2419,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/ring/joint1"/>
     <actuator name="r2/left_arm/hand/ring_j1_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2428,7 +2428,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/ring/joint2"/>
     <actuator name="r2/left_arm/hand/ring_j2_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2437,7 +2437,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/little/joint0"/>
     <actuator name="r2/left_arm/hand/little_j0_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2446,7 +2446,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/little/joint1"/>
     <actuator name="r2/left_arm/hand/little_j1_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2455,7 +2455,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/left_arm/hand/little/joint2"/>
     <actuator name="r2/left_arm/hand/little_j2_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2464,7 +2464,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/joint0"/>
     <actuator name="r2/right_arm_j0_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2473,7 +2473,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/joint1"/>
     <actuator name="r2/right_arm_j1_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2482,7 +2482,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/joint2"/>
     <actuator name="r2/right_arm_j2_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2491,7 +2491,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/joint3"/>
     <actuator name="r2/right_arm_j3_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2500,7 +2500,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/joint4"/>
     <actuator name="r2/right_arm_j4_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2509,7 +2509,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/joint5"/>
     <actuator name="r2/right_arm_j5_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2518,7 +2518,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/joint6"/>
     <actuator name="r2/right_arm_j6_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2527,7 +2527,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/thumb/joint0"/>
     <actuator name="r2/right_arm/hand/thumb_j0_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2536,7 +2536,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/thumb/joint1"/>
     <actuator name="r2/right_arm/hand/thumb_j1_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2545,7 +2545,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/thumb/joint2"/>
     <actuator name="r2/right_arm/hand/thumb_j2_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2554,7 +2554,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/thumb/joint3"/>
     <actuator name="r2/right_arm/hand/thumb_j3_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2563,7 +2563,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/index/joint0"/>
     <actuator name="r2/right_arm/hand/index_j0_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2572,7 +2572,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/index/joint1"/>
     <actuator name="r2/right_arm/hand/index_j1_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2581,7 +2581,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/index/joint2"/>
     <actuator name="r2/right_arm/hand/index_j2_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2590,7 +2590,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/index/joint3"/>
     <actuator name="r2/right_arm/hand/index_j3_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2599,7 +2599,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/middle/joint0"/>
     <actuator name="r2/right_arm/hand/middle_j0_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2608,7 +2608,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/middle/joint1"/>
     <actuator name="r2/right_arm/hand/middle_j1_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2617,7 +2617,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/middle/joint2"/>
     <actuator name="r2/right_arm/hand/middle_j2_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2626,7 +2626,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/middle/joint3"/>
     <actuator name="r2/right_arm/hand/middle_j3_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2635,7 +2635,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/ring/joint0"/>
     <actuator name="r2/right_arm/hand/ring_j0_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2644,7 +2644,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/ring/joint1"/>
     <actuator name="r2/right_arm/hand/ring_j1_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2653,7 +2653,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/ring/joint2"/>
     <actuator name="r2/right_arm/hand/ring_j2_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2662,7 +2662,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/little/joint0"/>
     <actuator name="r2/right_arm/hand/little_j0_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2671,7 +2671,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/little/joint1"/>
     <actuator name="r2/right_arm/hand/little_j1_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2680,7 +2680,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/right_arm/hand/little/joint2"/>
     <actuator name="r2/right_arm/hand/little_j2_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2689,7 +2689,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/neck/joint0"/>
     <actuator name="r2/neck_j0_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2698,7 +2698,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/neck/joint1"/>
     <actuator name="r2/neck_j1_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
@@ -2707,7 +2707,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="r2/neck/joint2"/>
     <actuator name="r2/neck_j2_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>100</mechanicalReduction>
     </actuator>
     <motorTorqueConstant>0.01</motorTorqueConstant>
